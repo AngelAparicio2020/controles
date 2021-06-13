@@ -26,8 +26,8 @@ public class BeanService {
 	}
 
 	@Bean
-	public RolService servicioRol(RolRepositorio rolRepositorio) {
-		return new RolService(rolRepositorio);
+	public RolService servicioRol(RolRepositorio rolRepositorio, UsuarioRepositorio usuarioRepositorio) {
+		return new RolService(rolRepositorio, usuarioRepositorio);
 	}
 
 	@Bean

@@ -6,14 +6,18 @@ import com.co.comfaoriente.controles.dominio.entidades.PrivilegioEntidad;
 import com.co.comfaoriente.controles.dominio.entidades.RolEntidad;
 import com.co.comfaoriente.controles.dominio.excepciones.EntityNotFoundException;
 import com.co.comfaoriente.controles.dominio.repositorios.RolRepositorio;
+import com.co.comfaoriente.controles.dominio.repositorios.UsuarioRepositorio;
 
 public class RolService {
 
 	private RolRepositorio rolRepositorio;
+	private UsuarioRepositorio usuarioRepositorio;
 	private static final String ROL_NO_ENCONTRADO = "NO EXISTE UN ROL CON ESTE ID";
+	private static final String USUARIO_NO_ENCONTRADO = "NO EXISTE UN USUARIO CON ESTE DOCUMENTO";
 
-	public RolService(RolRepositorio rolRepositorio) {
+	public RolService(RolRepositorio rolRepositorio, UsuarioRepositorio usuarioRepositorio) {
 		this.rolRepositorio = rolRepositorio;
+		this.usuarioRepositorio = usuarioRepositorio;
 	}
 
 	public boolean registrarRol(RolEntidad rol) {
@@ -25,8 +29,8 @@ public class RolService {
 			throw new EntityNotFoundException(ROL_NO_ENCONTRADO);
 		}
 
-		if (!rolRepositorio.existeRol(rol)) {
-			throw new EntityNotFoundException("NO EXISTE UN USUARIO CON ESTE DOCUMENTO");
+		if (!usuarioRepositorio.existeDocumento(documento)) {
+			throw new EntityNotFoundException(USUARIO_NO_ENCONTRADO);
 		}
 		return rolRepositorio.asignarRol(documento, rol);
 	}
@@ -78,8 +82,8 @@ public class RolService {
 			throw new EntityNotFoundException(ROL_NO_ENCONTRADO);
 		}
 
-		if (!rolRepositorio.existeRol(rol)) {
-			throw new EntityNotFoundException("NO EXISTE UN USUARIO CON ESTE DOCUMENTO");
+		if (!usuarioRepositorio.existeDocumento(documento)) {
+			throw new EntityNotFoundException(USUARIO_NO_ENCONTRADO);
 		}
 		return rolRepositorio.retirarRol(documento, rol);
 	}
