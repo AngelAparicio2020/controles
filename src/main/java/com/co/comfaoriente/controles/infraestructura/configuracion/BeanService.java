@@ -3,10 +3,24 @@ package com.co.comfaoriente.controles.infraestructura.configuracion;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
+import com.co.comfaoriente.controles.dominio.repositorios.CompromisoRepositorio;
+import com.co.comfaoriente.controles.dominio.repositorios.ControlRepositorio;
+import com.co.comfaoriente.controles.dominio.repositorios.ControlVacunacionRepositorio;
+import com.co.comfaoriente.controles.dominio.repositorios.IngresoRepositorio;
+import com.co.comfaoriente.controles.dominio.repositorios.RemicionRepositorio;
 import com.co.comfaoriente.controles.dominio.repositorios.RolRepositorio;
+import com.co.comfaoriente.controles.dominio.repositorios.SeguimientoSaludRepositorio;
 import com.co.comfaoriente.controles.dominio.repositorios.SesionRepositorio;
 import com.co.comfaoriente.controles.dominio.repositorios.UsuarioRepositorio;
+import com.co.comfaoriente.controles.dominio.servicios.CompromisoService;
+import com.co.comfaoriente.controles.dominio.servicios.ControlService;
+import com.co.comfaoriente.controles.dominio.servicios.ControlVacunacionService;
+import com.co.comfaoriente.controles.dominio.servicios.IngresoInfanteService;
+import com.co.comfaoriente.controles.dominio.servicios.IngresoMadreService;
+import com.co.comfaoriente.controles.dominio.servicios.IngresoService;
+import com.co.comfaoriente.controles.dominio.servicios.RemicionService;
 import com.co.comfaoriente.controles.dominio.servicios.RolService;
+import com.co.comfaoriente.controles.dominio.servicios.SeguimientoSaludService;
 import com.co.comfaoriente.controles.dominio.servicios.SesionService;
 import com.co.comfaoriente.controles.dominio.servicios.UsuarioService;
 
@@ -33,6 +47,47 @@ public class BeanService {
 	@Bean
 	public UsuarioService servicioUsuario(UsuarioRepositorio usuarioRepositorio) {
 		return new UsuarioService(usuarioRepositorio);
+	}
+
+	@Bean
+	public ControlService controlService(ControlRepositorio controlRepositorio) {
+		return new ControlService(controlRepositorio);
+	}
+
+	@Bean
+	public ControlVacunacionService controlVacunacionService(
+			ControlVacunacionRepositorio controlVacunacionRepositorio) {
+		return new ControlVacunacionService(controlVacunacionRepositorio);
+	}
+
+	@Bean
+	public CompromisoService compromisoService(CompromisoRepositorio compromisoRepositorio) {
+		return new CompromisoService(compromisoRepositorio);
+	}
+
+	@Bean
+	public IngresoService ingresoService(IngresoRepositorio ingresoRepositorio) {
+		return new IngresoService(ingresoRepositorio);
+	}
+
+	@Bean
+	public IngresoMadreService ingresoMadreService(IngresoRepositorio ingresoRepositorio) {
+		return new IngresoMadreService(ingresoRepositorio);
+	}
+
+	@Bean
+	public IngresoInfanteService ingresoInfanteService(IngresoRepositorio ingresoRepositorio) {
+		return new IngresoInfanteService(ingresoRepositorio);
+	}
+
+	@Bean
+	public RemicionService remicionService(RemicionRepositorio remicionRepositorio) {
+		return new RemicionService(remicionRepositorio);
+	}
+
+	@Bean
+	public SeguimientoSaludService seguimientoService(SeguimientoSaludRepositorio seguimientoRepositorio) {
+		return new SeguimientoSaludService(seguimientoRepositorio);
 	}
 
 	@Bean

@@ -17,7 +17,7 @@ public class SesionService {
 	public List<String> iniciarSesion(int documento, String clave, int rol) {
 		
 		if (!sesionRepositorio.existeUsuario(documento, clave)) {
-			throw new UnauthorizedException("CLAVE O USUARIO INVALIDAS");
+			throw new UnauthorizedException("LA CLAVE O EL USUARIO NO SON CORRECTOS");
 		}
 
 		if (!sesionRepositorio.consultarRolesUsuario(documento, rol)) {

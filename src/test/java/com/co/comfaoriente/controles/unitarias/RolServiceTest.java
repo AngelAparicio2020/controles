@@ -30,8 +30,8 @@ public class RolServiceTest {
 	private RolService rolService;
 	private RolEntidad rol;
 	private RolBuilder builder;
-	private int idRol;
-	private int documento;
+	private static final int ID_ROL = 1;
+	private static final int DOCUMENTO = 1093779211;
 	private static final String ROL_NO_ENCONTRADO = "NO EXISTE UN ROL CON ESTE ID";
 	private static final String USUARIO_NO_ENCONTRADO = "NO EXISTE UN USUARIO CON ESTE DOCUMENTO";
 
@@ -39,8 +39,6 @@ public class RolServiceTest {
 	public void setUp() {
 		this.rolRepositorio = mock(RolRepositorio.class);
 		this.usuarioRepositorio = mock(UsuarioRepositorio.class);
-		this.idRol = 1;
-		this.documento = 1093779211;
 	}
 
 	@Test
@@ -86,13 +84,13 @@ public class RolServiceTest {
 	@Test
 	void asignarRolOkTest() {
 		// arrange
-		when(this.rolRepositorio.existeRol(idRol)).thenReturn(true);
-		when(this.usuarioRepositorio.existeDocumento(documento)).thenReturn(true);
-		when(this.rolRepositorio.asignarRol(documento, idRol)).thenReturn(true);
+		when(this.rolRepositorio.existeRol(ID_ROL)).thenReturn(true);
+		when(this.usuarioRepositorio.existeDocumento(DOCUMENTO)).thenReturn(true);
+		when(this.rolRepositorio.asignarRol(DOCUMENTO, ID_ROL)).thenReturn(true);
 		this.rolService = new RolService(this.rolRepositorio, usuarioRepositorio);
 
 		// act
-		boolean asignado = this.rolService.asignarRol(documento, idRol);
+		boolean asignado = this.rolService.asignarRol(DOCUMENTO, ID_ROL);
 
 		// assert
 		assertEquals(true, asignado);
@@ -101,13 +99,13 @@ public class RolServiceTest {
 	@Test
 	void asignarRolNoExistenteTest() {
 		// arrange
-		when(this.rolRepositorio.existeRol(idRol)).thenReturn(false);
-		when(this.usuarioRepositorio.existeDocumento(documento)).thenReturn(true);
+		when(this.rolRepositorio.existeRol(ID_ROL)).thenReturn(false);
+		when(this.usuarioRepositorio.existeDocumento(DOCUMENTO)).thenReturn(true);
 		this.rolService = new RolService(this.rolRepositorio, usuarioRepositorio);
 
 		try {
 			// act
-			this.rolService.asignarRol(documento, idRol);
+			this.rolService.asignarRol(DOCUMENTO, ID_ROL);
 			fail();
 		} catch (EntityNotFoundException e) {
 			// assert
@@ -116,15 +114,15 @@ public class RolServiceTest {
 	}
 
 	@Test
-	void asignarRolDocumentoNoExistenteTest() {
+	void asignarRolDOCUMENTONoExistenteTest() {
 		// arrange
-		when(this.rolRepositorio.existeRol(idRol)).thenReturn(true);
-		when(this.usuarioRepositorio.existeDocumento(documento)).thenReturn(false);
+		when(this.rolRepositorio.existeRol(ID_ROL)).thenReturn(true);
+		when(this.usuarioRepositorio.existeDocumento(DOCUMENTO)).thenReturn(false);
 		this.rolService = new RolService(this.rolRepositorio, usuarioRepositorio);
 
 		try {
 			// act
-			this.rolService.asignarRol(documento, idRol);
+			this.rolService.asignarRol(DOCUMENTO, ID_ROL);
 			fail();
 		} catch (EntityNotFoundException e) {
 			// assert
@@ -135,13 +133,13 @@ public class RolServiceTest {
 	@Test
 	void retirarRolOkTest() {
 		// arrange
-		when(this.rolRepositorio.existeRol(idRol)).thenReturn(true);
-		when(this.usuarioRepositorio.existeDocumento(documento)).thenReturn(true);
-		when(this.rolRepositorio.retirarRol(documento, idRol)).thenReturn(true);
+		when(this.rolRepositorio.existeRol(ID_ROL)).thenReturn(true);
+		when(this.usuarioRepositorio.existeDocumento(DOCUMENTO)).thenReturn(true);
+		when(this.rolRepositorio.retirarRol(DOCUMENTO, ID_ROL)).thenReturn(true);
 		this.rolService = new RolService(this.rolRepositorio, usuarioRepositorio);
 
 		// act
-		boolean asignado = this.rolService.retirarRol(documento, idRol);
+		boolean asignado = this.rolService.retirarRol(DOCUMENTO, ID_ROL);
 
 		// assert
 		assertEquals(true, asignado);
@@ -150,13 +148,13 @@ public class RolServiceTest {
 	@Test
 	void retirarRolNoExistenteTest() {
 		// arrange
-		when(this.rolRepositorio.existeRol(idRol)).thenReturn(false);
-		when(this.usuarioRepositorio.existeDocumento(documento)).thenReturn(true);
+		when(this.rolRepositorio.existeRol(ID_ROL)).thenReturn(false);
+		when(this.usuarioRepositorio.existeDocumento(DOCUMENTO)).thenReturn(true);
 		this.rolService = new RolService(this.rolRepositorio, usuarioRepositorio);
 
 		try {
 			// act
-			this.rolService.retirarRol(documento, idRol);
+			this.rolService.retirarRol(DOCUMENTO, ID_ROL);
 			fail();
 		} catch (EntityNotFoundException e) {
 			// assert
@@ -165,15 +163,15 @@ public class RolServiceTest {
 	}
 
 	@Test
-	void retirarRolDocumentoNoExistenteTest() {
+	void retirarRolDOCUMENTONoExistenteTest() {
 		// arrange
-		when(this.rolRepositorio.existeRol(idRol)).thenReturn(true);
-		when(this.usuarioRepositorio.existeDocumento(documento)).thenReturn(false);
+		when(this.rolRepositorio.existeRol(ID_ROL)).thenReturn(true);
+		when(this.usuarioRepositorio.existeDocumento(DOCUMENTO)).thenReturn(false);
 		this.rolService = new RolService(this.rolRepositorio, usuarioRepositorio);
 
 		try {
 			// act
-			this.rolService.retirarRol(documento, idRol);
+			this.rolService.retirarRol(DOCUMENTO, ID_ROL);
 			fail();
 		} catch (EntityNotFoundException e) {
 			// assert
@@ -184,9 +182,9 @@ public class RolServiceTest {
 	@Test
 	void actualizarRolOkTest() {
 		// arrange
-		this.builder = new RolBuilder().conId(idRol);
+		this.builder = new RolBuilder().conId(ID_ROL);
 		this.rol = builder.build();
-		when(this.rolRepositorio.existeRol(idRol)).thenReturn(true);
+		when(this.rolRepositorio.existeRol(ID_ROL)).thenReturn(true);
 		when(this.rolRepositorio.actualizarRol(rol)).thenReturn(true);
 		this.rolService = new RolService(this.rolRepositorio, usuarioRepositorio);
 
@@ -203,7 +201,7 @@ public class RolServiceTest {
 		// arrange
 		this.builder = new RolBuilder();
 		this.rol = builder.build();
-		when(this.rolRepositorio.existeRol(idRol)).thenReturn(false);
+		when(this.rolRepositorio.existeRol(ID_ROL)).thenReturn(false);
 		when(this.rolRepositorio.actualizarRol(rol)).thenReturn(true);
 		this.rolService = new RolService(this.rolRepositorio, usuarioRepositorio);
 
@@ -223,7 +221,7 @@ public class RolServiceTest {
 		// arrange
 		this.builder = new RolBuilder();
 		this.rol = builder.build();
-		when(this.rolRepositorio.existeRol(idRol)).thenReturn(false);
+		when(this.rolRepositorio.existeRol(ID_ROL)).thenReturn(false);
 		when(this.rolRepositorio.actualizarRol(rol)).thenReturn(true);
 		this.rolService = new RolService(this.rolRepositorio, usuarioRepositorio);
 
@@ -241,14 +239,14 @@ public class RolServiceTest {
 	@Test
 	void eliminarRolOkTest() {
 		// arrange
-		this.builder = new RolBuilder().conId(idRol);
+		this.builder = new RolBuilder().conId(ID_ROL);
 		this.rol = builder.build();
-		when(this.rolRepositorio.existeRol(idRol)).thenReturn(true);
-		when(this.rolRepositorio.eliminarRol(idRol)).thenReturn(true);
+		when(this.rolRepositorio.existeRol(ID_ROL)).thenReturn(true);
+		when(this.rolRepositorio.eliminarRol(ID_ROL)).thenReturn(true);
 		this.rolService = new RolService(this.rolRepositorio, usuarioRepositorio);
 
 		// act
-		boolean eliminado = this.rolService.eliminarRol(idRol);
+		boolean eliminado = this.rolService.eliminarRol(ID_ROL);
 
 		// assert
 		assertEquals(true, eliminado);
@@ -258,12 +256,12 @@ public class RolServiceTest {
 	@Test
 	void eliminarRolFalloTest() {
 		// arrange
-		when(this.rolRepositorio.existeRol(idRol)).thenReturn(false);
+		when(this.rolRepositorio.existeRol(ID_ROL)).thenReturn(false);
 		this.rolService = new RolService(this.rolRepositorio, usuarioRepositorio);
 
 		try {
 			// act
-			this.rolService.eliminarRol(idRol);
+			this.rolService.eliminarRol(ID_ROL);
 			fail();
 		} catch (EntityNotFoundException e) {
 			// assert
@@ -275,14 +273,14 @@ public class RolServiceTest {
 	@Test
 	void consultarRolOkTest() {
 		// arrange
-		this.builder = new RolBuilder().conId(idRol);
+		this.builder = new RolBuilder().conId(ID_ROL);
 		this.rol = builder.build();
-		when(this.rolRepositorio.existeRol(idRol)).thenReturn(true);
-		when(this.rolRepositorio.consultarRol(idRol)).thenReturn(this.rol);
+		when(this.rolRepositorio.existeRol(ID_ROL)).thenReturn(true);
+		when(this.rolRepositorio.consultarRol(ID_ROL)).thenReturn(this.rol);
 		this.rolService = new RolService(this.rolRepositorio, usuarioRepositorio);
 
 		// act
-		RolEntidad consultado = this.rolService.consultarRol(idRol);
+		RolEntidad consultado = this.rolService.consultarRol(ID_ROL);
 
 		// assert
 		assertEquals(consultado, this.rol);
@@ -292,15 +290,15 @@ public class RolServiceTest {
 	@Test
 	void consultarRolFalloTest() {
 		// arrange
-		this.builder = new RolBuilder().conId(idRol);
+		this.builder = new RolBuilder().conId(ID_ROL);
 		this.rol = builder.build();
-		when(this.rolRepositorio.existeRol(idRol)).thenReturn(false);
-		when(this.rolRepositorio.consultarRol(idRol)).thenReturn(this.rol);
+		when(this.rolRepositorio.existeRol(ID_ROL)).thenReturn(false);
+		when(this.rolRepositorio.consultarRol(ID_ROL)).thenReturn(this.rol);
 		this.rolService = new RolService(this.rolRepositorio, usuarioRepositorio);
 
 		try {
 			// act
-			this.rolService.consultarRol(idRol);
+			this.rolService.consultarRol(ID_ROL);
 			fail();
 		} catch (EntityNotFoundException e) {
 			// assert
@@ -333,12 +331,12 @@ public class RolServiceTest {
 		List<PrivilegioEntidad> privilegios = new ArrayList<>();
 		privilegios.add(privilegioUno);
 		privilegios.add(privilegioDos);
-		when(this.rolRepositorio.existeRol(idRol)).thenReturn(true);
-		when(this.rolRepositorio.consultarPrivilegiosxRol(idRol)).thenReturn(privilegios);
+		when(this.rolRepositorio.existeRol(ID_ROL)).thenReturn(true);
+		when(this.rolRepositorio.consultarPrivilegiosxRol(ID_ROL)).thenReturn(privilegios);
 		this.rolService = new RolService(this.rolRepositorio, usuarioRepositorio);
 
 		// act
-		List<PrivilegioEntidad> privilegiosXRol = this.rolService.consultarPrivilegiosxRol(idRol);
+		List<PrivilegioEntidad> privilegiosXRol = this.rolService.consultarPrivilegiosxRol(ID_ROL);
 
 		// assert
 		assertEquals(privilegios, privilegiosXRol);
@@ -354,13 +352,13 @@ public class RolServiceTest {
 		List<PrivilegioEntidad> privilegios = new ArrayList<>();
 		privilegios.add(privilegioUno);
 		privilegios.add(privilegioDos);
-		when(this.rolRepositorio.existeRol(idRol)).thenReturn(false);
-		when(this.rolRepositorio.consultarPrivilegiosxRol(idRol)).thenReturn(privilegios);
+		when(this.rolRepositorio.existeRol(ID_ROL)).thenReturn(false);
+		when(this.rolRepositorio.consultarPrivilegiosxRol(ID_ROL)).thenReturn(privilegios);
 		this.rolService = new RolService(this.rolRepositorio, usuarioRepositorio);
 
 		try {
 			// act
-			this.rolService.consultarPrivilegiosxRol(idRol);
+			this.rolService.consultarPrivilegiosxRol(ID_ROL);
 			fail();
 		} catch (EntityNotFoundException e) {
 			// assert
@@ -378,12 +376,12 @@ public class RolServiceTest {
 		List<PrivilegioEntidad> privilegios = new ArrayList<>();
 		privilegios.add(privilegioUno);
 		privilegios.add(privilegioDos);
-		when(this.rolRepositorio.existeRol(idRol)).thenReturn(true);
-		when(this.rolRepositorio.asignarPrivilegio(privilegios, idRol)).thenReturn(true);
+		when(this.rolRepositorio.existeRol(ID_ROL)).thenReturn(true);
+		when(this.rolRepositorio.asignarPrivilegio(privilegios, ID_ROL)).thenReturn(true);
 		this.rolService = new RolService(this.rolRepositorio, usuarioRepositorio);
 
 		// act
-		boolean privilegiosAsignados = this.rolService.asignarPrivilegios(privilegios, idRol);
+		boolean privilegiosAsignados = this.rolService.asignarPrivilegios(privilegios, ID_ROL);
 
 		// assert
 		assertEquals(true, privilegiosAsignados);
@@ -393,12 +391,12 @@ public class RolServiceTest {
 	@Test
 	void asignarPrivilegiosxRolNuloOkTest() {
 		// arrange
-		when(this.rolRepositorio.existeRol(idRol)).thenReturn(true);
-		when(this.rolRepositorio.asignarPrivilegio(null, idRol)).thenReturn(true);
+		when(this.rolRepositorio.existeRol(ID_ROL)).thenReturn(true);
+		when(this.rolRepositorio.asignarPrivilegio(null, ID_ROL)).thenReturn(true);
 		this.rolService = new RolService(this.rolRepositorio, usuarioRepositorio);
 
 		// act
-		boolean privilegiosAsignados = this.rolService.asignarPrivilegios(null, idRol);
+		boolean privilegiosAsignados = this.rolService.asignarPrivilegios(null, ID_ROL);
 
 		// assert
 		assertEquals(true, privilegiosAsignados);
@@ -409,12 +407,12 @@ public class RolServiceTest {
 	void asignarPrivilegiosxRolVacioOkTest() {
 		// arrange
 		List<PrivilegioEntidad> privilegios = new ArrayList<>();
-		when(this.rolRepositorio.existeRol(idRol)).thenReturn(true);
-		when(this.rolRepositorio.asignarPrivilegio(privilegios, idRol)).thenReturn(true);
+		when(this.rolRepositorio.existeRol(ID_ROL)).thenReturn(true);
+		when(this.rolRepositorio.asignarPrivilegio(privilegios, ID_ROL)).thenReturn(true);
 		this.rolService = new RolService(this.rolRepositorio, usuarioRepositorio);
 
 		// act
-		boolean privilegiosAsignados = this.rolService.asignarPrivilegios(privilegios, idRol);
+		boolean privilegiosAsignados = this.rolService.asignarPrivilegios(privilegios, ID_ROL);
 
 		// assert
 		assertEquals(true, privilegiosAsignados);
@@ -429,13 +427,13 @@ public class RolServiceTest {
 		List<PrivilegioEntidad> privilegios = new ArrayList<>();
 		privilegios.add(privilegioUno);
 		privilegios.add(privilegioDos);
-		when(this.rolRepositorio.existeRol(idRol)).thenReturn(false);
-		when(this.rolRepositorio.asignarPrivilegio(privilegios, idRol)).thenReturn(true);
+		when(this.rolRepositorio.existeRol(ID_ROL)).thenReturn(false);
+		when(this.rolRepositorio.asignarPrivilegio(privilegios, ID_ROL)).thenReturn(true);
 		this.rolService = new RolService(this.rolRepositorio, usuarioRepositorio);
 
 		try {
 			// act
-			this.rolService.asignarPrivilegios(privilegios, idRol);
+			this.rolService.asignarPrivilegios(privilegios, ID_ROL);
 			fail();
 		} catch (EntityNotFoundException e) {
 			// assert
