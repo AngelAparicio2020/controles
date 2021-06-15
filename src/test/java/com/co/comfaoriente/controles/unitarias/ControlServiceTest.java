@@ -225,7 +225,26 @@ class ControlServiceTest {
 		when(this.controlRepositorio.existeControl(ID)).thenReturn(true);
 		when(this.controlRepositorio.eliminarControl(ID)).thenReturn(true);
 		when(this.controlRepositorio.esVigente(ID)).thenReturn(true);
-		when(this.controlRepositorio.cantidadDeControlesDePersona(DOCUMENTO)).thenReturn(1);
+		when(this.controlRepositorio.cantidadDeControlesNoVigentesDePersona(DOCUMENTO)).thenReturn(1);
+		this.controlService = new ControlService(this.controlRepositorio, usuarioRepositorio);
+
+		// act
+		boolean eliminado = this.controlService.eliminarControl(ID);
+
+		// assert
+		assertEquals(true, eliminado);
+	}
+	
+	@Test
+	void eliminarControlSinVigenteExistenteOkTest() {
+		// arrange
+		this.builder = new ControlBuilder();
+		this.control = builder.build();
+		when(this.controlRepositorio.consultarControl(ID)).thenReturn(this.control);
+		when(this.controlRepositorio.existeControl(ID)).thenReturn(true);
+		when(this.controlRepositorio.eliminarControl(ID)).thenReturn(true);
+		when(this.controlRepositorio.esVigente(ID)).thenReturn(true);
+		when(this.controlRepositorio.cantidadDeControlesNoVigentesDePersona(DOCUMENTO)).thenReturn(0);
 		this.controlService = new ControlService(this.controlRepositorio, usuarioRepositorio);
 
 		// act

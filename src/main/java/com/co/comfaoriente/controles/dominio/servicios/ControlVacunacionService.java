@@ -36,7 +36,7 @@ public class ControlVacunacionService {
 		}
 		ControlVacunacionEntidad control = this.controlRepositorio.consultarControl(id);
 		if (this.controlRepositorio.esVigente(id)
-				&& this.controlRepositorio.cantidadDeControlesDePersona(control.getIdUsuario()) > 0) {
+				&& this.controlRepositorio.cantidadDeControlesNoVigentesDePersona(control.getIdUsuario()) > 0) {
 			int ultimoControlNoVigente = this.controlRepositorio.ultimoControlNoVigente(control.getIdUsuario());
 			this.controlRepositorio.volverVigente(ultimoControlNoVigente);
 		}

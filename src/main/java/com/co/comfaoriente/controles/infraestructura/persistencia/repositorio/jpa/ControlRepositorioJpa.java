@@ -11,8 +11,11 @@ public interface ControlRepositorioJpa extends CrudRepository<ControlEntidad, In
 	@Query("select control from ControlEntidad control where control.id = :id")
 	ControlEntidad consultarControl(@Param("id") int id);
 
-	@Query("select count(*) from ControlEntidad control where control.idUsuario = :idUsuario")
+	@Query("select count(*) from ControlEntidad control where control.idUsuario = :idUsuario and control.vigente = true")
 	int contarControlesDeUsuario(@Param("idUsuario") int idUsuario);
+	
+	@Query("select count(*) from ControlEntidad control where control.idUsuario = :idUsuario and control.vigente = false")
+	int contarControlesNovigentesDeUsuario(@Param("idUsuario") int idUsuario);
 
 	@Query("select max(control.id) from ControlEntidad control where control.vigente = true and control.idUsuario = :idUsuario")
 	int ultimoControlVigente(@Param("idUsuario") int idUsuario);

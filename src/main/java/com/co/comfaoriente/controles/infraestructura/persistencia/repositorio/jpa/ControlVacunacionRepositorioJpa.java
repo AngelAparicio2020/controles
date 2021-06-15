@@ -11,8 +11,11 @@ public interface ControlVacunacionRepositorioJpa extends CrudRepository<ControlV
 	@Query("select control from ControlVacunacionEntidad control where control.id = :id")
 	ControlVacunacionEntidad consultarControl(@Param("id") int id);
 
-	@Query("select count(*) from ControlVacunacionEntidad control where control.idUsuario = :idUsuario")
+	@Query("select count(*) from ControlVacunacionEntidad control where control.idUsuario = :idUsuario and control.vigente = true")
 	int contarControlesDeUsuario(@Param("idUsuario") int idUsuario);
+	
+	@Query("select count(*) from ControlVacunacionEntidad control where control.idUsuario = :idUsuario and control.vigente = false")
+	int contarControlesNovigentesDeUsuario(@Param("idUsuario") int idUsuario);
 
 	@Query("select max(control.id) from ControlVacunacionEntidad control where control.vigente = true and control.idUsuario = :idUsuario")
 	int ultimoControlVigente(@Param("idUsuario") int idUsuario);

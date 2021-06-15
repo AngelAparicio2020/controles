@@ -8,6 +8,8 @@ public interface ControlVacunacionRepositorio {
 
 	public int cantidadDeControlesDePersona(int idUsuario);
 
+	public int cantidadDeControlesNoVigentesDePersona(int idUsuario);
+
 	public int ultimoControlVigente(int idUsuario);
 
 	public boolean volverNoVigente(int id);

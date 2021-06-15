@@ -85,4 +85,9 @@ public class ControlVacunacionRespositorioImpl implements ControlVacunacionRepos
 		return entity != null ? entity.isVigente() : false;
 	}
 
+	@Override
+	public int cantidadDeControlesNoVigentesDePersona(int idUsuario) {
+		return repositorioJpa.contarControlesNovigentesDeUsuario(idUsuario);
+	}
+
 }

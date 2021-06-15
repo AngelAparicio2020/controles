@@ -7,6 +7,8 @@ public interface ControlRepositorio {
 	public boolean registrarControl(ControlEntidad control);
 
 	public int cantidadDeControlesDePersona(int idUsuario);
+	
+	public int cantidadDeControlesNoVigentesDePersona(int idUsuario);
 
 	public int ultimoControlVigente(int idUsuario);
 
