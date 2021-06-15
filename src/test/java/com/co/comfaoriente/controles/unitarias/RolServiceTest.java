@@ -23,7 +23,7 @@ import com.co.comfaoriente.controles.unitarias.dataBuilder.PrivilegioBuilder;
 import com.co.comfaoriente.controles.unitarias.dataBuilder.RolBuilder;
 
 @SpringBootTest
-public class RolServiceTest {
+class RolServiceTest {
 
 	private RolRepositorio rolRepositorio;
 	private UsuarioRepositorio usuarioRepositorio;
@@ -47,6 +47,7 @@ public class RolServiceTest {
 		this.rolService = new RolService(this.rolRepositorio, usuarioRepositorio);
 		// assert
 		assertNotNull(this.rolRepositorio);
+		assertNotNull(this.usuarioRepositorio);
 		assertNotNull(this.rolService);
 	}
 

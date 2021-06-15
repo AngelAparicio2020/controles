@@ -50,8 +50,8 @@ public class BeanService {
 	}
 
 	@Bean
-	public ControlService controlService(ControlRepositorio controlRepositorio) {
-		return new ControlService(controlRepositorio);
+	public ControlService controlService(ControlRepositorio controlRepositorio, UsuarioRepositorio usuarioRepositorio) {
+		return new ControlService(controlRepositorio, usuarioRepositorio);
 	}
 
 	@Bean
