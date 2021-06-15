@@ -3,70 +3,86 @@ package com.co.comfaoriente.controles.infraestructura.persistencia.repositorio.i
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import com.co.comfaoriente.controles.aplicacion.entidades.ControlVacunacionEntidad;
+import com.co.comfaoriente.controles.dominio.entidades.ControlVacunacionEntidad;
 import com.co.comfaoriente.controles.dominio.repositorios.ControlVacunacionRepositorio;
+import com.co.comfaoriente.controles.infraestructura.persistencia.mapper.ControlVacunacionMapper;
 import com.co.comfaoriente.controles.infraestructura.persistencia.repositorio.jpa.ControlVacunacionRepositorioJpa;
 
 @Component
 public class ControlVacunacionRespositorioImpl implements ControlVacunacionRepositorio {
 
-	
 	@Autowired
 	private ControlVacunacionRepositorioJpa repositorioJpa;
-	
+	private static final ControlVacunacionMapper mapper = ControlVacunacionMapper.getInstance();
+
 	@Override
 	public boolean registrarControl(ControlVacunacionEntidad control) {
-		return false;
+		com.co.comfaoriente.controles.infraestructura.persistencia.entidades.ControlVacunacionEntidad entity = mapper
+				.toEntity(control);
+		return repositorioJpa.save(entity) != null;
 	}
 
 	@Override
 	public int cantidadDeControlesDePersona(int idUsuario) {
-		return 0;
+		return repositorioJpa.contarControlesDeUsuario(idUsuario);
 	}
 
 	@Override
 	public int ultimoControlVigente(int idUsuario) {
-		return 0;
+		return repositorioJpa.ultimoControlVigente(idUsuario);
 	}
 
 	@Override
 	public boolean volverNoVigente(int id) {
-		return false;
+		com.co.comfaoriente.controles.infraestructura.persistencia.entidades.ControlVacunacionEntidad entity = repositorioJpa
+				.consultarControl(id);
+		entity.setVigente(false);
+		return repositorioJpa.save(entity) != null;
 	}
 
 	@Override
 	public boolean actualizarControl(ControlVacunacionEntidad control) {
-		return false;
+		com.co.comfaoriente.controles.infraestructura.persistencia.entidades.ControlVacunacionEntidad entity = mapper
+				.toEntity(control);
+		return repositorioJpa.save(entity) != null;
 	}
 
 	@Override
 	public boolean eliminarControl(int id) {
-		return false;
+		repositorioJpa.deleteById(id);
+		return !repositorioJpa.existsById(id);
 	}
 
 	@Override
 	public ControlVacunacionEntidad consultarControl(int id) {
-		return null;
+		com.co.comfaoriente.controles.infraestructura.persistencia.entidades.ControlVacunacionEntidad entity = repositorioJpa
+				.consultarControl(id);
+		return mapper.toDomain(entity);
 	}
 
 	@Override
 	public int ultimoControlNoVigente(int idUsuario) {
-		return 0;
+		return repositorioJpa.ultimoControlNoVigente(idUsuario);
 	}
 
 	@Override
 	public boolean volverVigente(int id) {
-		return false;
+		com.co.comfaoriente.controles.infraestructura.persistencia.entidades.ControlVacunacionEntidad entity = repositorioJpa
+				.consultarControl(id);
+		entity.setVigente(true);
+		return repositorioJpa.save(entity) != null;
 	}
 
 	@Override
 	public boolean existeControl(int id) {
-		return false;
+		return repositorioJpa.existsById(id);
 	}
 
 	@Override
 	public boolean esVigente(int id) {
-		return false;
+		com.co.comfaoriente.controles.infraestructura.persistencia.entidades.ControlVacunacionEntidad entity = repositorioJpa
+				.consultarControl(id);
+		return entity != null ? entity.isVigente() : false;
 	}
 
 }

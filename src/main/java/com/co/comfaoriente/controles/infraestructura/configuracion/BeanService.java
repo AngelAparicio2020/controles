@@ -55,9 +55,9 @@ public class BeanService {
 	}
 
 	@Bean
-	public ControlVacunacionService controlVacunacionService(
-			ControlVacunacionRepositorio controlVacunacionRepositorio) {
-		return new ControlVacunacionService(controlVacunacionRepositorio);
+	public ControlVacunacionService controlVacunacionService(ControlVacunacionRepositorio controlVacunacionRepositorio,
+			UsuarioRepositorio usuarioRepositorio) {
+		return new ControlVacunacionService(controlVacunacionRepositorio, usuarioRepositorio);
 	}
 
 	@Bean

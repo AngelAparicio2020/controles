@@ -46,8 +46,10 @@ public class ControlMapper {
 		dominio.setTalla(aplicacion.getTalla());
 		dominio.setTension(aplicacion.getTension());
 		dominio.setUltimoControl(aplicacion.getUltimoControl());
-		if (registrar) {
+		if (!registrar) {
 			dominio.setVigente(aplicacion.isVigente());
+		} else {
+			dominio.setVigente(true);
 		}
 		return dominio;
 	}

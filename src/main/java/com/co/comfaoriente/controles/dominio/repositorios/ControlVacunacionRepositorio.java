@@ -1,6 +1,6 @@
 package com.co.comfaoriente.controles.dominio.repositorios;
 
-import com.co.comfaoriente.controles.aplicacion.entidades.ControlVacunacionEntidad;
+import com.co.comfaoriente.controles.dominio.entidades.ControlVacunacionEntidad;
 
 public interface ControlVacunacionRepositorio {
 
@@ -23,7 +23,7 @@ public interface ControlVacunacionRepositorio {
 	public boolean volverVigente(int id);
 
 	public boolean existeControl(int id);
-	
+
 	public boolean esVigente(int id);
 
 }

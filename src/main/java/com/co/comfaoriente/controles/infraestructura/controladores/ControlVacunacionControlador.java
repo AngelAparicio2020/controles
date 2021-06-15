@@ -1,10 +1,17 @@
 package com.co.comfaoriente.controles.infraestructura.controladores;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.co.comfaoriente.controles.aplicacion.entidades.ControlVacunacionEntidad;
+import com.co.comfaoriente.controles.aplicacion.servicios.ControlVacunacionServiceApl;
+import com.co.comfaoriente.controles.infraestructura.dtos.ControlVacunacionDto;
+import com.co.comfaoriente.controles.infraestructura.persistencia.mapper.ControlVacunacionMapper;
 
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
@@ -13,34 +20,41 @@ import io.swagger.annotations.ApiOperation;
 @RequestMapping("/api/control_vacunacion")
 @Api(tags = { "Controlador Control de vacunación" })
 public class ControlVacunacionControlador {
-	
-	@GetMapping(value = "/REGISTRAR_CONTROL_VACUNACION")
+
+	@Autowired
+	private ControlVacunacionServiceApl controlService;
+	private static final ControlVacunacionMapper mapper = ControlVacunacionMapper.getInstance();
+
+	@PostMapping(value = "/REGISTRAR_CONTROL_VACUNACION")
 	@ApiOperation("Registrar control vacunacion")
-	public String get() {
-		return "hola mundo";
+	public boolean registrarControl(@RequestBody ControlVacunacionDto controlDto) {
+		ControlVacunacionEntidad control = mapper.toAplicacion(controlDto);
+		return this.controlService.registrarControl(control);
 	}
-	
-	@PostMapping(value = "/LISTAR_CONTROLES_VACUNACION")
+
+	@GetMapping(value = "/LISTAR_CONTROLES_VACUNACION")
 	@ApiOperation("Listar controles de vacunacion")
 	public String listar() {
 		return "hola mundo";
 	}
-	
-	@PostMapping(value = "/ELIMINAR_CONTROL_VACUNACION/{id}")
+
+	@GetMapping(value = "/ELIMINAR_CONTROL_VACUNACION/{id}")
 	@ApiOperation("Eliminar control vacunacion")
-	public String eliminar() {
-		return "hola mundo";
+	public boolean eliminarControl(@PathVariable int id) {
+		return this.controlService.eliminarControl(id);
 	}
-	
+
 	@PostMapping(value = "/ACTUALIZAR_CONTROL_VACUNACION")
 	@ApiOperation("Actualizar control vacunacion")
-	public String actualizar() {
-		return "hola mundo";
+	public boolean actualizarControl(@RequestBody ControlVacunacionDto controlDto) {
+		ControlVacunacionEntidad control = mapper.toAplicacion(controlDto);
+		return this.controlService.actualizarControl(control);
 	}
-	
+
 	@GetMapping(value = "/CONSULTAR_CONTROL_VACUNACION/{id}")
 	@ApiOperation("Consultar control vacunacion")
-	public String consultar() {
-		return "hola mundo";
+	public ControlVacunacionDto consultar(@PathVariable int id) {
+		ControlVacunacionEntidad control = controlService.consultarControl(id);
+		return mapper.toDto(control);
 	}
 }

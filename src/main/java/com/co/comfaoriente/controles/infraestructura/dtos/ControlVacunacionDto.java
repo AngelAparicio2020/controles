@@ -1,9 +1,9 @@
-package com.co.comfaoriente.controles.dominio.entidades;
+package com.co.comfaoriente.controles.infraestructura.dtos;
 
 import java.util.Date;
 
-public class ControlVacunacionEntidad {
-	
+public class ControlVacunacionDto {
+
 	private int id;
 	private int idUsuario;
 	private String nombreVacuna;
