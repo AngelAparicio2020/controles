@@ -1,8 +1,8 @@
-package com.co.comfaoriente.controles.aplicacion.entidades;
+package com.co.comfaoriente.controles.infraestructura.dtos;
 
 import java.util.Date;
 
-public class SeguimientoSaludEntidad {
+public class SeguimientoSaludDto {
 
 	private int id;
 

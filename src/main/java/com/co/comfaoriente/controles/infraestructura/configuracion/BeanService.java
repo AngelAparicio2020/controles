@@ -86,8 +86,9 @@ public class BeanService {
 	}
 
 	@Bean
-	public SeguimientoSaludService seguimientoService(SeguimientoSaludRepositorio seguimientoRepositorio) {
-		return new SeguimientoSaludService(seguimientoRepositorio);
+	public SeguimientoSaludService seguimientoService(SeguimientoSaludRepositorio seguimientoRepositorio,
+			UsuarioRepositorio usuarioRepositorio) {
+		return new SeguimientoSaludService(seguimientoRepositorio, usuarioRepositorio);
 	}
 
 	@Bean

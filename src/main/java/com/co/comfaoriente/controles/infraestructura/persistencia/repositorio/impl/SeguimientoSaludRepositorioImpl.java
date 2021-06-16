@@ -5,67 +5,89 @@ import org.springframework.stereotype.Component;
 
 import com.co.comfaoriente.controles.dominio.entidades.SeguimientoSaludEntidad;
 import com.co.comfaoriente.controles.dominio.repositorios.SeguimientoSaludRepositorio;
+import com.co.comfaoriente.controles.infraestructura.persistencia.mapper.SeguimientoSaludMapper;
 import com.co.comfaoriente.controles.infraestructura.persistencia.repositorio.jpa.SeguimientoSaludRepositorioJpa;
 
 @Component
 public class SeguimientoSaludRepositorioImpl implements SeguimientoSaludRepositorio {
 
 	@Autowired
-	private SeguimientoSaludRepositorioJpa seguimientoRepositorio;
+	private SeguimientoSaludRepositorioJpa seguimientoRepositorioJpa;
+	private static final SeguimientoSaludMapper mapper = SeguimientoSaludMapper.getInstance();
 
 	@Override
-	public boolean registrarControl(SeguimientoSaludEntidad control) {
-		return false;
+	public boolean registrarSeguimiento(SeguimientoSaludEntidad seguimiento) {
+		com.co.comfaoriente.controles.infraestructura.persistencia.entidades.SeguimientoSaludEntidad entity = mapper
+				.toEntity(seguimiento);
+		return seguimientoRepositorioJpa.save(entity) != null;
 	}
 
 	@Override
-	public int cantidadDeControlesDePersona(int idUsuario) {
-		return 0;
+	public int cantidadDeSeguimientosDePersona(int idUsuario) {
+		return seguimientoRepositorioJpa.contarSeguimientosDeUsuario(idUsuario);
 	}
 
 	@Override
-	public int ultimoControlVigente(int idUsuario) {
-		return 0;
+	public int ultimoSeguimientoVigente(int idUsuario) {
+		return seguimientoRepositorioJpa.ultimoSeguimientoVigente(idUsuario);
 	}
 
 	@Override
 	public boolean volverNoVigente(int id) {
-		return false;
+		com.co.comfaoriente.controles.infraestructura.persistencia.entidades.SeguimientoSaludEntidad entity = seguimientoRepositorioJpa
+				.consultarSeguimiento(id);
+		entity.setVigente(false);
+		return seguimientoRepositorioJpa.save(entity) != null;
 	}
 
 	@Override
-	public boolean actualizarControl(SeguimientoSaludEntidad control) {
-		return false;
+	public boolean actualizarSeguimiento(SeguimientoSaludEntidad seguimiento) {
+		com.co.comfaoriente.controles.infraestructura.persistencia.entidades.SeguimientoSaludEntidad entity = mapper
+				.toEntity(seguimiento);
+		return seguimientoRepositorioJpa.save(entity) != null;
 	}
 
 	@Override
-	public boolean eliminarControl(int id) {
-		return false;
+	public boolean eliminarSeguimiento(int id) {
+		seguimientoRepositorioJpa.deleteById(id);
+		return !seguimientoRepositorioJpa.existsById(id);
 	}
 
 	@Override
-	public SeguimientoSaludEntidad consultarControl(int id) {
-		return null;
+	public SeguimientoSaludEntidad consultarSeguimiento(int id) {
+		com.co.comfaoriente.controles.infraestructura.persistencia.entidades.SeguimientoSaludEntidad entity = seguimientoRepositorioJpa
+				.consultarSeguimiento(id);
+		return mapper.toDomain(entity);
 	}
 
 	@Override
-	public int ultimoControlNoVigente(int idUsuario) {
-		return 0;
+	public int ultimoSeguimientoNoVigente(int idUsuario) {
+		return seguimientoRepositorioJpa.ultimoSeguimientoNoVigente(idUsuario);
 	}
 
 	@Override
 	public boolean volverVigente(int id) {
-		return false;
+		com.co.comfaoriente.controles.infraestructura.persistencia.entidades.SeguimientoSaludEntidad entity = seguimientoRepositorioJpa
+				.consultarSeguimiento(id);
+		entity.setVigente(true);
+		return seguimientoRepositorioJpa.save(entity) != null;
 	}
 
 	@Override
-	public boolean existeControl(int id) {
-		return false;
+	public boolean existeSeguimiento(int id) {
+		return seguimientoRepositorioJpa.existsById(id);
 	}
 
 	@Override
 	public boolean esVigente(int id) {
-		return false;
+		com.co.comfaoriente.controles.infraestructura.persistencia.entidades.SeguimientoSaludEntidad entity = seguimientoRepositorioJpa
+				.consultarSeguimiento(id);
+		return entity != null ? entity.isVigente() : false;
+	}
+
+	@Override
+	public int cantidadDeSeguimientosNoVigentesDePersona(int idUsuario) {
+		return seguimientoRepositorioJpa.contarSeguimientosNovigentesDeUsuario(idUsuario);
 	}
 
 }
