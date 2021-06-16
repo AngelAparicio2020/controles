@@ -18,7 +18,7 @@ import com.co.comfaoriente.controles.dominio.servicios.ControlVacunacionService;
 import com.co.comfaoriente.controles.unitarias.dataBuilder.ControlVacunacionBuilder;
 
 @SpringBootTest
-public class ControlVacunacionServiceTest {
+class ControlVacunacionServiceTest {
 
 	private ControlVacunacionRepositorio controlRepositorio;
 	private UsuarioRepositorio usuarioRepositorio;

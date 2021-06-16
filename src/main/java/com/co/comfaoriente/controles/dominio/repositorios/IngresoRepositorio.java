@@ -6,7 +6,7 @@ import com.co.comfaoriente.controles.dominio.entidades.IngresoMadreEntidad;
 
 public interface IngresoRepositorio {
 
-	public boolean registrarIngreso(IngresoEntidad ingreso);
+	public int registrarIngreso(IngresoEntidad ingreso);
 
 	public boolean actualizarIngreso(IngresoEntidad ingreso);
 
@@ -15,6 +15,7 @@ public interface IngresoRepositorio {
 	public IngresoEntidad consultarIngreso(int id);
 
 	public boolean existeIngreso(int id);
+	
 
 	public boolean registrarIngresoInfante(IngresoInfanteEntidad ingreso);
 
@@ -27,7 +28,7 @@ public interface IngresoRepositorio {
 	public boolean existeIngresoInfante(int id);
 
 	public boolean registrarIngresoMadre(IngresoMadreEntidad ingreso);
-
+	
 	public boolean actualizarIngresoMadre(IngresoMadreEntidad ingreso);
 
 	public boolean eliminarIngresoMadre(int id);

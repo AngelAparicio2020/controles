@@ -66,8 +66,9 @@ public class BeanService {
 	}
 
 	@Bean
-	public IngresoService ingresoService(IngresoRepositorio ingresoRepositorio) {
-		return new IngresoService(ingresoRepositorio);
+	public IngresoService ingresoService(IngresoRepositorio ingresoRepositorio,
+			SeguimientoSaludRepositorio seguimientoRepositorio) {
+		return new IngresoService(ingresoRepositorio, seguimientoRepositorio);
 	}
 
 	@Bean
