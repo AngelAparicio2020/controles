@@ -14,7 +14,7 @@ public class IngresoMadreMapper {
 		return INSTANCE;
 	}
 
-	public IngresoMadreEntidad toAplicacion(IngresoMadreDto dto) {
+	public IngresoMadreEntidad toAplicacion(IngresoMadreDto dto, boolean registrar) {
 		IngresoMadreEntidad aplicacion = new IngresoMadreEntidad();
 		aplicacion.setArdorOrinar(dto.getArdorOrinar());
 		aplicacion.setCantidadSemanas(dto.getCantidadSemanas());
@@ -25,7 +25,7 @@ public class IngresoMadreMapper {
 		aplicacion.setExamenMedico(dto.getExamenMedico());
 		aplicacion.setFiebre(dto.getFiebre());
 		aplicacion.setHinchamiento(dto.getHinchamiento());
-		aplicacion.setId(dto.getId());
+		aplicacion.setId(registrar ? 0 : dto.getId());
 		aplicacion.setIdIngreso(dto.getIdIngreso());
 		aplicacion.setMetodoPlanificacion(dto.getMetodoPlanificacion());
 		aplicacion.setMovimientoFetal(dto.getMovimientoFetal());

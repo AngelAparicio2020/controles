@@ -5,7 +5,6 @@ public class IngresoCompletoDto {
 	private IngresoInfanteDto ingresoInfante;
 	private IngresoMadreDto ingresoMadre;
 	private IngresoDto ingreso;
-	private boolean esInfante;
 
 	public IngresoInfanteDto getIngresoInfante() {
 		return ingresoInfante;
@@ -29,14 +28,6 @@ public class IngresoCompletoDto {
 
 	public void setIngreso(IngresoDto ingreso) {
 		this.ingreso = ingreso;
-	}
-
-	public boolean isEsInfante() {
-		return esInfante;
-	}
-
-	public void setEsInfante(boolean esInfante) {
-		this.esInfante = esInfante;
 	}
 
 }

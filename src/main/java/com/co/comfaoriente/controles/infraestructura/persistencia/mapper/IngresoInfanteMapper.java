@@ -14,9 +14,9 @@ public class IngresoInfanteMapper {
 		return INSTANCE;
 	}
 
-	public IngresoInfanteEntidad toAplicacion(IngresoInfanteDto dto) {
+	public IngresoInfanteEntidad toAplicacion(IngresoInfanteDto dto,boolean registrar) {
 		IngresoInfanteEntidad aplicacion = new IngresoInfanteEntidad();
-		aplicacion.setId(dto.getId());
+		aplicacion.setId(registrar ? 0 : dto.getId());
 		aplicacion.setAlarmaPreventiva(dto.getAlarmaPreventiva());
 		aplicacion.setControlCyD(dto.getControlCyD());
 		aplicacion.setIdIngreso(dto.getIdIngreso());

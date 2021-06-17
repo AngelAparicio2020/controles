@@ -8,9 +8,17 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.co.comfaoriente.controles.aplicacion.entidades.IngresoEntidad;
+import com.co.comfaoriente.controles.aplicacion.entidades.IngresoInfanteEntidad;
+import com.co.comfaoriente.controles.aplicacion.entidades.IngresoMadreEntidad;
 import com.co.comfaoriente.controles.aplicacion.entidades.SeguimientoSaludEntidad;
+import com.co.comfaoriente.controles.aplicacion.servicios.IngresoServiceApl;
 import com.co.comfaoriente.controles.aplicacion.servicios.SeguimientoSaludServiceApl;
+import com.co.comfaoriente.controles.infraestructura.dtos.IngresoCompletoDto;
 import com.co.comfaoriente.controles.infraestructura.dtos.SeguimientoSaludDto;
+import com.co.comfaoriente.controles.infraestructura.persistencia.mapper.IngresoInfanteMapper;
+import com.co.comfaoriente.controles.infraestructura.persistencia.mapper.IngresoMadreMapper;
+import com.co.comfaoriente.controles.infraestructura.persistencia.mapper.IngresoMapper;
 import com.co.comfaoriente.controles.infraestructura.persistencia.mapper.SeguimientoSaludMapper;
 
 import io.swagger.annotations.Api;
@@ -24,6 +32,11 @@ public class ControlSeguiSaludControlador {
 	@Autowired
 	private SeguimientoSaludServiceApl seguimientoService;
 	private static final SeguimientoSaludMapper mapper = SeguimientoSaludMapper.getInstance();
+	@Autowired
+	private IngresoServiceApl ingresoService;
+	private static final IngresoMapper ingresoMapper = IngresoMapper.getInstance();
+	private static final IngresoMadreMapper madreMapper = IngresoMadreMapper.getInstance();
+	private static final IngresoInfanteMapper infanteMapper = IngresoInfanteMapper.getInstance();
 
 	@PostMapping(value = "/REGISTRAR_SEGUIMIENTO")
 	@ApiOperation("Registrar seguimiento")
@@ -56,6 +69,66 @@ public class ControlSeguiSaludControlador {
 	public SeguimientoSaludDto consultarSeguimiento(@PathVariable int id) {
 		SeguimientoSaludEntidad seguimiento = seguimientoService.consultarSeguimiento(id);
 		return mapper.toDto(seguimiento);
+	}
+
+	@GetMapping(value = "/ELIMINAR_INGRESO/{id}")
+	@ApiOperation("Eliminar ingreso")
+	public boolean eliminarIngreso(@PathVariable int id) {
+		return this.ingresoService.eliminarIngreso(id);
+	}
+
+	@PostMapping(value = "/REGISTRAR_INGRESO_INFANTE")
+	@ApiOperation("Registrar ingreso infante")
+	public boolean registrarIngresoInfante(@RequestBody IngresoCompletoDto ingresoDto) {
+		IngresoInfanteEntidad infante = infanteMapper.toAplicacion(ingresoDto.getIngresoInfante(), true);
+		IngresoEntidad ingreso = ingresoMapper.toAplicacion(ingresoDto.getIngreso(), true);
+		return this.ingresoService.registrarIngresoInfante(infante, ingreso);
+	}
+
+	@PostMapping(value = "/ACTUALIZAR_INGRESO_INFANTE")
+	@ApiOperation("Actualizar ingreso infante")
+	public boolean actualizarIngresoInfante(@RequestBody IngresoCompletoDto ingresoDto) {
+		IngresoInfanteEntidad infante = infanteMapper.toAplicacion(ingresoDto.getIngresoInfante(), false);
+		IngresoEntidad ingreso = ingresoMapper.toAplicacion(ingresoDto.getIngreso(), false);
+		return this.ingresoService.actualizarIngresoInfante(infante, ingreso);
+	}
+
+	@GetMapping(value = "/CONSULTAR_INGRESO_INFANTE/{id}")
+	@ApiOperation("Consultar ingreso infante")
+	public IngresoCompletoDto consultarIngresoInfante(@PathVariable int id) {
+		IngresoEntidad ingreso = ingresoService.consultarIngreso(id);
+		IngresoInfanteEntidad infante = ingresoService.consultarIngresoInfante(id);
+		IngresoCompletoDto consulta = new IngresoCompletoDto();
+		consulta.setIngreso(ingresoMapper.toDto(ingreso));
+		consulta.setIngresoInfante(infanteMapper.toDto(infante));
+		return consulta;
+	}
+
+	@PostMapping(value = "/REGISTRAR_INGRESO_MADRE")
+	@ApiOperation("Registrar ingreso madre")
+	public boolean registrarIngresoMadre(@RequestBody IngresoCompletoDto ingresoDto) {
+		IngresoMadreEntidad madre = madreMapper.toAplicacion(ingresoDto.getIngresoMadre(), true);
+		IngresoEntidad ingreso = ingresoMapper.toAplicacion(ingresoDto.getIngreso(), true);
+		return this.ingresoService.registrarIngresoMadre(madre, ingreso);
+	}
+
+	@PostMapping(value = "/ACTUALIZAR_INGRESO_MADRE")
+	@ApiOperation("Actualizar ingreso madre")
+	public boolean actualizarIngresoMadre(@RequestBody IngresoCompletoDto ingresoDto) {
+		IngresoMadreEntidad madre = madreMapper.toAplicacion(ingresoDto.getIngresoMadre(), false);
+		IngresoEntidad ingreso = ingresoMapper.toAplicacion(ingresoDto.getIngreso(), false);
+		return this.ingresoService.actualizarIngresoMadre(madre, ingreso);
+	}
+
+	@GetMapping(value = "/CONSULTAR_INGRESO_MADRE/{id}")
+	@ApiOperation("Consultar ingreso madre")
+	public IngresoCompletoDto consultarIngresoMadre(@PathVariable int id) {
+		IngresoEntidad ingreso = ingresoService.consultarIngreso(id);
+		IngresoMadreEntidad madre = ingresoService.consultarIngresoMadre(id);
+		IngresoCompletoDto consulta = new IngresoCompletoDto();
+		consulta.setIngreso(ingresoMapper.toDto(ingreso));
+		consulta.setIngresoMadre(madreMapper.toDto(madre));
+		return consulta;
 	}
 
 }

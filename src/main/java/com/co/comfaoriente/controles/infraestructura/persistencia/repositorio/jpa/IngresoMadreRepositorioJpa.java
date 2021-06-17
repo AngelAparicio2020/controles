@@ -8,7 +8,7 @@ import com.co.comfaoriente.controles.infraestructura.persistencia.entidades.Ingr
 
 public interface IngresoMadreRepositorioJpa extends CrudRepository<IngresoMadreEntidad, Integer>{
 	
-	@Query("select ingreso from IngresoMadreEntidad ingreso where ingreso.id = :id")
+	@Query("select ingreso from IngresoMadreEntidad ingreso where ingreso.idIngreso = :id")
 	IngresoMadreEntidad consultarIngreso(@Param("id") int id);
 
 }

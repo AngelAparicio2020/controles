@@ -14,13 +14,13 @@ public class IngresoMapper {
 		return INSTANCE;
 	}
 
-	public IngresoEntidad toAplicacion(IngresoDto dto) {
+	public IngresoEntidad toAplicacion(IngresoDto dto, boolean registrar) {
 		IngresoEntidad aplicacion = new IngresoEntidad();
 		aplicacion.setAfiliacionSgsss(dto.getAfiliacionSgsss());
 		aplicacion.setCausa(dto.getCausa());
 		aplicacion.setConoceUrgencias(dto.getConoceUrgencias());
 		aplicacion.setEapb(dto.getEapb());
-		aplicacion.setId(dto.getId());
+		aplicacion.setId(registrar ? 0 : dto.getId());
 		aplicacion.setIdSeguimiento(dto.getIdSeguimiento());
 		aplicacion.setIps(dto.getIps());
 		aplicacion.setNombreMedFormululada(dto.getNombreMedFormululada());
