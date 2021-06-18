@@ -33,7 +33,7 @@ import com.co.comfaoriente.controles.infraestructura.persistencia.mapper.Seguimi
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 
-//@CrossOrigin(origins = "http://localhost:4200", maxAge = 3600)
+@CrossOrigin(origins = "http://localhost:4200", maxAge = 3600)
 @RestController
 @RequestMapping("/api/control_seguimiento")
 @Api(tags = { "Controlador Control de ingresos, remiciones y compromisos" })
