@@ -1,41 +1,50 @@
 package com.co.comfaoriente.controles.infraestructura.persistencia.repositorio.impl;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import com.co.comfaoriente.controles.dominio.entidades.RemicionEntidad;
 import com.co.comfaoriente.controles.dominio.repositorios.RemicionRepositorio;
+import com.co.comfaoriente.controles.infraestructura.persistencia.mapper.RemicionMapper;
+import com.co.comfaoriente.controles.infraestructura.persistencia.repositorio.jpa.RemicionRepositorioJpa;
 
 @Component
 public class RemicionRepositorioImpl implements RemicionRepositorio {
 
+	@Autowired
+	private RemicionRepositorioJpa ingresoinfanteRepositorioJpa;
+	private static final RemicionMapper mapper = RemicionMapper.getInstance();
+
 	@Override
 	public boolean registrarRemicion(RemicionEntidad remicion) {
-		// TODO Auto-generated method stub
-		return false;
+		com.co.comfaoriente.controles.infraestructura.persistencia.entidades.RemicionEntidad entity = mapper
+				.toEntity(remicion);
+		return ingresoinfanteRepositorioJpa.save(entity) != null;
 	}
 
 	@Override
 	public boolean actualizarRemicion(RemicionEntidad remicion) {
-		// TODO Auto-generated method stub
-		return false;
+		com.co.comfaoriente.controles.infraestructura.persistencia.entidades.RemicionEntidad entity = mapper
+				.toEntity(remicion);
+		return ingresoinfanteRepositorioJpa.save(entity) != null;
 	}
 
 	@Override
 	public boolean eliminarRemicion(int id) {
-		// TODO Auto-generated method stub
-		return false;
+		ingresoinfanteRepositorioJpa.deleteById(id);
+		return !ingresoinfanteRepositorioJpa.existsById(id);
 	}
 
 	@Override
 	public RemicionEntidad consultarRemicion(int id) {
-		// TODO Auto-generated method stub
-		return null;
+		com.co.comfaoriente.controles.infraestructura.persistencia.entidades.RemicionEntidad entity = ingresoinfanteRepositorioJpa
+				.consultarRemicion(id);
+		return mapper.toDomain(entity);
 	}
 
 	@Override
 	public boolean existeRemicion(int id) {
-		// TODO Auto-generated method stub
-		return false;
+		return ingresoinfanteRepositorioJpa.existsById(id);
 	}
 
 }

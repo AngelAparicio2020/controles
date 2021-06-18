@@ -82,8 +82,9 @@ public class BeanService {
 	}
 
 	@Bean
-	public RemicionService remicionService(RemicionRepositorio remicionRepositorio) {
-		return new RemicionService(remicionRepositorio);
+	public RemicionService remicionService(RemicionRepositorio remicionRepositorio,
+			SeguimientoSaludRepositorio seguimientoRepositorio) {
+		return new RemicionService(remicionRepositorio, seguimientoRepositorio);
 	}
 
 	@Bean

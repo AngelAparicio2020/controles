@@ -48,7 +48,7 @@ public class RemicionEntidad implements Serializable {
 	@Column(name = "fecha_egre_hosp", nullable = true)
 	private Date fechaSalida;
 	
-	@Column(name = "fallecio_atenc_salud", nullable = false)
+	@Column(name = "fallecio_atenc_salud", nullable = true)
 	private boolean fallecido;
 	
 	@Column(name = "razon_fallec", nullable = true)

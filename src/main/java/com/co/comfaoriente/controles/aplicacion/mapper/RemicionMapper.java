@@ -32,7 +32,8 @@ public class RemicionMapper {
 		return aplicacion;
 	}
 
-	public com.co.comfaoriente.controles.dominio.entidades.RemicionEntidad toDominio(RemicionEntidad aplicacion) {
+	public com.co.comfaoriente.controles.dominio.entidades.RemicionEntidad toDominio(RemicionEntidad aplicacion,
+			boolean registrar) {
 		com.co.comfaoriente.controles.dominio.entidades.RemicionEntidad dominio = new com.co.comfaoriente.controles.dominio.entidades.RemicionEntidad();
 		dominio.setAtendido(aplicacion.isAtendido());
 		dominio.setEntidadRemitida(aplicacion.getEntidadRemitida());
@@ -42,7 +43,7 @@ public class RemicionMapper {
 		dominio.setFechaRemision(aplicacion.getFechaRemision());
 		dominio.setFechaSalida(aplicacion.getFechaSalida());
 		dominio.setHospitalizado(aplicacion.isHospitalizado());
-		dominio.setId(aplicacion.getId());
+		dominio.setId(registrar ? 0 : aplicacion.getId());
 		dominio.setIdSeguimiento(aplicacion.getIdSeguimiento());
 		dominio.setMotivo(aplicacion.getMotivo());
 		dominio.setNombreAuxEnfermero(aplicacion.getNombreAuxEnfermero());

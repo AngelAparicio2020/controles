@@ -11,14 +11,18 @@ import org.springframework.web.bind.annotation.RestController;
 import com.co.comfaoriente.controles.aplicacion.entidades.IngresoEntidad;
 import com.co.comfaoriente.controles.aplicacion.entidades.IngresoInfanteEntidad;
 import com.co.comfaoriente.controles.aplicacion.entidades.IngresoMadreEntidad;
+import com.co.comfaoriente.controles.aplicacion.entidades.RemicionEntidad;
 import com.co.comfaoriente.controles.aplicacion.entidades.SeguimientoSaludEntidad;
 import com.co.comfaoriente.controles.aplicacion.servicios.IngresoServiceApl;
+import com.co.comfaoriente.controles.aplicacion.servicios.RemicionServiceApl;
 import com.co.comfaoriente.controles.aplicacion.servicios.SeguimientoSaludServiceApl;
 import com.co.comfaoriente.controles.infraestructura.dtos.IngresoCompletoDto;
+import com.co.comfaoriente.controles.infraestructura.dtos.RemicionDto;
 import com.co.comfaoriente.controles.infraestructura.dtos.SeguimientoSaludDto;
 import com.co.comfaoriente.controles.infraestructura.persistencia.mapper.IngresoInfanteMapper;
 import com.co.comfaoriente.controles.infraestructura.persistencia.mapper.IngresoMadreMapper;
 import com.co.comfaoriente.controles.infraestructura.persistencia.mapper.IngresoMapper;
+import com.co.comfaoriente.controles.infraestructura.persistencia.mapper.RemicionMapper;
 import com.co.comfaoriente.controles.infraestructura.persistencia.mapper.SeguimientoSaludMapper;
 
 import io.swagger.annotations.Api;
@@ -34,9 +38,12 @@ public class ControlSeguiSaludControlador {
 	private static final SeguimientoSaludMapper mapper = SeguimientoSaludMapper.getInstance();
 	@Autowired
 	private IngresoServiceApl ingresoService;
+	@Autowired
+	private RemicionServiceApl remicionService;
 	private static final IngresoMapper ingresoMapper = IngresoMapper.getInstance();
 	private static final IngresoMadreMapper madreMapper = IngresoMadreMapper.getInstance();
 	private static final IngresoInfanteMapper infanteMapper = IngresoInfanteMapper.getInstance();
+	private static final RemicionMapper remicionMapper = RemicionMapper.getInstance();
 
 	@PostMapping(value = "/REGISTRAR_SEGUIMIENTO")
 	@ApiOperation("Registrar seguimiento")
@@ -129,6 +136,33 @@ public class ControlSeguiSaludControlador {
 		consulta.setIngreso(ingresoMapper.toDto(ingreso));
 		consulta.setIngresoMadre(madreMapper.toDto(madre));
 		return consulta;
+	}
+
+	@PostMapping(value = "/REGISTRAR_REMICION")
+	@ApiOperation("Registrar remicion")
+	public boolean registrarRemicion(@RequestBody RemicionDto remicionDto) {
+		RemicionEntidad remicion = remicionMapper.toAplicacion(remicionDto);
+		return this.remicionService.registrarRemicion(remicion);
+	}
+
+	@GetMapping(value = "/ELIMINAR_REMICION/{id}")
+	@ApiOperation("Eliminar remicion")
+	public boolean eliminarRemicion(@PathVariable int id) {
+		return this.remicionService.eliminarRemicion(id);
+	}
+
+	@PostMapping(value = "/ACTUALIZAR_REMICION")
+	@ApiOperation("Actualizar remicion")
+	public boolean actualizarRemicion(@RequestBody RemicionDto remicionDto) {
+		RemicionEntidad remicion = remicionMapper.toAplicacion(remicionDto);
+		return this.remicionService.actualizarRemicion(remicion);
+	}
+
+	@GetMapping(value = "/CONSULTAR_REMICION/{id}")
+	@ApiOperation("Consultar remicion")
+	public RemicionDto consultarRemicion(@PathVariable int id) {
+		RemicionEntidad remicion = remicionService.consultarRemicion(id);
+		return remicionMapper.toDto(remicion);
 	}
 
 }
