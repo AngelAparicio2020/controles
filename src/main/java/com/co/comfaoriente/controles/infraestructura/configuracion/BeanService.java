@@ -61,8 +61,9 @@ public class BeanService {
 	}
 
 	@Bean
-	public CompromisoService compromisoService(CompromisoRepositorio compromisoRepositorio) {
-		return new CompromisoService(compromisoRepositorio);
+	public CompromisoService compromisoService(CompromisoRepositorio compromisoRepositorio,
+			SeguimientoSaludRepositorio seguimientoRepositorio) {
+		return new CompromisoService(compromisoRepositorio, seguimientoRepositorio);
 	}
 
 	@Bean

@@ -17,7 +17,7 @@ import com.co.comfaoriente.controles.dominio.repositorios.SeguimientoSaludReposi
 import com.co.comfaoriente.controles.dominio.servicios.RemicionService;
 
 @SpringBootTest
-public class RemicionServiceTest {
+class RemicionServiceTest {
 
 	private RemicionRepositorio remicionRepositorio;
 	private SeguimientoSaludRepositorio seguimientoRepositorio;
@@ -43,7 +43,7 @@ public class RemicionServiceTest {
 	}
 
 	@Test
-	void registrarIngresoOkTest() {
+	void registrarRemicionOkTest() {
 		// arrange
 		RemicionEntidad remicion = new RemicionEntidad();
 		remicion.setIdSeguimiento(ID);
@@ -58,7 +58,7 @@ public class RemicionServiceTest {
 	}
 
 	@Test
-	void registrarIngresoFailTest() {
+	void registrarRemicionFailTest() {
 		// arrange
 		RemicionEntidad remicion = new RemicionEntidad();
 		remicion.setIdSeguimiento(ID);
@@ -77,7 +77,7 @@ public class RemicionServiceTest {
 	}
 
 	@Test
-	void actualizarIngresoOkTest() {
+	void actualizarRemicionOkTest() {
 		// arrange
 		RemicionEntidad remicion = new RemicionEntidad();
 		remicion.setId(ID);
@@ -92,7 +92,7 @@ public class RemicionServiceTest {
 	}
 
 	@Test
-	void actualizarIngresoFailTest() {
+	void actualizarRemicionFailTest() {
 		// arrange
 		RemicionEntidad remicion = new RemicionEntidad();
 		remicion.setId(ID);
@@ -112,7 +112,7 @@ public class RemicionServiceTest {
 	}
 
 	@Test
-	void consultarIngresoOkTest() {
+	void consultarRemicionOkTest() {
 		// arrange
 		RemicionEntidad remicion = new RemicionEntidad();
 		remicion.setId(ID);
@@ -127,7 +127,7 @@ public class RemicionServiceTest {
 	}
 
 	@Test
-	void consultarIngresoFailNuloTest() {
+	void consultarRemicionFailNuloTest() {
 		// arrange
 		when(this.remicionRepositorio.consultarRemicion(ID)).thenReturn(null);
 		when(this.remicionRepositorio.existeRemicion(ID)).thenReturn(false);
@@ -144,7 +144,7 @@ public class RemicionServiceTest {
 	}
 
 	@Test
-	void eliminarIngresoOkTest() {
+	void eliminarRemicionOkTest() {
 		// arrange
 
 		when(this.remicionRepositorio.existeRemicion(ID)).thenReturn(true);
@@ -158,7 +158,7 @@ public class RemicionServiceTest {
 	}
 
 	@Test
-	void eliminarIngresoFailTest() {
+	void eliminarRemicionFailTest() {
 		// arrange
 
 		when(this.remicionRepositorio.existeRemicion(ID)).thenReturn(false);

@@ -1,6 +1,7 @@
 package com.co.comfaoriente.controles.infraestructura.controladores;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -8,17 +9,21 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.co.comfaoriente.controles.aplicacion.entidades.CompromisoEntidad;
 import com.co.comfaoriente.controles.aplicacion.entidades.IngresoEntidad;
 import com.co.comfaoriente.controles.aplicacion.entidades.IngresoInfanteEntidad;
 import com.co.comfaoriente.controles.aplicacion.entidades.IngresoMadreEntidad;
 import com.co.comfaoriente.controles.aplicacion.entidades.RemicionEntidad;
 import com.co.comfaoriente.controles.aplicacion.entidades.SeguimientoSaludEntidad;
+import com.co.comfaoriente.controles.aplicacion.servicios.CompromisoServiceApl;
 import com.co.comfaoriente.controles.aplicacion.servicios.IngresoServiceApl;
 import com.co.comfaoriente.controles.aplicacion.servicios.RemicionServiceApl;
 import com.co.comfaoriente.controles.aplicacion.servicios.SeguimientoSaludServiceApl;
+import com.co.comfaoriente.controles.infraestructura.dtos.CompromisoDto;
 import com.co.comfaoriente.controles.infraestructura.dtos.IngresoCompletoDto;
 import com.co.comfaoriente.controles.infraestructura.dtos.RemicionDto;
 import com.co.comfaoriente.controles.infraestructura.dtos.SeguimientoSaludDto;
+import com.co.comfaoriente.controles.infraestructura.persistencia.mapper.CompromisoMapper;
 import com.co.comfaoriente.controles.infraestructura.persistencia.mapper.IngresoInfanteMapper;
 import com.co.comfaoriente.controles.infraestructura.persistencia.mapper.IngresoMadreMapper;
 import com.co.comfaoriente.controles.infraestructura.persistencia.mapper.IngresoMapper;
@@ -28,6 +33,7 @@ import com.co.comfaoriente.controles.infraestructura.persistencia.mapper.Seguimi
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 
+//@CrossOrigin(origins = "http://localhost:4200", maxAge = 3600)
 @RestController
 @RequestMapping("/api/control_seguimiento")
 @Api(tags = { "Controlador Control de ingresos, remiciones y compromisos" })
@@ -40,10 +46,13 @@ public class ControlSeguiSaludControlador {
 	private IngresoServiceApl ingresoService;
 	@Autowired
 	private RemicionServiceApl remicionService;
+	@Autowired
+	private CompromisoServiceApl compromisoService;
 	private static final IngresoMapper ingresoMapper = IngresoMapper.getInstance();
 	private static final IngresoMadreMapper madreMapper = IngresoMadreMapper.getInstance();
 	private static final IngresoInfanteMapper infanteMapper = IngresoInfanteMapper.getInstance();
 	private static final RemicionMapper remicionMapper = RemicionMapper.getInstance();
+	private static final CompromisoMapper compromisoMapper = CompromisoMapper.getInstance();
 
 	@PostMapping(value = "/REGISTRAR_SEGUIMIENTO")
 	@ApiOperation("Registrar seguimiento")
@@ -163,6 +172,33 @@ public class ControlSeguiSaludControlador {
 	public RemicionDto consultarRemicion(@PathVariable int id) {
 		RemicionEntidad remicion = remicionService.consultarRemicion(id);
 		return remicionMapper.toDto(remicion);
+	}
+
+	@PostMapping(value = "/REGISTRAR_COMPROMISO")
+	@ApiOperation("Registrar compromiso")
+	public boolean registrarCompromiso(@RequestBody CompromisoDto compromisoDto) {
+		CompromisoEntidad compromiso = compromisoMapper.toAplicacion(compromisoDto, true);
+		return this.compromisoService.registrarCompromiso(compromiso);
+	}
+
+	@GetMapping(value = "/ELIMINAR_COMPROMISO/{id}")
+	@ApiOperation("Eliminar compromiso")
+	public boolean eliminarCompromiso(@PathVariable int id) {
+		return this.compromisoService.eliminarCompromiso(id);
+	}
+
+	@PostMapping(value = "/ACTUALIZAR_COMPROMISO")
+	@ApiOperation("Actualizar compromiso")
+	public boolean actualizarCompromiso(@RequestBody CompromisoDto compromisoDto) {
+		CompromisoEntidad compromiso = compromisoMapper.toAplicacion(compromisoDto, false);
+		return this.compromisoService.actualizarCompromiso(compromiso);
+	}
+
+	@GetMapping(value = "/CONSULTAR_COMPROMISO/{id}")
+	@ApiOperation("Consultar compromiso")
+	public CompromisoDto consultarCompromiso(@PathVariable int id) {
+		CompromisoEntidad compromiso = compromisoService.consultarCompromiso(id);
+		return compromisoMapper.toDto(compromiso);
 	}
 
 }

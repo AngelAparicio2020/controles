@@ -39,9 +39,6 @@ public class CompromisoEntidad implements Serializable {
 	@Column(name = "nombre_aux_enfer", nullable = true)
 	private String nombreAuxiliarEnfermeria;
 	
-	@Column(name = "vigente", columnDefinition = "tinyint(1) default 1", nullable = false)
-	private boolean vigente;
-	
 	@Column(name = "tipo_compromiso", nullable = true)
 	private String tipo;
 
@@ -99,14 +96,6 @@ public class CompromisoEntidad implements Serializable {
 
 	public void setNombreAuxiliarEnfermeria(String nombreAuxiliarEnfermeria) {
 		this.nombreAuxiliarEnfermeria = nombreAuxiliarEnfermeria;
-	}
-
-	public boolean isVigente() {
-		return vigente;
-	}
-
-	public void setVigente(boolean vigente) {
-		this.vigente = vigente;
 	}
 
 	public String getTipo() {

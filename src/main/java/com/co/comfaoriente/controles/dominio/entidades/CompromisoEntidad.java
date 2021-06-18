@@ -18,8 +18,6 @@ public class CompromisoEntidad {
 
 	private String nombreAuxiliarEnfermeria;
 
-	private boolean vigente;
-
 	private String tipo;
 
 	public int getId() {
@@ -76,14 +74,6 @@ public class CompromisoEntidad {
 
 	public void setNombreAuxiliarEnfermeria(String nombreAuxiliarEnfermeria) {
 		this.nombreAuxiliarEnfermeria = nombreAuxiliarEnfermeria;
-	}
-
-	public boolean isVigente() {
-		return vigente;
-	}
-
-	public void setVigente(boolean vigente) {
-		this.vigente = vigente;
 	}
 
 	public String getTipo() {
