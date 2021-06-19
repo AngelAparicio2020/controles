@@ -17,7 +17,7 @@ public class ControlesMadresGestantesApplication {
 	public static void main(String[] args) {
 		SpringApplication.run(ControlesMadresGestantesApplication.class, args);
 	}
-	
+
 	@EnableWebSecurity
 	@Configuration
 	class WebSecurityConfig extends WebSecurityConfigurerAdapter {
@@ -25,11 +25,10 @@ public class ControlesMadresGestantesApplication {
 		@Override
 		protected void configure(HttpSecurity http) throws Exception {
 			http.csrf().disable()
-				.addFilterAfter(new JWTAuthorizationFilter(), UsernamePasswordAuthenticationFilter.class)
-				.authorizeRequests()
-				.antMatchers(HttpMethod.GET, "/api/sesion/{documento}/{clave}/{rol}").permitAll()
-				.antMatchers(HttpMethod.GET, "/api/sesion/LISTAR_ROLES").permitAll()
-				.anyRequest().authenticated();
+					.addFilterAfter(new JWTAuthorizationFilter(), UsernamePasswordAuthenticationFilter.class)
+					.authorizeRequests().antMatchers(HttpMethod.GET, "/api/sesion/{documento}/{clave}/{rol}")
+					.permitAll().antMatchers(HttpMethod.GET, "/api/sesion/LISTAR_ROLES").permitAll()
+					.antMatchers(HttpMethod.GET).permitAll().antMatchers(HttpMethod.POST).permitAll().anyRequest().authenticated();
 		}
 	}
 
