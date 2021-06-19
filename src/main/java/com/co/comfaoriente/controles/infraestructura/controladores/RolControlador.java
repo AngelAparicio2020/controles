@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.co.comfaoriente.controles.aplicacion.entidades.PrivilegioAsociadoEntidad;
@@ -24,7 +25,7 @@ import com.co.comfaoriente.controles.infraestructura.persistencia.mapper.RolMapp
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 
-@CrossOrigin(origins = "http://localhost:4200", maxAge = 3600)
+@CrossOrigin(origins = "http://localhost:4200", maxAge = 3600, methods = { RequestMethod.GET, RequestMethod.POST })
 @RestController
 @RequestMapping("/api/rol")
 @Api(tags = { "Controlador gestion de roles" })
