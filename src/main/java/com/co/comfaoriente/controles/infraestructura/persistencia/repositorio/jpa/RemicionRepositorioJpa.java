@@ -10,5 +10,8 @@ public interface RemicionRepositorioJpa extends CrudRepository<RemicionEntidad, 
 	
 	@Query("select remicion from RemicionEntidad remicion where remicion.id = :id")
 	RemicionEntidad consultarRemicion(@Param("id") int id);
+	
+	@Query("select remicion from RemicionEntidad remicion where remicion.idSeguimiento = :id")
+	RemicionEntidad consultarRemicionxSeguimiento(@Param("id") int id);
 
 }

@@ -36,5 +36,7 @@ public interface IngresoRepositorio {
 	public IngresoMadreEntidad consultarIngresoMadre(int id);
 
 	public boolean existeIngresoMadre(int id);
+	
+	public IngresoEntidad consultarIngresoxSeguimiento(int id);
 
 }

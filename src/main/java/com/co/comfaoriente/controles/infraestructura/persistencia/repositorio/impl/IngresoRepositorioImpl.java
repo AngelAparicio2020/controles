@@ -122,4 +122,11 @@ public class IngresoRepositorioImpl implements IngresoRepositorio {
 		return ingresoMadreRepositorioJpa.existsById(id);
 	}
 
+	@Override
+	public IngresoEntidad consultarIngresoxSeguimiento(int id) {
+		com.co.comfaoriente.controles.infraestructura.persistencia.entidades.IngresoEntidad entity = ingresoRepositorioJpa
+				.consultarIngresoxSeguimiento(id);
+		return mapper.toDomain(entity);
+	}
+
 }

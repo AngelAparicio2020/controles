@@ -14,5 +14,7 @@ public interface RemicionRepositorio {
 	public RemicionEntidad consultarRemicion(int id);
 
 	public boolean existeRemicion(int id);
+	
+	public RemicionEntidad consultarRemicionxSeguimiento(int id);
 
 }

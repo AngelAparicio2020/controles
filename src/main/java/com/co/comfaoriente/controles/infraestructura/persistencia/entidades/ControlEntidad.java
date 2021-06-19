@@ -45,7 +45,7 @@ public class ControlEntidad implements Serializable {
 	@Column(name = "tension", nullable = true)
 	private String tension;
 	
-	@Column(name = "edad_gestacional", nullable = true)
+	@Column(name = "edad_gestacional", nullable = false)
 	private int edadGestacional;
 	
 	@Column(name = "fecha_ulti_cont", nullable = true)

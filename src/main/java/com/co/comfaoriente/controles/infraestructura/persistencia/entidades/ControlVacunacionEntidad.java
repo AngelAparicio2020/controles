@@ -33,7 +33,7 @@ public class ControlVacunacionEntidad implements Serializable {
 	@Column(name = "dosis", nullable = false)
 	private int dosis;
 
-	@Column(name = "edad_gestacional", nullable = true)
+	@Column(name = "edad_gestacional", nullable = false)
 	private int edadGestacional;
 
 	@Column(name = "vigente", columnDefinition = "tinyint(1) default 1", nullable = false)

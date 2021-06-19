@@ -1,5 +1,8 @@
 package com.co.comfaoriente.controles.aplicacion.servicios;
 
+import java.util.List;
+import java.util.stream.Collectors;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -29,6 +32,24 @@ public class ControlServiceApl {
 
 	public boolean eliminarControl(int id) {
 		return this.controlService.eliminarControl(id);
+	}
+
+	public List<ControlEntidad> listadoControlesCyD(int id) {
+		return this.controlService.listadoControlesCyD(id).stream().map(dominio -> mapper.toAplicacion(dominio))
+				.collect(Collectors.toList());
+	}
+
+	public List<ControlEntidad> listadoControlesNutricionales(int id) {
+		return this.controlService.listadoControlesNutricionales(id).stream()
+				.map(dominio -> mapper.toAplicacion(dominio)).collect(Collectors.toList());
+	}
+
+	public ControlEntidad ultimoControlCyD(int id, int idNutricionista) {
+		return mapper.toAplicacion(this.controlService.ultimoControlCyD(id, idNutricionista));
+	}
+
+	public ControlEntidad ultimoControlNutricional(int id, int idNutricionista) {
+		return mapper.toAplicacion(this.controlService.ultimoControlNutricional(id, idNutricionista));
 	}
 
 }

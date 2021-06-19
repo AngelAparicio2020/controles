@@ -11,4 +11,7 @@ public interface IngresoRepositorioJpa extends CrudRepository<IngresoEntidad, In
 	@Query("select ingreso from IngresoEntidad ingreso where ingreso.id = :id")
 	IngresoEntidad consultarIngreso(@Param("id") int id);
 
+	@Query("select ingreso from IngresoEntidad ingreso where ingreso.idSeguimiento = :id")
+	IngresoEntidad consultarIngresoxSeguimiento(@Param("id") int id);
+
 }

@@ -1,5 +1,7 @@
 package com.co.comfaoriente.controles.dominio.repositorios;
 
+import java.util.List;
+
 import com.co.comfaoriente.controles.dominio.entidades.ControlVacunacionEntidad;
 
 public interface ControlVacunacionRepositorio {
@@ -27,5 +29,7 @@ public interface ControlVacunacionRepositorio {
 	public boolean existeControl(int id);
 
 	public boolean esVigente(int id);
+	
+	public List<ControlVacunacionEntidad> consultarControlesxPersona(int idUsuario);
 
 }

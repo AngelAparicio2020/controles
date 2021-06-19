@@ -1,5 +1,7 @@
 package com.co.comfaoriente.controles.infraestructura.persistencia.repositorio.impl;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -88,6 +90,11 @@ public class SeguimientoSaludRepositorioImpl implements SeguimientoSaludReposito
 	@Override
 	public int cantidadDeSeguimientosNoVigentesDePersona(int idUsuario) {
 		return seguimientoRepositorioJpa.contarSeguimientosNovigentesDeUsuario(idUsuario);
+	}
+
+	@Override
+	public List<Integer> listadoSeguimientosSaludxDocumento(int idUsuario) {
+		return seguimientoRepositorioJpa.listarSeguimientosxDocumento(idUsuario);
 	}
 
 }

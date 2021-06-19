@@ -1,5 +1,7 @@
 package com.co.comfaoriente.controles.dominio.repositorios;
 
+import java.util.List;
+
 import com.co.comfaoriente.controles.dominio.entidades.ControlEntidad;
 
 public interface ControlRepositorio {
@@ -27,5 +29,13 @@ public interface ControlRepositorio {
 	public boolean existeControl(int id);
 
 	public boolean esVigente(int id);
+	
+	public ControlEntidad ultimoControlCyD(int idUsuario,int idNutricionista);
+	
+	public ControlEntidad ultimoControlNutricional(int idUsuario,int idNutricionista);
+	
+	public List<ControlEntidad> listadoControlesCyD(int id);
+	
+	public List<ControlEntidad> listadoControlesNutricionales(int id);
 
 }

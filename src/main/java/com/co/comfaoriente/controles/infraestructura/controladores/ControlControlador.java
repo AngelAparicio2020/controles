@@ -1,5 +1,9 @@
 package com.co.comfaoriente.controles.infraestructura.controladores;
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.stream.Collectors;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -34,12 +38,6 @@ public class ControlControlador {
 		return this.controlService.registrarControl(control);
 	}
 
-	@GetMapping(value = "/LISTAR_CONTROLES")
-	@ApiOperation("Listar Controles")
-	public String listarControles() {
-		return "hola mundo";
-	}
-
 	@GetMapping(value = "/ELIMINAR_CONTROL/{id}")
 	@ApiOperation("Eliminar control")
 	public boolean eliminarControl(@PathVariable int id) {
@@ -58,6 +56,35 @@ public class ControlControlador {
 	public ControlDto consultar(@PathVariable int id) {
 		ControlEntidad control = controlService.consultarControl(id);
 		return mapper.toDto(control);
+	}
+
+	@GetMapping(value = "/LISTAR_ULTIMOS_CONTROLES/{id}/{idNutricionista}")
+	@ApiOperation("Listar ultimos controles de una nutricionista")
+	public List<ControlDto> listarUltimosControles(@PathVariable int id, @PathVariable int idNutricionista) {
+		List<ControlDto> ultimosControles = new ArrayList<>();
+		ControlEntidad controlcyd = controlService.ultimoControlCyD(id, idNutricionista);
+		ControlEntidad controlnutricional = controlService.ultimoControlNutricional(id, idNutricionista);
+		if (controlcyd != null) {
+			ultimosControles.add(mapper.toDto(controlcyd));
+		}
+		if (controlnutricional != null) {
+			ultimosControles.add(mapper.toDto(controlnutricional));
+		}
+		return ultimosControles;
+	}
+
+	@GetMapping(value = "/LISTAR_CONTROLES_NUTRICIONALES/{id}")
+	@ApiOperation("Listar ultimos controles de una nutricionista")
+	public List<ControlDto> listarControlesNutricionales(@PathVariable int id) {
+		return this.controlService.listadoControlesNutricionales(id).stream()
+				.map(aplicacion -> mapper.toDto(aplicacion)).collect(Collectors.toList());
+	}
+
+	@GetMapping(value = "/LISTAR_CONTROLES_CYD/{id}")
+	@ApiOperation("Listar ultimos controles de una nutricionista")
+	public List<ControlDto> listarControlesCyD(@PathVariable int id) {
+		return this.controlService.listadoControlesCyD(id).stream().map(aplicacion -> mapper.toDto(aplicacion))
+				.collect(Collectors.toList());
 	}
 
 }

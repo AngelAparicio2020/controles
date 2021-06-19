@@ -1,5 +1,7 @@
 package com.co.comfaoriente.controles.dominio.servicios;
 
+import java.util.List;
+
 import com.co.comfaoriente.controles.dominio.entidades.ControlEntidad;
 import com.co.comfaoriente.controles.dominio.excepciones.EntityNotFoundException;
 import com.co.comfaoriente.controles.dominio.repositorios.ControlRepositorio;
@@ -62,6 +64,22 @@ public class ControlService {
 			throw new EntityNotFoundException(CONTROL_NO_ENCONTRADO);
 		}
 		return controlRepositorio.consultarControl(id);
+	}
+
+	public List<ControlEntidad> listadoControlesCyD(int id) {
+		return controlRepositorio.listadoControlesCyD(id);
+	}
+
+	public List<ControlEntidad> listadoControlesNutricionales(int id) {
+		return controlRepositorio.listadoControlesNutricionales(id);
+	}
+
+	public ControlEntidad ultimoControlCyD(int id, int idNutricionista) {
+		return controlRepositorio.ultimoControlCyD(id, idNutricionista);
+	}
+
+	public ControlEntidad ultimoControlNutricional(int id, int idNutricionista) {
+		return controlRepositorio.ultimoControlNutricional(id, idNutricionista);
 	}
 
 }

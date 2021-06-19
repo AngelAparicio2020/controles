@@ -1,5 +1,7 @@
 package com.co.comfaoriente.controles.infraestructura.persistencia.repositorio.jpa;
 
+import java.util.List;
+
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.data.repository.query.Param;
@@ -22,4 +24,7 @@ public interface ControlVacunacionRepositorioJpa extends CrudRepository<ControlV
 
 	@Query("select max(control.id) from ControlVacunacionEntidad control where control.vigente = false and control.idUsuario = :idUsuario")
 	int ultimoControlNoVigente(@Param("idUsuario") int idUsuario);
+	
+	@Query("select control from ControlVacunacionEntidad control where control.idUsuario = :idUsuario")
+	List<ControlVacunacionEntidad> controlesVacunacion(@Param("idUsuario") int idUsuario);
 }

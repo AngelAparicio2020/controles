@@ -1,5 +1,7 @@
 package com.co.comfaoriente.controles.dominio.repositorios;
 
+import java.util.List;
+
 import com.co.comfaoriente.controles.dominio.entidades.SeguimientoSaludEntidad;
 
 public interface SeguimientoSaludRepositorio {
@@ -27,5 +29,7 @@ public interface SeguimientoSaludRepositorio {
 	public boolean existeSeguimiento(int id);
 
 	public boolean esVigente(int id);
+	
+	public List<Integer> listadoSeguimientosSaludxDocumento(int idUsuario);
 
 }

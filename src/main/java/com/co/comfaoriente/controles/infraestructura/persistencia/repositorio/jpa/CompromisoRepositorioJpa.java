@@ -10,5 +10,8 @@ public interface CompromisoRepositorioJpa extends CrudRepository<CompromisoEntid
 	
 	@Query("select compromiso from CompromisoEntidad compromiso where compromiso.id = :id")
 	CompromisoEntidad consultarCompromiso(@Param("id") int id);
+	
+	@Query("select compromiso from CompromisoEntidad compromiso where compromiso.idSeguimientoSalud = :id")
+	CompromisoEntidad consultarCompromisoxSeguimiento(@Param("id") int id);
 
 }

@@ -1,5 +1,8 @@
 package com.co.comfaoriente.controles.infraestructura.persistencia.repositorio.impl;
 
+import java.util.List;
+import java.util.stream.Collectors;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -88,6 +91,13 @@ public class ControlVacunacionRespositorioImpl implements ControlVacunacionRepos
 	@Override
 	public int cantidadDeControlesNoVigentesDePersona(int idUsuario) {
 		return repositorioJpa.contarControlesNovigentesDeUsuario(idUsuario);
+	}
+
+	@Override
+	public List<ControlVacunacionEntidad> consultarControlesxPersona(int idUsuario) {
+		List<com.co.comfaoriente.controles.infraestructura.persistencia.entidades.ControlVacunacionEntidad> entity = repositorioJpa
+				.controlesVacunacion(idUsuario);
+		return entity.stream().map(entityI -> mapper.toDomain(entityI)).collect(Collectors.toList());
 	}
 
 }
