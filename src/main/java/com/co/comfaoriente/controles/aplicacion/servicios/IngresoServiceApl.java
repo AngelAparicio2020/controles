@@ -79,11 +79,15 @@ public class IngresoServiceApl {
 	}
 
 	public IngresoInfanteEntidad consultarIngresoInfante(int id) {
-		return infanteMapper.toAplicacion(ingresoInfanteService.consultarIngresoInfante(id));
+		com.co.comfaoriente.controles.dominio.entidades.IngresoInfanteEntidad infante = ingresoInfanteService
+				.consultarIngresoInfante(id);
+		return infante == null ? null : infanteMapper.toAplicacion(infante);
 	}
 
 	public IngresoMadreEntidad consultarIngresoMadre(int id) {
-		return madreMapper.toAplicacion(ingresoMadreService.consultarIngresoMadre(id));
+		com.co.comfaoriente.controles.dominio.entidades.IngresoMadreEntidad madre = ingresoMadreService
+				.consultarIngresoMadre(id);
+		return madre == null ? null : madreMapper.toAplicacion(madre);
 	}
 
 }

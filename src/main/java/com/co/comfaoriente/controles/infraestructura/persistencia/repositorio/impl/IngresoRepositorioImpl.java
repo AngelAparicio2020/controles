@@ -83,7 +83,7 @@ public class IngresoRepositorioImpl implements IngresoRepositorio {
 	public IngresoInfanteEntidad consultarIngresoInfante(int id) {
 		com.co.comfaoriente.controles.infraestructura.persistencia.entidades.IngresoInfanteEntidad entity = ingresoinfanteRepositorioJpa
 				.consultarIngreso(id);
-		return infanteMapper.toDomain(entity);
+		return entity == null ? null : infanteMapper.toDomain(entity);
 	}
 
 	@Override
@@ -114,7 +114,7 @@ public class IngresoRepositorioImpl implements IngresoRepositorio {
 	public IngresoMadreEntidad consultarIngresoMadre(int id) {
 		com.co.comfaoriente.controles.infraestructura.persistencia.entidades.IngresoMadreEntidad entity = ingresoMadreRepositorioJpa
 				.consultarIngreso(id);
-		return madreMapper.toDomain(entity);
+		return entity == null ? null : madreMapper.toDomain(entity);
 	}
 
 	@Override

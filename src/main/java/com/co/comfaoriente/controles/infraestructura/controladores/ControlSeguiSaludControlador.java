@@ -24,6 +24,9 @@ import com.co.comfaoriente.controles.aplicacion.servicios.RemicionServiceApl;
 import com.co.comfaoriente.controles.aplicacion.servicios.SeguimientoSaludServiceApl;
 import com.co.comfaoriente.controles.infraestructura.dtos.CompromisoDto;
 import com.co.comfaoriente.controles.infraestructura.dtos.IngresoCompletoDto;
+import com.co.comfaoriente.controles.infraestructura.dtos.IngresoDto;
+import com.co.comfaoriente.controles.infraestructura.dtos.IngresoInfanteCompletoDto;
+import com.co.comfaoriente.controles.infraestructura.dtos.IngresoMadreCompletoDto;
 import com.co.comfaoriente.controles.infraestructura.dtos.RemicionDto;
 import com.co.comfaoriente.controles.infraestructura.dtos.SeguimientoSaludDto;
 import com.co.comfaoriente.controles.infraestructura.persistencia.mapper.CompromisoMapper;
@@ -218,15 +221,44 @@ public class ControlSeguiSaludControlador {
 				.map(aplicacion -> remicionMapper.toDto(aplicacion)).collect(Collectors.toList());
 	}
 
-	@GetMapping(value = "/LISTAR_INGRESOS_MADRE/{id}")
-	@ApiOperation("Consultar ingreso madre")
-	public IngresoCompletoDto listarIngresosMadre(@PathVariable int id) {
-		IngresoEntidad ingreso = ingresoService.consultarIngreso(id);
-		IngresoMadreEntidad madre = ingresoService.consultarIngresoMadre(id);
-		IngresoCompletoDto consulta = new IngresoCompletoDto();
-		consulta.setIngreso(ingresoMapper.toDto(ingreso));
-		consulta.setIngresoMadre(madreMapper.toDto(madre));
-		return consulta;
+	@GetMapping(value = "/LISTAR_INGRESOS_INFANTE/{documento}")
+	@ApiOperation("Consultar ingreso infante")
+	public List<IngresoInfanteCompletoDto> listarIngresosInfante(@PathVariable int documento) {
+
+		List<IngresoDto> ingresos = this.seguimientoService.listarIngresoSeguimientoxDocumento(documento).stream()
+				.map(aplicacion -> ingresoMapper.toDto(aplicacion)).collect(Collectors.toList());
+
+		return ingresos.stream().map(ingreso -> this.ingresoService.consultarIngresoInfante(ingreso.getId()))
+				.filter(ingresoInfante -> ingresoInfante != null).map(ingresoInfante -> {
+					IngresoDto ingresoDto = ingresos.stream()
+							.filter(ingreso -> ingreso.getId() == ingresoInfante.getIdIngreso())
+							.collect(Collectors.toList()).get(0);
+					IngresoInfanteCompletoDto completo = new IngresoInfanteCompletoDto();
+					completo.setIngreso(ingresoDto);
+					completo.setIngresoInfante(infanteMapper.toDto(ingresoInfante));
+					return completo;
+				}).collect(Collectors.toList());
+
+	}
+
+	@GetMapping(value = "/LISTAR_INGRESOS_MADRE/{documento}")
+	@ApiOperation("Consultar ingreso infante")
+	public List<IngresoMadreCompletoDto> listarIngresoMadre(@PathVariable int documento) {
+
+		List<IngresoDto> ingresos = this.seguimientoService.listarIngresoSeguimientoxDocumento(documento).stream()
+				.map(aplicacion -> ingresoMapper.toDto(aplicacion)).collect(Collectors.toList());
+
+		return ingresos.stream().map(ingreso -> this.ingresoService.consultarIngresoMadre(ingreso.getId()))
+				.filter(ingresoInfante -> ingresoInfante != null).map(ingresoInfante -> {
+					IngresoDto ingresoDto = ingresos.stream()
+							.filter(ingreso -> ingreso.getId() == ingresoInfante.getIdIngreso())
+							.collect(Collectors.toList()).get(0);
+					IngresoMadreCompletoDto completo = new IngresoMadreCompletoDto();
+					completo.setIngreso(ingresoDto);
+					completo.setIngresoMadre(madreMapper.toDto(ingresoInfante));
+					return completo;
+				}).collect(Collectors.toList());
+
 	}
 
 }
