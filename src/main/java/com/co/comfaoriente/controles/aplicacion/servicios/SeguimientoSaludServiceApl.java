@@ -7,12 +7,15 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import com.co.comfaoriente.controles.aplicacion.entidades.CompromisoEntidad;
+import com.co.comfaoriente.controles.aplicacion.entidades.IngresoEntidad;
 import com.co.comfaoriente.controles.aplicacion.entidades.RemicionEntidad;
 import com.co.comfaoriente.controles.aplicacion.entidades.SeguimientoSaludEntidad;
 import com.co.comfaoriente.controles.aplicacion.mapper.CompromisoMapper;
+import com.co.comfaoriente.controles.aplicacion.mapper.IngresoMapper;
 import com.co.comfaoriente.controles.aplicacion.mapper.RemicionMapper;
 import com.co.comfaoriente.controles.aplicacion.mapper.SeguimientoSaludMapper;
 import com.co.comfaoriente.controles.dominio.servicios.CompromisoService;
+import com.co.comfaoriente.controles.dominio.servicios.IngresoService;
 import com.co.comfaoriente.controles.dominio.servicios.RemicionService;
 import com.co.comfaoriente.controles.dominio.servicios.SeguimientoSaludService;
 
@@ -25,6 +28,10 @@ public class SeguimientoSaludServiceApl {
 	@Autowired
 	private RemicionService remicionService;
 	private static final RemicionMapper remicionMapper = RemicionMapper.getInstance();
+
+	@Autowired
+	private IngresoService ingresoService;
+	private static final IngresoMapper ingresoMapper = IngresoMapper.getInstance();
 
 	@Autowired
 	private CompromisoService compromisoService;
@@ -60,6 +67,13 @@ public class SeguimientoSaludServiceApl {
 		return this.seguimientoService.listarSeguimientosxDocumento(documento).stream()
 				.map(idSeguimiento -> this.remicionService.consultarRemicionxSeguimiento(idSeguimiento))
 				.map(dominio -> dominio == null ? null : remicionMapper.toAplicacion(dominio))
+				.filter(remicion -> remicion != null).collect(Collectors.toList());
+	}
+
+	public List<IngresoEntidad> listarIngresoSeguimientoxDocumento(int documento) {
+		return this.seguimientoService.listarSeguimientosxDocumento(documento).stream()
+				.map(idSeguimiento -> this.ingresoService.consultarIngresoxSeguimiento(idSeguimiento))
+				.map(dominio -> dominio == null ? null : ingresoMapper.toAplicacion(dominio))
 				.filter(remicion -> remicion != null).collect(Collectors.toList());
 	}
 }

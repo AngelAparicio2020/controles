@@ -36,7 +36,7 @@ import com.co.comfaoriente.controles.infraestructura.persistencia.mapper.Seguimi
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 
-@CrossOrigin(origins = "*", allowedHeaders = { "Content-Type", "Authorization", "Access-Control-Allow-Origin" })
+@CrossOrigin(origins = "http://localhost:4200", maxAge = 3600)
 @RestController
 @RequestMapping("/api/control_seguimiento")
 @Api(tags = { "Controlador Control de ingresos, remiciones y compromisos" })
@@ -216,6 +216,17 @@ public class ControlSeguiSaludControlador {
 	public List<RemicionDto> listarRemiciones(@PathVariable int documento) {
 		return this.seguimientoService.listarRemicionesSeguimientoxDocumento(documento).stream()
 				.map(aplicacion -> remicionMapper.toDto(aplicacion)).collect(Collectors.toList());
+	}
+
+	@GetMapping(value = "/LISTAR_INGRESOS_MADRE/{id}")
+	@ApiOperation("Consultar ingreso madre")
+	public IngresoCompletoDto listarIngresosMadre(@PathVariable int id) {
+		IngresoEntidad ingreso = ingresoService.consultarIngreso(id);
+		IngresoMadreEntidad madre = ingresoService.consultarIngresoMadre(id);
+		IngresoCompletoDto consulta = new IngresoCompletoDto();
+		consulta.setIngreso(ingresoMapper.toDto(ingreso));
+		consulta.setIngresoMadre(madreMapper.toDto(madre));
+		return consulta;
 	}
 
 }

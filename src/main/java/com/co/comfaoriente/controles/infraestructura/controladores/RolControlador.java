@@ -24,7 +24,7 @@ import com.co.comfaoriente.controles.infraestructura.persistencia.mapper.RolMapp
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 
-@CrossOrigin(origins = "*", allowedHeaders = { "Content-Type", "Authorization", "Access-Control-Allow-Origin" })
+@CrossOrigin(origins = "http://localhost:4200", maxAge = 3600)
 @RestController
 @RequestMapping("/api/rol")
 @Api(tags = { "Controlador gestion de roles" })
