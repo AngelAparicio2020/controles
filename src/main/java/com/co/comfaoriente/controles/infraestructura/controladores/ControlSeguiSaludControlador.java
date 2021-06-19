@@ -1,5 +1,8 @@
 package com.co.comfaoriente.controles.infraestructura.controladores;
 
+import java.util.List;
+import java.util.stream.Collectors;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -199,6 +202,20 @@ public class ControlSeguiSaludControlador {
 	public CompromisoDto consultarCompromiso(@PathVariable int id) {
 		CompromisoEntidad compromiso = compromisoService.consultarCompromiso(id);
 		return compromisoMapper.toDto(compromiso);
+	}
+
+	@GetMapping(value = "/LISTAR_COMPROMISOS/{documento}")
+	@ApiOperation("Listar compromisos x documento")
+	public List<CompromisoDto> listarCompromisos(@PathVariable int documento) {
+		return this.seguimientoService.listarCompromisosSeguimientoxDocumento(documento).stream()
+				.map(aplicacion -> compromisoMapper.toDto(aplicacion)).collect(Collectors.toList());
+	}
+
+	@GetMapping(value = "/LISTAR_REMICIONES/{documento}")
+	@ApiOperation("Listar remiciones x documento")
+	public List<RemicionDto> listarRemiciones(@PathVariable int documento) {
+		return this.seguimientoService.listarRemicionesSeguimientoxDocumento(documento).stream()
+				.map(aplicacion -> remicionMapper.toDto(aplicacion)).collect(Collectors.toList());
 	}
 
 }

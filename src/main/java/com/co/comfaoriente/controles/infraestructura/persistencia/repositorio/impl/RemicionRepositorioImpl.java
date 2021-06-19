@@ -51,7 +51,7 @@ public class RemicionRepositorioImpl implements RemicionRepositorio {
 	public RemicionEntidad consultarRemicionxSeguimiento(int id) {
 		com.co.comfaoriente.controles.infraestructura.persistencia.entidades.RemicionEntidad entity = ingresoinfanteRepositorioJpa
 				.consultarRemicionxSeguimiento(id);
-		return mapper.toDomain(entity);
+		return entity == null ? null : mapper.toDomain(entity);
 	}
 
 }

@@ -51,7 +51,7 @@ public class CompromisoRepositorioImpl implements CompromisoRepositorio {
 	public CompromisoEntidad consultarCompromisoxSeguimiento(int id) {
 		com.co.comfaoriente.controles.infraestructura.persistencia.entidades.CompromisoEntidad entity = compromisoRepositorioJpa
 				.consultarCompromisoxSeguimiento(id);
-		return mapper.toDomain(entity);
+		return entity == null ? null : mapper.toDomain(entity);
 	}
 
 }

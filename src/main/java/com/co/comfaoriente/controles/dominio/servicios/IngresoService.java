@@ -47,4 +47,12 @@ public class IngresoService {
 		return this.ingresoRepositorio.consultarIngreso(id);
 	}
 
+	public IngresoEntidad consultarIngresoxSeguimiento(int idSeguimiento) {
+		if (!this.seguimientoRepositorio.existeSeguimiento(idSeguimiento)) {
+			throw new EntityNotFoundException(SEGUIMIENTO_NO_ENCONTRADO);
+		}
+
+		return this.ingresoRepositorio.consultarIngresoxSeguimiento(idSeguimiento);
+	}
+
 }

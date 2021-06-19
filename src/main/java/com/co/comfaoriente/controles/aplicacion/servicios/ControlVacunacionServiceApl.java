@@ -1,5 +1,8 @@
 package com.co.comfaoriente.controles.aplicacion.servicios;
 
+import java.util.List;
+import java.util.stream.Collectors;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -31,6 +34,11 @@ public class ControlVacunacionServiceApl {
 
 	public boolean eliminarControl(int id) {
 		return this.controlService.eliminarControl(id);
+	}
+
+	public List<ControlVacunacionEntidad> listadoControlesVacunacion(int idUsuario) {
+		return this.controlService.listadoControlesVacunacion(idUsuario).stream()
+				.map(dominio -> mapper.toAplicacion(dominio)).collect(Collectors.toList());
 	}
 
 }

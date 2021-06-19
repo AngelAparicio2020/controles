@@ -47,4 +47,11 @@ public class CompromisoService {
 
 		return this.compromisoRepositorio.consultarCompromiso(id);
 	}
+
+	public CompromisoEntidad consultarCompromisoxSeguimiento(int idSeguimiento) {
+		if (!this.seguimientoRepositorio.existeSeguimiento(idSeguimiento)) {
+			throw new EntityNotFoundException(SEGUIMIENTO_NO_ENCONTRADO);
+		}
+		return this.compromisoRepositorio.consultarCompromisoxSeguimiento(idSeguimiento);
+	}
 }

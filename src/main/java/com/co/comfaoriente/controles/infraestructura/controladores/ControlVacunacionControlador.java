@@ -1,5 +1,8 @@
 package com.co.comfaoriente.controles.infraestructura.controladores;
 
+import java.util.List;
+import java.util.stream.Collectors;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -34,12 +37,6 @@ public class ControlVacunacionControlador {
 		return this.controlService.registrarControl(control);
 	}
 
-	@GetMapping(value = "/LISTAR_CONTROLES_VACUNACION")
-	@ApiOperation("Listar controles de vacunacion")
-	public String listar() {
-		return "hola mundo";
-	}
-
 	@GetMapping(value = "/ELIMINAR_CONTROL_VACUNACION/{id}")
 	@ApiOperation("Eliminar control vacunacion")
 	public boolean eliminarControl(@PathVariable int id) {
@@ -58,5 +55,12 @@ public class ControlVacunacionControlador {
 	public ControlVacunacionDto consultar(@PathVariable int id) {
 		ControlVacunacionEntidad control = controlService.consultarControl(id);
 		return mapper.toDto(control);
+	}
+
+	@GetMapping(value = "/LISTAR_CONTROLES_VACUNACION/{id}")
+	@ApiOperation("Listar controles de vacunacion x documento")
+	public List<ControlVacunacionDto> listarControlesVacunacion(@PathVariable int id) {
+		return this.controlService.listadoControlesVacunacion(id).stream().map(aplicacion -> mapper.toDto(aplicacion))
+				.collect(Collectors.toList());
 	}
 }

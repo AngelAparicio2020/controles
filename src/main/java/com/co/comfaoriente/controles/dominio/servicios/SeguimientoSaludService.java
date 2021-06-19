@@ -1,5 +1,7 @@
 package com.co.comfaoriente.controles.dominio.servicios;
 
+import java.util.List;
+
 import com.co.comfaoriente.controles.dominio.entidades.SeguimientoSaludEntidad;
 import com.co.comfaoriente.controles.dominio.excepciones.EntityNotFoundException;
 import com.co.comfaoriente.controles.dominio.repositorios.SeguimientoSaludRepositorio;
@@ -63,6 +65,10 @@ public class SeguimientoSaludService {
 			throw new EntityNotFoundException(SEGUIMIENTO_NO_ENCONTRADO);
 		}
 		return seguimientoRepositorio.consultarSeguimiento(id);
+	}
+
+	public List<Integer> listarSeguimientosxDocumento(int documento) {
+		return seguimientoRepositorio.listadoSeguimientosSaludxDocumento(documento);
 	}
 
 }
