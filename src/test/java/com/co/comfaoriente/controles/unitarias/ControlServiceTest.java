@@ -6,6 +6,9 @@ import static org.junit.Assert.fail;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -234,7 +237,7 @@ class ControlServiceTest {
 		// assert
 		assertEquals(true, eliminado);
 	}
-	
+
 	@Test
 	void eliminarControlSinVigenteExistenteOkTest() {
 		// arrange
@@ -326,6 +329,191 @@ class ControlServiceTest {
 		} catch (EntityNotFoundException e) {
 			// assert
 			assertEquals(CONTROL_NO_ENCONTRADO, e.getMessage());
+		}
+	}
+
+	@Test
+	void consultarUltimoControlCyDOkTest() {
+		// arrange
+		this.builder = new ControlBuilder();
+		this.control = builder.build();
+		when(this.controlRepositorio.ultimoControlCyD(DOCUMENTO, DOCUMENTO_NUTRICIONISTA)).thenReturn(this.control);
+		when(this.usuarioRepositorio.existeDocumento(DOCUMENTO)).thenReturn(true);
+		when(this.usuarioRepositorio.existeDocumento(DOCUMENTO_NUTRICIONISTA)).thenReturn(true);
+		this.controlService = new ControlService(this.controlRepositorio, usuarioRepositorio);
+
+		// act
+		ControlEntidad consultado = this.controlService.ultimoControlCyD(DOCUMENTO, DOCUMENTO_NUTRICIONISTA);
+
+		// assert
+		assertEquals(this.control, consultado);
+	}
+
+	@Test
+	void consultarUltimoControlCyDSinusuarioTest() {
+		// arrange
+		this.builder = new ControlBuilder();
+		this.control = builder.build();
+		when(this.controlRepositorio.ultimoControlCyD(DOCUMENTO, DOCUMENTO_NUTRICIONISTA)).thenReturn(this.control);
+		when(this.usuarioRepositorio.existeDocumento(DOCUMENTO)).thenReturn(false);
+		when(this.usuarioRepositorio.existeDocumento(DOCUMENTO_NUTRICIONISTA)).thenReturn(true);
+		this.controlService = new ControlService(this.controlRepositorio, usuarioRepositorio);
+		try {
+			// act
+			this.controlService.ultimoControlCyD(DOCUMENTO, DOCUMENTO_NUTRICIONISTA);
+			fail();
+		} catch (EntityNotFoundException e) {
+			// assert
+			assertEquals(USUARIO_NO_ENCONTRADO, e.getMessage());
+		}
+	}
+
+	@Test
+	void consultarUltimoControlCyDSinNutricionistaTest() {
+		// arrange
+		this.builder = new ControlBuilder();
+		this.control = builder.build();
+		when(this.controlRepositorio.ultimoControlCyD(DOCUMENTO, DOCUMENTO_NUTRICIONISTA)).thenReturn(this.control);
+		when(this.usuarioRepositorio.existeDocumento(DOCUMENTO)).thenReturn(true);
+		when(this.usuarioRepositorio.existeDocumento(DOCUMENTO_NUTRICIONISTA)).thenReturn(false);
+		this.controlService = new ControlService(this.controlRepositorio, usuarioRepositorio);
+		try {
+			// act
+			this.controlService.ultimoControlCyD(DOCUMENTO, DOCUMENTO_NUTRICIONISTA);
+			fail();
+		} catch (EntityNotFoundException e) {
+			// assert
+			assertEquals(NUTRICIONISTA_NO_ENCONTRADO, e.getMessage());
+		}
+	}
+
+	@Test
+	void consultarUltimoControlNutricionalOkTest() {
+		// arrange
+		this.builder = new ControlBuilder();
+		this.control = builder.build();
+		when(this.controlRepositorio.ultimoControlNutricional(DOCUMENTO, DOCUMENTO_NUTRICIONISTA))
+				.thenReturn(this.control);
+		when(this.usuarioRepositorio.existeDocumento(DOCUMENTO)).thenReturn(true);
+		when(this.usuarioRepositorio.existeDocumento(DOCUMENTO_NUTRICIONISTA)).thenReturn(true);
+		this.controlService = new ControlService(this.controlRepositorio, usuarioRepositorio);
+
+		// act
+		ControlEntidad consultado = this.controlService.ultimoControlNutricional(DOCUMENTO, DOCUMENTO_NUTRICIONISTA);
+
+		// assert
+		assertEquals(this.control, consultado);
+	}
+
+	@Test
+	void consultarUltimoControlNutricionalSinusuarioTest() {
+		// arrange
+		this.builder = new ControlBuilder();
+		this.control = builder.build();
+		when(this.controlRepositorio.ultimoControlNutricional(DOCUMENTO, DOCUMENTO_NUTRICIONISTA))
+				.thenReturn(this.control);
+		when(this.usuarioRepositorio.existeDocumento(DOCUMENTO)).thenReturn(false);
+		when(this.usuarioRepositorio.existeDocumento(DOCUMENTO_NUTRICIONISTA)).thenReturn(true);
+		this.controlService = new ControlService(this.controlRepositorio, usuarioRepositorio);
+		try {
+			// act
+			this.controlService.ultimoControlNutricional(DOCUMENTO, DOCUMENTO_NUTRICIONISTA);
+			fail();
+		} catch (EntityNotFoundException e) {
+			// assert
+			assertEquals(USUARIO_NO_ENCONTRADO, e.getMessage());
+		}
+	}
+
+	@Test
+	void consultarUltimoControlNutricionalSinNutricionistaTest() {
+		// arrange
+		this.builder = new ControlBuilder();
+		this.control = builder.build();
+		when(this.controlRepositorio.ultimoControlNutricional(DOCUMENTO, DOCUMENTO_NUTRICIONISTA))
+				.thenReturn(this.control);
+		when(this.usuarioRepositorio.existeDocumento(DOCUMENTO)).thenReturn(true);
+		when(this.usuarioRepositorio.existeDocumento(DOCUMENTO_NUTRICIONISTA)).thenReturn(false);
+		this.controlService = new ControlService(this.controlRepositorio, usuarioRepositorio);
+		try {
+			// act
+			this.controlService.ultimoControlNutricional(DOCUMENTO, DOCUMENTO_NUTRICIONISTA);
+			fail();
+		} catch (EntityNotFoundException e) {
+			// assert
+			assertEquals(NUTRICIONISTA_NO_ENCONTRADO, e.getMessage());
+		}
+	}
+
+	@Test
+	void listadoControlesCyDOkTest() {
+		// arrange
+		this.builder = new ControlBuilder();
+		this.control = builder.build();
+		List<ControlEntidad> controles = new ArrayList<>();
+		when(this.controlRepositorio.listadoControlesCyD(DOCUMENTO)).thenReturn(controles);
+		when(this.usuarioRepositorio.existeDocumento(DOCUMENTO)).thenReturn(true);
+		this.controlService = new ControlService(this.controlRepositorio, usuarioRepositorio);
+
+		// act
+		List<ControlEntidad> consultados = this.controlService.listadoControlesCyD(DOCUMENTO);
+
+		// assert
+		assertEquals(controles, consultados);
+	}
+
+	@Test
+	void listadoControlesCyDSinusuarioTest() {
+		// arrange
+		this.builder = new ControlBuilder();
+		this.control = builder.build();
+		List<ControlEntidad> controles = new ArrayList<>();
+		when(this.controlRepositorio.listadoControlesCyD(DOCUMENTO)).thenReturn(controles);
+		when(this.usuarioRepositorio.existeDocumento(DOCUMENTO)).thenReturn(false);
+		this.controlService = new ControlService(this.controlRepositorio, usuarioRepositorio);
+		try {
+			// act
+			this.controlService.listadoControlesCyD(DOCUMENTO);
+			fail();
+		} catch (EntityNotFoundException e) {
+			// assert
+			assertEquals(USUARIO_NO_ENCONTRADO, e.getMessage());
+		}
+	}
+
+	@Test
+	void listadoControlesNutricionalOkTest() {
+		// arrange
+		this.builder = new ControlBuilder();
+		this.control = builder.build();
+		List<ControlEntidad> controles = new ArrayList<>();
+		when(this.controlRepositorio.listadoControlesNutricionales(DOCUMENTO)).thenReturn(controles);
+		when(this.usuarioRepositorio.existeDocumento(DOCUMENTO)).thenReturn(true);
+		this.controlService = new ControlService(this.controlRepositorio, usuarioRepositorio);
+
+		// act
+		List<ControlEntidad> consultados = this.controlService.listadoControlesNutricionales(DOCUMENTO);
+
+		// assert
+		assertEquals(controles, consultados);
+	}
+
+	@Test
+	void listadoControlesNutricionalSinusuarioTest() {
+		// arrange
+		this.builder = new ControlBuilder();
+		this.control = builder.build();
+		List<ControlEntidad> controles = new ArrayList<>();
+		when(this.controlRepositorio.listadoControlesNutricionales(DOCUMENTO)).thenReturn(controles);
+		when(this.usuarioRepositorio.existeDocumento(DOCUMENTO)).thenReturn(false);
+		this.controlService = new ControlService(this.controlRepositorio, usuarioRepositorio);
+		try {
+			// act
+			this.controlService.listadoControlesNutricionales(DOCUMENTO);
+			fail();
+		} catch (EntityNotFoundException e) {
+			// assert
+			assertEquals(USUARIO_NO_ENCONTRADO, e.getMessage());
 		}
 	}
 

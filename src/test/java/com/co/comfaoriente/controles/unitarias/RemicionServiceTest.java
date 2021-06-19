@@ -175,4 +175,41 @@ class RemicionServiceTest {
 		}
 	}
 
+	@Test
+	void consultarRemicionxSeguimientoOkTest() {
+		// arrange
+		RemicionEntidad remicion = new RemicionEntidad();
+		remicion.setId(ID);
+		remicion.setIdSeguimiento(ID);
+		when(this.remicionRepositorio.consultarRemicionxSeguimiento(ID)).thenReturn(remicion);
+		when(this.seguimientoRepositorio.existeSeguimiento(ID)).thenReturn(true);
+		this.remicionService = new RemicionService(this.remicionRepositorio, this.seguimientoRepositorio);
+
+		// act
+		RemicionEntidad consultado = this.remicionService.consultarRemicionxSeguimiento(ID);
+
+		// assert
+		assertNotNull(consultado);
+	}
+
+	@Test
+	void consultarRemicionxSeguimientoFailNuloTest() {
+		// arrange
+		RemicionEntidad remicion = new RemicionEntidad();
+		remicion.setId(ID);
+		remicion.setIdSeguimiento(ID);
+		when(this.remicionRepositorio.consultarRemicionxSeguimiento(ID)).thenReturn(remicion);
+		when(this.seguimientoRepositorio.existeSeguimiento(ID)).thenReturn(false);
+		this.remicionService = new RemicionService(this.remicionRepositorio, this.seguimientoRepositorio);
+
+		try {
+			// act
+			this.remicionService.consultarRemicionxSeguimiento(ID);
+			fail();
+		} catch (EntityNotFoundException e) {
+			// assert
+			assertEquals(SEGUIMIENTO_NO_ENCONTRADO, e.getMessage());
+		}
+	}
+
 }

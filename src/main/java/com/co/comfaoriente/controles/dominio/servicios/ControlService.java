@@ -67,18 +67,36 @@ public class ControlService {
 	}
 
 	public List<ControlEntidad> listadoControlesCyD(int id) {
+		if (!this.usuarioRepositorio.existeDocumento(id)) {
+			throw new EntityNotFoundException(USUARIO_NO_ENCONTRADO);
+		}
 		return controlRepositorio.listadoControlesCyD(id);
 	}
 
 	public List<ControlEntidad> listadoControlesNutricionales(int id) {
+		if (!this.usuarioRepositorio.existeDocumento(id)) {
+			throw new EntityNotFoundException(USUARIO_NO_ENCONTRADO);
+		}
 		return controlRepositorio.listadoControlesNutricionales(id);
 	}
 
 	public ControlEntidad ultimoControlCyD(int id, int idNutricionista) {
+		if (!this.usuarioRepositorio.existeDocumento(id)) {
+			throw new EntityNotFoundException(USUARIO_NO_ENCONTRADO);
+		}
+		if (!this.usuarioRepositorio.existeDocumento(idNutricionista)) {
+			throw new EntityNotFoundException(NUTRICIONISTA_NO_ENCONTRADO);
+		}
 		return controlRepositorio.ultimoControlCyD(id, idNutricionista);
 	}
 
 	public ControlEntidad ultimoControlNutricional(int id, int idNutricionista) {
+		if (!this.usuarioRepositorio.existeDocumento(id)) {
+			throw new EntityNotFoundException(USUARIO_NO_ENCONTRADO);
+		}
+		if (!this.usuarioRepositorio.existeDocumento(idNutricionista)) {
+			throw new EntityNotFoundException(NUTRICIONISTA_NO_ENCONTRADO);
+		}
 		return controlRepositorio.ultimoControlNutricional(id, idNutricionista);
 	}
 

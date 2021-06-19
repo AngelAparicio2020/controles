@@ -20,7 +20,7 @@ import com.co.comfaoriente.controles.infraestructura.persistencia.seguridad.Util
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 
-@CrossOrigin(origins = "http://localhost:4200", maxAge = 3600)
+@CrossOrigin(origins = "*", allowedHeaders = { "Content-Type", "Authorization", "Access-Control-Allow-Origin" })
 @RestController
 @RequestMapping("/api/sesion")
 @Api(tags = { "Controlador generador de sesion" })

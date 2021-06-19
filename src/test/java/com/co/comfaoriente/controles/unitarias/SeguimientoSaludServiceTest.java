@@ -6,6 +6,9 @@ import static org.junit.Assert.fail;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -327,6 +330,22 @@ public class SeguimientoSaludServiceTest {
 			// assert
 			assertEquals(SEGUIMIENTO_NO_ENCONTRADO, e.getMessage());
 		}
+	}
+
+	@Test
+	void consultarSeguimientosxDocumentoOkTest() {
+		// arrange
+		List<Integer> seguimientos = new ArrayList<>();
+		seguimientos.add(ID);
+		when(this.seguimientoRepositorio.listadoSeguimientosSaludxDocumento(DOCUMENTO)).thenReturn(seguimientos);
+		this.seguimientoService = new SeguimientoSaludService(this.seguimientoRepositorio, usuarioRepositorio);
+
+		// act
+		List<Integer> consultados = this.seguimientoService.listarSeguimientosxDocumento(DOCUMENTO);
+
+		// assert
+		assertEquals(seguimientos, consultados);
+
 	}
 
 }

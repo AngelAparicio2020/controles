@@ -174,4 +174,41 @@ class IngresoServiceTest {
 		}
 	}
 
+	@Test
+	void consultarIngresoxSeguimientoOkTest() {
+		// arrange
+		IngresoEntidad ingreso = new IngresoEntidad();
+		ingreso.setId(ID);
+		ingreso.setIdSeguimiento(ID);
+		when(this.ingresoRepositorio.consultarIngresoxSeguimiento(ID)).thenReturn(ingreso);
+		when(this.seguimientoRepositorio.existeSeguimiento(ID)).thenReturn(true);
+		this.ingresoService = new IngresoService(this.ingresoRepositorio, this.seguimientoRepositorio);
+
+		// act
+		IngresoEntidad consultado = this.ingresoService.consultarIngresoxSeguimiento(ID);
+
+		// assert
+		assertNotNull(consultado);
+	}
+
+	@Test
+	void consultarIngresoxSeguimientoFailNuloTest() {
+		// arrange
+		IngresoEntidad ingreso = new IngresoEntidad();
+		ingreso.setId(ID);
+		ingreso.setIdSeguimiento(ID);
+		when(this.ingresoRepositorio.consultarIngresoxSeguimiento(ID)).thenReturn(ingreso);
+		when(this.seguimientoRepositorio.existeSeguimiento(ID)).thenReturn(false);
+		this.ingresoService = new IngresoService(this.ingresoRepositorio, this.seguimientoRepositorio);
+
+		try {
+			// act
+			this.ingresoService.consultarIngresoxSeguimiento(ID);
+			fail();
+		} catch (EntityNotFoundException e) {
+			// assert
+			assertEquals(SEGUIMIENTO_NO_ENCONTRADO, e.getMessage());
+		}
+	}
+
 }
