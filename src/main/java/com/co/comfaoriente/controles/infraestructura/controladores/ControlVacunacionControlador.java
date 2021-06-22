@@ -4,13 +4,11 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.co.comfaoriente.controles.aplicacion.entidades.ControlVacunacionEntidad;
@@ -21,7 +19,6 @@ import com.co.comfaoriente.controles.infraestructura.persistencia.mapper.Control
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 
-@CrossOrigin(origins = "http://localhost:4200", maxAge = 3600, methods = { RequestMethod.GET, RequestMethod.POST })
 @RestController
 @RequestMapping("/api/control_vacunacion")
 @Api(tags = { "Controlador Control de vacunación" })
