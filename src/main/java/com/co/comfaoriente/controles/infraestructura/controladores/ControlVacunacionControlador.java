@@ -21,7 +21,7 @@ import io.swagger.annotations.ApiOperation;
 
 @RestController
 @RequestMapping("/api/control_vacunacion")
-@Api(tags = { "Controlador Control de vacunación" })
+@Api(tags = { "Controlador Control de vacunacion" })
 public class ControlVacunacionControlador {
 
 	@Autowired
