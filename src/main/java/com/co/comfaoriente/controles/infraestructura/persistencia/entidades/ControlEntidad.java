@@ -20,42 +20,45 @@ public class ControlEntidad implements Serializable {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "id_control", nullable = false)
 	private int id;
-	
+
 	@Column(name = "id_usuario", nullable = false)
 	private int idUsuario;
-	
+
 	@Column(name = "id_usuario_nutricionista", nullable = false)
 	private int idUsuarioNutricionista;
-	
+
 	@Column(name = "fecha_cont", nullable = false)
 	private Date fechaControl;
-	
+
 	@Column(name = "peso", nullable = false)
 	private int peso;
-	
+
 	@Column(name = "talla", nullable = false)
 	private int talla;
-	
+
 	@Column(name = "imc_calculado", nullable = false)
 	private int imc;
-	
+
 	@Column(name = "estado_nutric", nullable = false)
 	private String estadoNutricional;
-	
+
 	@Column(name = "tension", nullable = true)
 	private String tension;
-	
+
 	@Column(name = "edad_gestacional", nullable = false)
 	private int edadGestacional;
-	
+
 	@Column(name = "fecha_ulti_cont", nullable = true)
 	private Date ultimoControl;
-	
+
 	@Column(name = "fecha_prox_cont", nullable = true)
 	private Date proximoControl;
-	
+
 	@Column(name = "vigente", columnDefinition = "tinyint(1) default 1", nullable = false)
 	private boolean vigente;
+
+	@Column(name = "edad_meses")
+	private int meses;
 
 	public int getId() {
 		return id;
@@ -160,7 +163,13 @@ public class ControlEntidad implements Serializable {
 	public void setVigente(boolean vigente) {
 		this.vigente = vigente;
 	}
-	
-	
+
+	public int getMeses() {
+		return meses;
+	}
+
+	public void setMeses(int meses) {
+		this.meses = meses;
+	}
 
 }

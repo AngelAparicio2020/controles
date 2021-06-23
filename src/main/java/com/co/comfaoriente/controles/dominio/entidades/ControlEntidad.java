@@ -17,6 +17,7 @@ public class ControlEntidad {
 	private Date ultimoControl;
 	private Date proximoControl;
 	private boolean vigente;
+	private int meses;
 
 	public int getId() {
 		return id;
@@ -120,6 +121,14 @@ public class ControlEntidad {
 
 	public void setVigente(boolean vigente) {
 		this.vigente = vigente;
+	}
+
+	public int getMeses() {
+		return meses;
+	}
+
+	public void setMeses(int meses) {
+		this.meses = meses;
 	}
 
 }

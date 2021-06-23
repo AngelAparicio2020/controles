@@ -29,11 +29,11 @@ public class ControlControlador {
 	private ControlServiceApl controlService;
 	private static final ControlMapper mapper = ControlMapper.getInstance();
 
-	@PostMapping(value = "/REGISTRAR_CONTROL")
+	@PostMapping(value = "/REGISTRAR_CONTROL/{nutricional}")
 	@ApiOperation("Registrar control")
-	public boolean registrarControl(@RequestBody ControlDto controlDto) {
+	public boolean registrarControl(@RequestBody ControlDto controlDto, @PathVariable boolean nutricional) {
 		ControlEntidad control = mapper.toAplicacion(controlDto);
-		return this.controlService.registrarControl(control);
+		return this.controlService.registrarControl(control, nutricional);
 	}
 
 	@GetMapping(value = "/ELIMINAR_CONTROL/{id}")
@@ -83,6 +83,13 @@ public class ControlControlador {
 	public List<ControlDto> listarControlesCyD(@PathVariable int id) {
 		return this.controlService.listadoControlesCyD(id).stream().map(aplicacion -> mapper.toDto(aplicacion))
 				.collect(Collectors.toList());
+	}
+
+	@GetMapping(value = "/ULTIMO_CONTROL_CYD/{documento}")
+	@ApiOperation("lleva el ultimo control CyD")
+	public ControlDto fechasProximoCyD(@PathVariable int documento) {
+		ControlEntidad controlcyd = controlService.ultimoControlCyDxDocumento(documento);
+		return mapper.toDto(controlcyd);
 	}
 
 }

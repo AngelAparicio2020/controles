@@ -36,6 +36,9 @@ public interface ControlRepositorioJpa extends CrudRepository<ControlEntidad, In
 
 	@Query("select control from ControlEntidad control where control.idUsuario = :idUsuario and control.ultimoControl != null and control.proximoControl != null")
 	List<ControlEntidad> controlesCyDXPersona(@Param("idUsuario") int idUsuario);
+	
+	@Query("select max(control) from ControlEntidad control where control.idUsuario = :idUsuario and control.ultimoControl != null and control.proximoControl != null")
+	ControlEntidad ultimoControlCyDxDocumento(@Param("idUsuario") int idUsuario);
 
 
 }

@@ -30,6 +30,7 @@ public class ControlMapper {
 			aplicacion.setTension(dominio.getTension());
 			aplicacion.setUltimoControl(dominio.getUltimoControl());
 			aplicacion.setVigente(dominio.isVigente());
+			aplicacion.setMeses(dominio.getMeses());
 		}
 		return aplicacion;
 	}
@@ -56,6 +57,7 @@ public class ControlMapper {
 			} else {
 				dominio.setVigente(true);
 			}
+			dominio.setMeses(aplicacion.getMeses());
 		}
 		return dominio;
 	}

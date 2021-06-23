@@ -143,7 +143,5 @@ public class UsuarioEntidad implements Serializable {
 				+ ", municipio=" + municipio + ", direccion=" + direccion + ", correoElectronico=" + correoElectronico
 				+ ", clave=" + clave + "]";
 	}
-	
-	
 
 }

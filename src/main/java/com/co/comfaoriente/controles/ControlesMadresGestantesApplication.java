@@ -27,8 +27,7 @@ public class ControlesMadresGestantesApplication {
 			http.csrf().disable()
 					.addFilterAfter(new JWTAuthorizationFilter(), UsernamePasswordAuthenticationFilter.class)
 					.authorizeRequests().antMatchers(HttpMethod.GET, "/api/sesion/{documento}/{clave}/{rol}")
-					.permitAll().antMatchers(HttpMethod.GET, "/api/sesion/LISTAR_ROLES").permitAll()
-					.antMatchers(HttpMethod.GET).permitAll().antMatchers(HttpMethod.POST).permitAll().anyRequest().authenticated();
+					.permitAll().antMatchers(HttpMethod.GET, "/api/sesion/LISTAR_ROLES").permitAll().anyRequest().authenticated();
 		}
 	}
 

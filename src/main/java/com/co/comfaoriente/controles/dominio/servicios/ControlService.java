@@ -100,4 +100,11 @@ public class ControlService {
 		return controlRepositorio.ultimoControlNutricional(id, idNutricionista);
 	}
 
+	public ControlEntidad ultimoControlCyDxDocumento(int documento) {
+		if (!this.usuarioRepositorio.existeDocumento(documento)) {
+			throw new EntityNotFoundException(USUARIO_NO_ENCONTRADO);
+		}
+		return controlRepositorio.ultimoControlCyDxDocumento(documento);
+	}
+
 }

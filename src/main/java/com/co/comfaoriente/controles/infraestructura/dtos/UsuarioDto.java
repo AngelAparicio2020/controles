@@ -29,6 +29,8 @@ public class UsuarioDto implements Serializable {
 
 	private String clave;
 
+	private boolean meses;
+
 	public int getDocumento() {
 		return documento;
 	}
@@ -115,6 +117,14 @@ public class UsuarioDto implements Serializable {
 
 	public void setClave(String clave) {
 		this.clave = clave;
+	}
+
+	public boolean isMeses() {
+		return meses;
+	}
+
+	public void setMeses(boolean meses) {
+		this.meses = meses;
 	}
 
 }

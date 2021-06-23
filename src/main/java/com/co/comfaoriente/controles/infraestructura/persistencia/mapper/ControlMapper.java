@@ -31,6 +31,7 @@ public class ControlMapper {
 			aplicacion.setTension(dto.getTension());
 			aplicacion.setUltimoControl(dto.getUltimoControl());
 			aplicacion.setVigente(dto.isVigente());
+			aplicacion.setMeses(dto.getMeses());
 		}
 		return aplicacion;
 	}
@@ -52,6 +53,7 @@ public class ControlMapper {
 			dto.setTension(aplicacion.getTension());
 			dto.setUltimoControl(aplicacion.getUltimoControl());
 			dto.setVigente(aplicacion.isVigente());
+			dto.setMeses(aplicacion.getMeses());
 		}
 		return dto;
 	}
@@ -74,6 +76,7 @@ public class ControlMapper {
 			dominio.setTension(entity.getTension());
 			dominio.setUltimoControl(entity.getUltimoControl());
 			dominio.setVigente(entity.isVigente());
+			dominio.setMeses(entity.getMeses());
 		}
 		return dominio;
 	}
@@ -94,6 +97,7 @@ public class ControlMapper {
 		entity.setTension(dominio.getTension());
 		entity.setUltimoControl(dominio.getUltimoControl());
 		entity.setVigente(dominio.isVigente());
+		entity.setMeses(dominio.getMeses());
 		return entity;
 	}
 

@@ -120,5 +120,12 @@ public class ControlRepositorioImpl implements ControlRepositorio {
 				.controlesNutricionalesXPersona(id);
 		return entity.stream().map(entityI -> mapper.toDomain(entityI)).collect(Collectors.toList());
 	}
+	
+	@Override
+	public ControlEntidad ultimoControlCyDxDocumento(int documento) {
+		com.co.comfaoriente.controles.infraestructura.persistencia.entidades.ControlEntidad entity = repositorioJpa
+				.ultimoControlCyDxDocumento(documento);
+		return mapper.toDomain(entity);
+	}
 
 }

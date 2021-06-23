@@ -9,7 +9,7 @@ public interface ControlRepositorio {
 	public boolean registrarControl(ControlEntidad control);
 
 	public int cantidadDeControlesDePersona(int idUsuario);
-	
+
 	public int cantidadDeControlesNoVigentesDePersona(int idUsuario);
 
 	public int ultimoControlVigente(int idUsuario);
@@ -29,13 +29,15 @@ public interface ControlRepositorio {
 	public boolean existeControl(int id);
 
 	public boolean esVigente(int id);
-	
-	public ControlEntidad ultimoControlCyD(int idUsuario,int idNutricionista);
-	
-	public ControlEntidad ultimoControlNutricional(int idUsuario,int idNutricionista);
-	
+
+	public ControlEntidad ultimoControlCyD(int idUsuario, int idNutricionista);
+
+	public ControlEntidad ultimoControlNutricional(int idUsuario, int idNutricionista);
+
 	public List<ControlEntidad> listadoControlesCyD(int id);
-	
+
 	public List<ControlEntidad> listadoControlesNutricionales(int id);
+
+	public ControlEntidad ultimoControlCyDxDocumento(int documento);
 
 }
