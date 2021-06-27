@@ -3,10 +3,9 @@ package com.co.comfaoriente.controles.dominio.entidades;
 import java.util.Date;
 
 public class ControlVacunacionEntidad {
-	
+
 	private int id;
 	private int idUsuario;
-	private String nombreVacuna;
 	private Date fechaAplicacion;
 	private int dosis;
 	private int edadGestacional;
@@ -26,14 +25,6 @@ public class ControlVacunacionEntidad {
 
 	public void setIdUsuario(int idUsuario) {
 		this.idUsuario = idUsuario;
-	}
-
-	public String getNombreVacuna() {
-		return nombreVacuna;
-	}
-
-	public void setNombreVacuna(String nombreVacuna) {
-		this.nombreVacuna = nombreVacuna;
 	}
 
 	public Date getFechaAplicacion() {

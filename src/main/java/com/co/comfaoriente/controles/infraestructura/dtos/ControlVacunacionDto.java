@@ -1,16 +1,19 @@
 package com.co.comfaoriente.controles.infraestructura.dtos;
 
 import java.util.Date;
+import java.util.List;
+
+import com.co.comfaoriente.controles.dominio.entidades.VacunaEntidad;
 
 public class ControlVacunacionDto {
 
 	private int id;
 	private int idUsuario;
-	private String nombreVacuna;
 	private Date fechaAplicacion;
 	private int dosis;
 	private int edadGestacional;
 	private boolean vigente;
+	private List<VacunaEntidad> vacunas;
 
 	public int getId() {
 		return id;
@@ -26,14 +29,6 @@ public class ControlVacunacionDto {
 
 	public void setIdUsuario(int idUsuario) {
 		this.idUsuario = idUsuario;
-	}
-
-	public String getNombreVacuna() {
-		return nombreVacuna;
-	}
-
-	public void setNombreVacuna(String nombreVacuna) {
-		this.nombreVacuna = nombreVacuna;
 	}
 
 	public Date getFechaAplicacion() {
@@ -66,6 +61,14 @@ public class ControlVacunacionDto {
 
 	public void setVigente(boolean vigente) {
 		this.vigente = vigente;
+	}
+
+	public List<VacunaEntidad> getVacunas() {
+		return vacunas;
+	}
+
+	public void setVacunas(List<VacunaEntidad> vacunas) {
+		this.vacunas = vacunas;
 	}
 
 }

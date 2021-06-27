@@ -1,11 +1,14 @@
 package com.co.comfaoriente.controles.dominio.servicios;
 
+import java.util.Date;
 import java.util.List;
 
 import com.co.comfaoriente.controles.dominio.entidades.ControlVacunacionEntidad;
+import com.co.comfaoriente.controles.dominio.entidades.VacunaEntidad;
 import com.co.comfaoriente.controles.dominio.excepciones.EntityNotFoundException;
 import com.co.comfaoriente.controles.dominio.repositorios.ControlVacunacionRepositorio;
 import com.co.comfaoriente.controles.dominio.repositorios.UsuarioRepositorio;
+import com.co.comfaoriente.controles.infraestructura.persistencia.entidades.VacunaControlEntidad;
 
 public class ControlVacunacionService {
 
@@ -62,6 +65,33 @@ public class ControlVacunacionService {
 
 	public List<ControlVacunacionEntidad> listadoControlesVacunacion(int idUsuario) {
 		return controlRepositorio.consultarControlesxPersona(idUsuario);
+	}
+
+	public List<VacunaEntidad> consultarVacunasXedad(int meses) {
+		return controlRepositorio.consultarVacunasXedad(meses);
+	}
+
+	public int consultarUltimoControl(int idUsuario) {
+		return this.controlRepositorio.ultimoControlVigente(idUsuario);
+	}
+
+	public boolean asignarVacunasaControl(List<VacunaEntidad> vacunas, int control, Date fechaAplicacion) {
+		return this.controlRepositorio.asignarVacunasaControl(vacunas, control, fechaAplicacion);
+	}
+
+	public boolean eliminarVacuna(int control, int vacuna) {
+		return this.controlRepositorio.eliminarVacuna(control, vacuna);
+	}
+
+	public List<Integer> listarControlesxDocumento(int documento) {
+		if (!this.usuarioRepositorio.existeDocumento(documento)) {
+			throw new EntityNotFoundException(USUARIO_NO_ENCONTRADO);
+		}
+		return this.controlRepositorio.listadoControlesxDocumento(documento);
+	}
+
+	public List<VacunaControlEntidad> consultarVacunasxControl(int control) {
+		return this.controlRepositorio.consultarVacunasxControl(control);
 	}
 
 }

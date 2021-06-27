@@ -8,7 +8,6 @@ public class ControlVacunacionBuilder {
 
 	private int id;
 	private int idUsuario;
-	private String nombreVacuna;
 	private Date fechaAplicacion;
 	private int dosis;
 	private int edadGestacional;
@@ -36,7 +35,6 @@ public class ControlVacunacionBuilder {
 		control.setFechaAplicacion(fechaAplicacion);
 		control.setId(id);
 		control.setIdUsuario(idUsuario);
-		control.setNombreVacuna(nombreVacuna);
 		control.setVigente(vigente);
 		return control;
 	}

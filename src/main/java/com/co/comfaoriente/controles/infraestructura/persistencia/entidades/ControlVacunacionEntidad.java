@@ -24,9 +24,6 @@ public class ControlVacunacionEntidad implements Serializable {
 	@Column(name = "id_usuario", nullable = false)
 	private int idUsuario;
 
-	@Column(name = "nombre_vac", nullable = false)
-	private String nombreVacuna;
-
 	@Column(name = "fecha_aplic", nullable = false)
 	private Date fechaAplicacion;
 
@@ -53,14 +50,6 @@ public class ControlVacunacionEntidad implements Serializable {
 
 	public void setIdUsuario(int idUsuario) {
 		this.idUsuario = idUsuario;
-	}
-
-	public String getNombreVacuna() {
-		return nombreVacuna;
-	}
-
-	public void setNombreVacuna(String nombreVacuna) {
-		this.nombreVacuna = nombreVacuna;
 	}
 
 	public Date getFechaAplicacion() {
@@ -94,7 +83,5 @@ public class ControlVacunacionEntidad implements Serializable {
 	public void setVigente(boolean vigente) {
 		this.vigente = vigente;
 	}
-	
-	
 
 }

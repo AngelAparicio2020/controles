@@ -13,7 +13,9 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.co.comfaoriente.controles.aplicacion.entidades.ControlVacunacionEntidad;
 import com.co.comfaoriente.controles.aplicacion.servicios.ControlVacunacionServiceApl;
+import com.co.comfaoriente.controles.dominio.entidades.VacunaEntidad;
 import com.co.comfaoriente.controles.infraestructura.dtos.ControlVacunacionDto;
+import com.co.comfaoriente.controles.infraestructura.persistencia.entidades.VacunaControlEntidad;
 import com.co.comfaoriente.controles.infraestructura.persistencia.mapper.ControlVacunacionMapper;
 
 import io.swagger.annotations.Api;
@@ -32,7 +34,7 @@ public class ControlVacunacionControlador {
 	@ApiOperation("Registrar control vacunacion")
 	public boolean registrarControl(@RequestBody ControlVacunacionDto controlDto) {
 		ControlVacunacionEntidad control = mapper.toAplicacion(controlDto);
-		return this.controlService.registrarControl(control);
+		return this.controlService.registrarControl(control, controlDto.getVacunas());
 	}
 
 	@GetMapping(value = "/ELIMINAR_CONTROL_VACUNACION/{id}")
@@ -60,5 +62,23 @@ public class ControlVacunacionControlador {
 	public List<ControlVacunacionDto> listarControlesVacunacion(@PathVariable int id) {
 		return this.controlService.listadoControlesVacunacion(id).stream().map(aplicacion -> mapper.toDto(aplicacion))
 				.collect(Collectors.toList());
+	}
+
+	@GetMapping(value = "/LISTAR_VACUNAS_EDAD/{meses}")
+	@ApiOperation("Listar vacunas x meses")
+	public List<VacunaEntidad> listarVacunas(@PathVariable int meses) {
+		return this.controlService.consultarVacunasXedad(meses);
+	}
+
+	@GetMapping(value = "/LISTAR_VACUNACION_DOCUMENTO/{documento}")
+	@ApiOperation("Listar vacunas x meses")
+	public List<VacunaControlEntidad> listarVacunasControlesxDocumento(@PathVariable int documento) {
+		return this.controlService.listarControlesxDocumento(documento);
+	}
+
+	@GetMapping(value = "/ELIMINAR_VACUNA_CONTROL/{control}/{vacuna}")
+	@ApiOperation("Eliminar vacuna de un control")
+	public boolean eliminarVacuna(@PathVariable int control, @PathVariable int vacuna) {
+		return this.controlService.eliminarVacuna(control, vacuna);
 	}
 }

@@ -20,7 +20,6 @@ public class ControlVacunacionMapper {
 		aplicacion.setEdadGestacional(dominio.getEdadGestacional());
 		aplicacion.setDosis(dominio.getDosis());
 		aplicacion.setFechaAplicacion(dominio.getFechaAplicacion());
-		aplicacion.setNombreVacuna(dominio.getNombreVacuna());
 		aplicacion.setIdUsuario(dominio.getIdUsuario());
 		aplicacion.setVigente(dominio.isVigente());
 		return aplicacion;
@@ -33,7 +32,6 @@ public class ControlVacunacionMapper {
 		dominio.setEdadGestacional(aplicacion.getEdadGestacional());
 		dominio.setDosis(aplicacion.getDosis());
 		dominio.setFechaAplicacion(aplicacion.getFechaAplicacion());
-		dominio.setNombreVacuna(aplicacion.getNombreVacuna());
 		dominio.setIdUsuario(aplicacion.getIdUsuario());
 		if (!registrar) {
 			dominio.setVigente(aplicacion.isVigente());

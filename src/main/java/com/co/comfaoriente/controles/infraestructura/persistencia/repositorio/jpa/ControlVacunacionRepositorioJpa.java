@@ -27,4 +27,8 @@ public interface ControlVacunacionRepositorioJpa extends CrudRepository<ControlV
 	
 	@Query("select control from ControlVacunacionEntidad control where control.idUsuario = :idUsuario")
 	List<ControlVacunacionEntidad> controlesVacunacion(@Param("idUsuario") int idUsuario);
+	
+	@Query("select control.id from ControlVacunacionEntidad control where control.idUsuario = :idUsuario")
+	List<Integer> listarControlesxDocumento(@Param("idUsuario") int idUsuario);
+
 }
