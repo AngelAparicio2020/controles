@@ -53,7 +53,7 @@ public class UsuarioMapper {
 			com.co.comfaoriente.controles.dominio.entidades.UsuarioEntidad dominio, boolean registrar) {
 		com.co.comfaoriente.controles.infraestructura.persistencia.entidades.UsuarioEntidad entidad = new com.co.comfaoriente.controles.infraestructura.persistencia.entidades.UsuarioEntidad();
 		entidad.setCelular(dominio.getCelular());
-		entidad.setClave(registrar ? encryptPassword(dominio.getClave()) : dominio.getClave());
+		entidad.setClave(dominio.getClave());
 		entidad.setCorreoElectronico(dominio.getCorreoElectronico());
 		entidad.setDireccion(dominio.getDireccion());
 		entidad.setDocumento(dominio.getDocumento());

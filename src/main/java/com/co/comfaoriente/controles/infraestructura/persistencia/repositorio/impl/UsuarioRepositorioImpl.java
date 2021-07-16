@@ -29,14 +29,15 @@ public class UsuarioRepositorioImpl implements UsuarioRepositorio {
 	@Override
 	public boolean registrarUsuario(UsuarioEntidad usuario) {
 		com.co.comfaoriente.controles.infraestructura.persistencia.entidades.UsuarioEntidad entity = mapper
-				.toEntity(usuario,true);
+				.toEntity(usuario, true);
+		System.err.println(usuario.getClave());
 		return repositorioJpa.save(entity) != null;
 	}
 
 	@Override
 	public boolean actualizarUsuario(UsuarioEntidad usuario) {
 		com.co.comfaoriente.controles.infraestructura.persistencia.entidades.UsuarioEntidad entity = mapper
-				.toEntity(usuario,false);
+				.toEntity(usuario, false);
 		return repositorioJpa.save(entity) != null;
 	}
 
