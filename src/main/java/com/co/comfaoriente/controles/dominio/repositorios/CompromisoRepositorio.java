@@ -1,5 +1,7 @@
 package com.co.comfaoriente.controles.dominio.repositorios;
 
+import java.util.List;
+
 import com.co.comfaoriente.controles.dominio.entidades.CompromisoEntidad;
 
 public interface CompromisoRepositorio {
@@ -14,6 +16,6 @@ public interface CompromisoRepositorio {
 
 	public boolean existeCompromiso(int id);
 
-	public CompromisoEntidad consultarCompromisoxSeguimiento(int id);
+	public List<CompromisoEntidad> consultarCompromisoxSeguimiento(int id);
 
 }

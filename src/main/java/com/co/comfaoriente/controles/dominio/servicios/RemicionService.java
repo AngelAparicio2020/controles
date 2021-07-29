@@ -1,5 +1,7 @@
 package com.co.comfaoriente.controles.dominio.servicios;
 
+import java.util.List;
+
 import com.co.comfaoriente.controles.dominio.entidades.RemicionEntidad;
 import com.co.comfaoriente.controles.dominio.excepciones.EntityNotFoundException;
 import com.co.comfaoriente.controles.dominio.repositorios.RemicionRepositorio;
@@ -47,7 +49,7 @@ public class RemicionService {
 		return this.remicionRepositorio.consultarRemicion(id);
 	}
 
-	public RemicionEntidad consultarRemicionxSeguimiento(int idSeguimiento) {
+	public List<RemicionEntidad> consultarRemicionxSeguimiento(int idSeguimiento) {
 		if (!this.seguimientoRepositorio.existeSeguimiento(idSeguimiento)) {
 			throw new EntityNotFoundException(SEGUIMIENTO_NO_ENCONTRADO);
 		}

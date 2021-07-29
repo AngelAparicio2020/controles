@@ -6,6 +6,9 @@ import static org.junit.Assert.fail;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -181,11 +184,13 @@ class CompromisoServiceTest {
 		CompromisoEntidad compromiso = new CompromisoEntidad();
 		compromiso.setId(ID);
 		compromiso.setIdSeguimientoSalud(ID);
-		when(this.compromisoRepositorio.consultarCompromisoxSeguimiento(ID)).thenReturn(compromiso);
+		List<CompromisoEntidad> compromisos = new ArrayList<>();
+		compromisos.add(compromiso);
+		when(this.compromisoRepositorio.consultarCompromisoxSeguimiento(ID)).thenReturn(compromisos);
 		when(this.seguimientoRepositorio.existeSeguimiento(ID)).thenReturn(true);
 		this.compromisoService = new CompromisoService(this.compromisoRepositorio, this.seguimientoRepositorio);
 		// act
-		CompromisoEntidad consultado = this.compromisoService.consultarCompromisoxSeguimiento(ID);
+		List<CompromisoEntidad> consultado = this.compromisoService.consultarCompromisoxSeguimiento(ID);
 
 		// assert
 		assertNotNull(consultado);
@@ -197,7 +202,9 @@ class CompromisoServiceTest {
 		CompromisoEntidad compromiso = new CompromisoEntidad();
 		compromiso.setId(ID);
 		compromiso.setIdSeguimientoSalud(ID);
-		when(this.compromisoRepositorio.consultarCompromisoxSeguimiento(ID)).thenReturn(compromiso);
+		List<CompromisoEntidad> compromisos = new ArrayList<>();
+		compromisos.add(compromiso);
+		when(this.compromisoRepositorio.consultarCompromisoxSeguimiento(ID)).thenReturn(compromisos);
 		when(this.seguimientoRepositorio.existeSeguimiento(ID)).thenReturn(false);
 		this.compromisoService = new CompromisoService(this.compromisoRepositorio, this.seguimientoRepositorio);
 

@@ -1,5 +1,7 @@
 package com.co.comfaoriente.controles.dominio.servicios;
 
+import java.util.List;
+
 import com.co.comfaoriente.controles.dominio.entidades.CompromisoEntidad;
 import com.co.comfaoriente.controles.dominio.excepciones.EntityNotFoundException;
 import com.co.comfaoriente.controles.dominio.repositorios.CompromisoRepositorio;
@@ -48,7 +50,7 @@ public class CompromisoService {
 		return this.compromisoRepositorio.consultarCompromiso(id);
 	}
 
-	public CompromisoEntidad consultarCompromisoxSeguimiento(int idSeguimiento) {
+	public List<CompromisoEntidad> consultarCompromisoxSeguimiento(int idSeguimiento) {
 		if (!this.seguimientoRepositorio.existeSeguimiento(idSeguimiento)) {
 			throw new EntityNotFoundException(SEGUIMIENTO_NO_ENCONTRADO);
 		}

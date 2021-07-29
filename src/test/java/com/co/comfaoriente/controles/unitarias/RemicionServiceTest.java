@@ -6,6 +6,9 @@ import static org.junit.Assert.fail;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -181,12 +184,14 @@ class RemicionServiceTest {
 		RemicionEntidad remicion = new RemicionEntidad();
 		remicion.setId(ID);
 		remicion.setIdSeguimiento(ID);
-		when(this.remicionRepositorio.consultarRemicionxSeguimiento(ID)).thenReturn(remicion);
+		List<RemicionEntidad> remiciones = new ArrayList<>();
+		remiciones.add(remicion);
+		when(this.remicionRepositorio.consultarRemicionxSeguimiento(ID)).thenReturn(remiciones);
 		when(this.seguimientoRepositorio.existeSeguimiento(ID)).thenReturn(true);
 		this.remicionService = new RemicionService(this.remicionRepositorio, this.seguimientoRepositorio);
 
 		// act
-		RemicionEntidad consultado = this.remicionService.consultarRemicionxSeguimiento(ID);
+		List<RemicionEntidad> consultado = this.remicionService.consultarRemicionxSeguimiento(ID);
 
 		// assert
 		assertNotNull(consultado);
@@ -198,7 +203,9 @@ class RemicionServiceTest {
 		RemicionEntidad remicion = new RemicionEntidad();
 		remicion.setId(ID);
 		remicion.setIdSeguimiento(ID);
-		when(this.remicionRepositorio.consultarRemicionxSeguimiento(ID)).thenReturn(remicion);
+		List<RemicionEntidad> remiciones = new ArrayList<>();
+		remiciones.add(remicion);
+		when(this.remicionRepositorio.consultarRemicionxSeguimiento(ID)).thenReturn(remiciones);
 		when(this.seguimientoRepositorio.existeSeguimiento(ID)).thenReturn(false);
 		this.remicionService = new RemicionService(this.remicionRepositorio, this.seguimientoRepositorio);
 

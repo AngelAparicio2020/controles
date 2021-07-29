@@ -1,5 +1,7 @@
 package com.co.comfaoriente.controles.dominio.repositorios;
 
+import java.util.List;
+
 import com.co.comfaoriente.controles.dominio.entidades.RemicionEntidad;
 
 public interface RemicionRepositorio {
@@ -15,6 +17,6 @@ public interface RemicionRepositorio {
 
 	public boolean existeRemicion(int id);
 	
-	public RemicionEntidad consultarRemicionxSeguimiento(int id);
+	public List<RemicionEntidad> consultarRemicionxSeguimiento(int id);
 
 }

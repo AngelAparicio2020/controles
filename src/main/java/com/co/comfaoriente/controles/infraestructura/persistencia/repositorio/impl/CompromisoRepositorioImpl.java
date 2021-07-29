@@ -1,5 +1,8 @@
 package com.co.comfaoriente.controles.infraestructura.persistencia.repositorio.impl;
 
+import java.util.List;
+import java.util.stream.Collectors;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -48,10 +51,10 @@ public class CompromisoRepositorioImpl implements CompromisoRepositorio {
 	}
 
 	@Override
-	public CompromisoEntidad consultarCompromisoxSeguimiento(int id) {
-		com.co.comfaoriente.controles.infraestructura.persistencia.entidades.CompromisoEntidad entity = compromisoRepositorioJpa
+	public List<CompromisoEntidad> consultarCompromisoxSeguimiento(int id) {
+		List<com.co.comfaoriente.controles.infraestructura.persistencia.entidades.CompromisoEntidad> entity = compromisoRepositorioJpa
 				.consultarCompromisoxSeguimiento(id);
-		return entity == null ? null : mapper.toDomain(entity);
+		return entity.stream().filter(compromiso -> compromiso != null).map(mapper::toDomain).collect(Collectors.toList());
 	}
 
 }

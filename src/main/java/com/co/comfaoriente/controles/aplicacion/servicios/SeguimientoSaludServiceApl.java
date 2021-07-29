@@ -1,6 +1,8 @@
 package com.co.comfaoriente.controles.aplicacion.servicios;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -56,18 +58,22 @@ public class SeguimientoSaludServiceApl {
 	}
 
 	public List<CompromisoEntidad> listarCompromisosSeguimientoxDocumento(int documento) {
-		return this.seguimientoService.listarSeguimientosxDocumento(documento).stream()
-				.map(idSeguimiento -> this.compromisoService.consultarCompromisoxSeguimiento(idSeguimiento))
-				.map(dominio -> dominio == null ? null : compromisoMapper.toAplicacion(dominio))
-				.filter(compromiso -> compromiso != null).collect(Collectors.toList());
+		List<com.co.comfaoriente.controles.dominio.entidades.CompromisoEntidad> compromisos = new ArrayList<>();
+		this.seguimientoService.listarSeguimientosxDocumento(documento).stream().forEach(idSeguimiento -> compromisos
+				.addAll(this.compromisoService.consultarCompromisoxSeguimiento(idSeguimiento)));
+
+		return compromisos.stream().map(dominio -> dominio == null ? null : compromisoMapper.toAplicacion(dominio))
+				.filter(Objects::nonNull).collect(Collectors.toList());
 
 	}
 
 	public List<RemicionEntidad> listarRemicionesSeguimientoxDocumento(int documento) {
-		return this.seguimientoService.listarSeguimientosxDocumento(documento).stream()
-				.map(idSeguimiento -> this.remicionService.consultarRemicionxSeguimiento(idSeguimiento))
-				.map(dominio -> dominio == null ? null : remicionMapper.toAplicacion(dominio))
-				.filter(remicion -> remicion != null).collect(Collectors.toList());
+		List<com.co.comfaoriente.controles.dominio.entidades.RemicionEntidad> remiciones = new ArrayList<>();
+		this.seguimientoService.listarSeguimientosxDocumento(documento).stream().forEach(
+				idSeguimiento -> remiciones.addAll(this.remicionService.consultarRemicionxSeguimiento(idSeguimiento)));
+
+		return remiciones.stream().map(dominio -> dominio == null ? null : remicionMapper.toAplicacion(dominio))
+				.filter(Objects::nonNull).collect(Collectors.toList());
 	}
 
 	public List<IngresoEntidad> listarIngresoSeguimientoxDocumento(int documento) {
