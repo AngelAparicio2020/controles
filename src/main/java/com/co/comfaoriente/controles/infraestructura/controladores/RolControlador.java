@@ -90,7 +90,7 @@ public class RolControlador {
 		return rolService.actualizarRol(datos);
 	}
 
-	@PostMapping(value = "/CONSULTAR_ROLES/{documento}")
+	@GetMapping(value = "/CONSULTAR_ROLES/{documento}")
 	@ApiOperation("Consultar roles")
 	public List<RolUsuarioEntidad> consultarRolesUsuario(@PathVariable int documento) {
 		return rolService.consultarRolesUsuario(documento);
