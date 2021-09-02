@@ -4,6 +4,7 @@ import java.util.List;
 
 import com.co.comfaoriente.controles.dominio.entidades.PrivilegioEntidad;
 import com.co.comfaoriente.controles.dominio.entidades.RolEntidad;
+import com.co.comfaoriente.controles.infraestructura.persistencia.entidades.RolUsuarioEntidad;
 
 public interface RolRepositorio {
 
@@ -26,5 +27,7 @@ public interface RolRepositorio {
 	public boolean existeRol(int rol);
 	
 	public boolean retirarRol(int documento, int rol);
+	
+	public List<RolUsuarioEntidad> consultarRolUsuario(int documento);
 
 }

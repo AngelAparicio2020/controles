@@ -18,6 +18,7 @@ import com.co.comfaoriente.controles.aplicacion.servicios.SesionServiceApl;
 import com.co.comfaoriente.controles.infraestructura.dtos.PrivilegioAsociadoDto;
 import com.co.comfaoriente.controles.infraestructura.dtos.PrivilegioDto;
 import com.co.comfaoriente.controles.infraestructura.dtos.RolDto;
+import com.co.comfaoriente.controles.infraestructura.persistencia.entidades.RolUsuarioEntidad;
 import com.co.comfaoriente.controles.infraestructura.persistencia.mapper.RolMapper;
 
 import io.swagger.annotations.Api;
@@ -87,6 +88,12 @@ public class RolControlador {
 	public boolean actualizarRol(@RequestBody PrivilegioAsociadoDto rol) {
 		PrivilegioAsociadoEntidad datos = mapper.privilegioRolToAplicacion(rol);
 		return rolService.actualizarRol(datos);
+	}
+
+	@PostMapping(value = "/CONSULTAR_ROLES/{documento}")
+	@ApiOperation("Consultar roles")
+	public List<RolUsuarioEntidad> consultarRolesUsuario(@PathVariable int documento) {
+		return rolService.consultarRolesUsuario(documento);
 	}
 
 }

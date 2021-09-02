@@ -59,14 +59,14 @@ public class RolRepositorioImpl implements RolRepositorio {
 	public List<PrivilegioEntidad> consultarPrivilegiosxRol(int rol) {
 		List<com.co.comfaoriente.controles.infraestructura.persistencia.entidades.RolPrivilegioEntidad> entity = repositorioPriJpa
 				.consultarPrivilegiosxRol(rol);
-		return entity.stream().map(entityI -> mapper.privilegioRolToDomain(entityI)).collect(Collectors.toList());
+		return entity.stream().map(mapper::privilegioRolToDomain).collect(Collectors.toList());
 	}
 
 	@Override
 	public List<PrivilegioEntidad> consultarPrivilegios() {
 		List<com.co.comfaoriente.controles.infraestructura.persistencia.entidades.PrivilegioEntidad> entity = repositorioPriJpa
 				.consultarPrivilegios();
-		return entity.stream().map(entityI -> mapper.privilegioToDomain(entityI)).collect(Collectors.toList());
+		return entity.stream().map(mapper::privilegioToDomain).collect(Collectors.toList());
 	}
 
 	@Override
@@ -81,6 +81,11 @@ public class RolRepositorioImpl implements RolRepositorio {
 		entity.setDocumento(documento);
 		entity.setIdRol(rol);
 		return repositorioUsuJpa.save(entity) != null;
+	}
+
+	@Override
+	public List<RolUsuarioEntidad> consultarRolUsuario(int documento) {
+		return repositorioUsuJpa.consultarRolesUsuario(documento);
 	}
 
 	@Override

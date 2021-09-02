@@ -7,6 +7,7 @@ import com.co.comfaoriente.controles.dominio.entidades.RolEntidad;
 import com.co.comfaoriente.controles.dominio.excepciones.EntityNotFoundException;
 import com.co.comfaoriente.controles.dominio.repositorios.RolRepositorio;
 import com.co.comfaoriente.controles.dominio.repositorios.UsuarioRepositorio;
+import com.co.comfaoriente.controles.infraestructura.persistencia.entidades.RolUsuarioEntidad;
 
 public class RolService {
 
@@ -86,6 +87,14 @@ public class RolService {
 			throw new EntityNotFoundException(USUARIO_NO_ENCONTRADO);
 		}
 		return rolRepositorio.retirarRol(documento, rol);
+	}
+	
+	
+	public List<RolUsuarioEntidad> consultarRolesUsuario(int documento){
+		if (!usuarioRepositorio.existeDocumento(documento)) {
+			throw new EntityNotFoundException(USUARIO_NO_ENCONTRADO);
+		}
+		return rolRepositorio.consultarRolUsuario(documento);
 	}
 
 }

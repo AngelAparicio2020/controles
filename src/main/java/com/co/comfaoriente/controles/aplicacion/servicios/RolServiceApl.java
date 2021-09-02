@@ -12,6 +12,7 @@ import com.co.comfaoriente.controles.aplicacion.entidades.PrivilegioEntidad;
 import com.co.comfaoriente.controles.aplicacion.entidades.RolEntidad;
 import com.co.comfaoriente.controles.aplicacion.mapper.RolMapper;
 import com.co.comfaoriente.controles.dominio.servicios.RolService;
+import com.co.comfaoriente.controles.infraestructura.persistencia.entidades.RolUsuarioEntidad;
 
 @Component
 public class RolServiceApl {
@@ -70,6 +71,10 @@ public class RolServiceApl {
 
 	public boolean retirarRol(int documento, int rol) {
 		return rolService.retirarRol(documento, rol);
+	}
+
+	public List<RolUsuarioEntidad> consultarRolesUsuario(int documento) {
+		return rolService.consultarRolesUsuario(documento);
 	}
 
 }
