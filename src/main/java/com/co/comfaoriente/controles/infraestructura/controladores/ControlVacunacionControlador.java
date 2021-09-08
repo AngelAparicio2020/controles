@@ -60,7 +60,7 @@ public class ControlVacunacionControlador {
 	@GetMapping(value = "/LISTAR_CONTROLES_VACUNACION/{id}")
 	@ApiOperation("Listar controles de vacunacion x documento")
 	public List<ControlVacunacionDto> listarControlesVacunacion(@PathVariable int id) {
-		return this.controlService.listadoControlesVacunacion(id).stream().map(aplicacion -> mapper.toDto(aplicacion))
+		return this.controlService.listadoControlesVacunacion(id).stream().map(mapper::toDto)
 				.collect(Collectors.toList());
 	}
 

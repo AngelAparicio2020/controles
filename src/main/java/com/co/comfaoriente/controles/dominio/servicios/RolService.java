@@ -54,6 +54,10 @@ public class RolService {
 		return rolRepositorio.consultarPrivilegios();
 	}
 
+	public void eliminarPrivilegiosAnteriores(int rol) {
+		rolRepositorio.eliminarPrivilegiosAnteriores(rol);
+	}
+
 	public boolean asignarPrivilegios(List<PrivilegioEntidad> privilegios, int rol) {
 		if (!rolRepositorio.existeRol(rol)) {
 			throw new EntityNotFoundException(ROL_NO_ENCONTRADO);
@@ -88,9 +92,8 @@ public class RolService {
 		}
 		return rolRepositorio.retirarRol(documento, rol);
 	}
-	
-	
-	public List<RolUsuarioEntidad> consultarRolesUsuario(int documento){
+
+	public List<RolUsuarioEntidad> consultarRolesUsuario(int documento) {
 		if (!usuarioRepositorio.existeDocumento(documento)) {
 			throw new EntityNotFoundException(USUARIO_NO_ENCONTRADO);
 		}

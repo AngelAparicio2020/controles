@@ -33,6 +33,7 @@ public class ControlVacunacionMapper {
 		dto.setFechaAplicacion(controlVacunacionEntidad.getFechaAplicacion());
 		dto.setIdUsuario(controlVacunacionEntidad.getIdUsuario());
 		dto.setVigente(controlVacunacionEntidad.isVigente());
+		dto.setVacunasRegistradas(controlVacunacionEntidad.getVacunas());
 		return dto;
 	}
 

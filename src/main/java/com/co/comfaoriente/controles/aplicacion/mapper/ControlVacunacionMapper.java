@@ -22,6 +22,7 @@ public class ControlVacunacionMapper {
 		aplicacion.setFechaAplicacion(dominio.getFechaAplicacion());
 		aplicacion.setIdUsuario(dominio.getIdUsuario());
 		aplicacion.setVigente(dominio.isVigente());
+		aplicacion.setVacunas(dominio.getVacunas());
 		return aplicacion;
 	}
 

@@ -28,6 +28,7 @@ public class RolServiceApl {
 								.collect(Collectors.toList());
 		com.co.comfaoriente.controles.dominio.entidades.RolEntidad rol = mapper.toDomain(datos.getRol());
 		if (rolService.actualizarRol(rol)) {
+			rolService.eliminarPrivilegiosAnteriores(rol.getIdRol());
 			return rolService.asignarPrivilegios(privilegios, datos.getRol().getIdRol());
 		}
 		return false;
@@ -55,6 +56,7 @@ public class RolServiceApl {
 								.collect(Collectors.toList());
 		com.co.comfaoriente.controles.dominio.entidades.RolEntidad rol = mapper.toDomain(datos.getRol());
 		if (rolService.registrarRol(rol)) {
+			rolService.eliminarPrivilegiosAnteriores(rol.getIdRol());
 			return rolService.asignarPrivilegios(privilegios, datos.getRol().getIdRol());
 		}
 		return false;

@@ -1,6 +1,9 @@
 package com.co.comfaoriente.controles.dominio.entidades;
 
 import java.util.Date;
+import java.util.List;
+
+import com.co.comfaoriente.controles.infraestructura.persistencia.entidades.VacunaControlEntidad;
 
 public class ControlVacunacionEntidad {
 
@@ -10,6 +13,7 @@ public class ControlVacunacionEntidad {
 	private int dosis;
 	private int edadGestacional;
 	private boolean vigente;
+	private List<VacunaControlEntidad> vacunas;
 
 	public int getId() {
 		return id;
@@ -57,6 +61,14 @@ public class ControlVacunacionEntidad {
 
 	public void setVigente(boolean vigente) {
 		this.vigente = vigente;
+	}
+
+	public List<VacunaControlEntidad> getVacunas() {
+		return vacunas;
+	}
+
+	public void setVacunas(List<VacunaControlEntidad> vacunas) {
+		this.vacunas = vacunas;
 	}
 
 }

@@ -17,5 +17,8 @@ public interface PrivilegioRepositorioJpa extends CrudRepository<RolPrivilegioEn
 
 	@Query("select privilegio from PrivilegioEntidad privilegio")
 	List<PrivilegioEntidad> consultarPrivilegios();
+	
+	@Query("select privilegio from RolPrivilegioEntidad privilegio where privilegio.idRol = :rol")
+	boolean eliminarPrivilegiosAnteriores(@Param("rol") int rol);
 
 }

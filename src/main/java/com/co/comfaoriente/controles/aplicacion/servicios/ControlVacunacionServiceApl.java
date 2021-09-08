@@ -32,7 +32,10 @@ public class ControlVacunacionServiceApl {
 	}
 
 	public ControlVacunacionEntidad consultarControl(int id) {
-		return mapper.toAplicacion(this.controlService.consultarControl(id));
+		com.co.comfaoriente.controles.dominio.entidades.ControlVacunacionEntidad control = this.controlService
+				.consultarControl(id);
+		control.setVacunas(this.controlService.consultarVacunasxControl(control.getId()));
+		return mapper.toAplicacion(control);
 	}
 
 	public boolean actualizarControl(ControlVacunacionEntidad control) {
@@ -46,8 +49,11 @@ public class ControlVacunacionServiceApl {
 	}
 
 	public List<ControlVacunacionEntidad> listadoControlesVacunacion(int idUsuario) {
-		return this.controlService.listadoControlesVacunacion(idUsuario).stream()
-				.map(dominio -> mapper.toAplicacion(dominio)).collect(Collectors.toList());
+		List<com.co.comfaoriente.controles.dominio.entidades.ControlVacunacionEntidad> controles = this.controlService
+				.listadoControlesVacunacion(idUsuario);
+		controles.stream()
+				.forEach(control -> control.setVacunas(this.controlService.consultarVacunasxControl(control.getId())));
+		return controles.stream().map(mapper::toAplicacion).collect(Collectors.toList());
 	}
 
 	public List<VacunaEntidad> consultarVacunasXedad(int meses) {

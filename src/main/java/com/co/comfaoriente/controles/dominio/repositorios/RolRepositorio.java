@@ -23,11 +23,13 @@ public interface RolRepositorio {
 	public List<PrivilegioEntidad> consultarPrivilegios();
 
 	public boolean asignarRol(int documento, int rol);
-	
+
 	public boolean existeRol(int rol);
-	
+
 	public boolean retirarRol(int documento, int rol);
-	
+
 	public List<RolUsuarioEntidad> consultarRolUsuario(int documento);
+
+	public void eliminarPrivilegiosAnteriores(int rol);
 
 }
