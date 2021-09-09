@@ -59,4 +59,13 @@ public class UsuarioRepositorioImpl implements UsuarioRepositorio {
 		return repositorioJpa.existsById(documento);
 	}
 
+	@Override
+	public List<UsuarioEntidad> consultarUsuariosxRol(String nombre) {
+		List<com.co.comfaoriente.controles.infraestructura.persistencia.entidades.UsuarioEntidad> entity = repositorioJpa
+				.consultarUsuariosxRol(nombre);
+		entity.stream().forEach(System.out::println);
+		System.out.println(nombre);
+		return entity.stream().map(mapper::toDomain).collect(Collectors.toList());
+	}
+
 }

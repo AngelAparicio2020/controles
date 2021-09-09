@@ -17,5 +17,7 @@ public interface UsuarioRepositorio {
 	public UsuarioEntidad consultarUsuario(int documento);
 
 	public boolean existeDocumento(int documento);
+	
+	public List<UsuarioEntidad> consultarUsuariosxRol(String nombre);
 
 }

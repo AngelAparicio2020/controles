@@ -48,4 +48,8 @@ public class UsuarioService {
 		return usuarioRepositorio.listarUsuarios();
 	}
 
+	public List<UsuarioEntidad> consultarUsuariosxRol(String nombre) {
+		return usuarioRepositorio.consultarUsuariosxRol(nombre);
+	}
+
 }

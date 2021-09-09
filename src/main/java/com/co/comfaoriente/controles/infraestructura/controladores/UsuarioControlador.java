@@ -63,4 +63,11 @@ public class UsuarioControlador {
 		return usuarioService.actualizarUsuario(usuario);
 	}
 
+	@GetMapping(value = "/LISTAR_USUARIOS_ROL/{nombre}")
+	@ApiOperation("lista de usuarios")
+	public List<UsuarioDto> listarUsuariosxRol(@PathVariable String nombre) {
+		List<UsuarioEntidad> usuarios = usuarioService.consultarUsuariosxRol(nombre);
+		return usuarios.stream().map(mapper::toDto).collect(Collectors.toList());
+	}
+
 }

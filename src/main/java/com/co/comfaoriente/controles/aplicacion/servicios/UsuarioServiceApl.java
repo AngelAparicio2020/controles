@@ -39,4 +39,9 @@ public class UsuarioServiceApl {
 				.collect(Collectors.toList());
 	}
 
+	public List<UsuarioEntidad> consultarUsuariosxRol(String nombre) {
+		return usuarioService.consultarUsuariosxRol(nombre).stream().map(mapper::toAplicacion)
+				.collect(Collectors.toList());
+	}
+
 }

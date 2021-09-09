@@ -10,7 +10,6 @@ import com.co.comfaoriente.controles.dominio.entidades.PrivilegioEntidad;
 import com.co.comfaoriente.controles.dominio.entidades.RolEntidad;
 import com.co.comfaoriente.controles.dominio.repositorios.RolRepositorio;
 import com.co.comfaoriente.controles.infraestructura.persistencia.entidades.RolPrivilegioEntidad;
-import com.co.comfaoriente.controles.infraestructura.persistencia.entidades.RolPrivilegioPK;
 import com.co.comfaoriente.controles.infraestructura.persistencia.entidades.RolUsuarioEntidad;
 import com.co.comfaoriente.controles.infraestructura.persistencia.entidades.RolUsuarioPK;
 import com.co.comfaoriente.controles.infraestructura.persistencia.mapper.RolMapper;
