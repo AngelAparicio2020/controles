@@ -13,6 +13,7 @@ public class ControlVacunacionEntidad {
 	private int dosis;
 	private int edadGestacional;
 	private boolean vigente;
+	private String nombreVacuna;
 	private List<VacunaControlEntidad> vacunas;
 
 	public int getId() {
@@ -70,5 +71,15 @@ public class ControlVacunacionEntidad {
 	public void setVacunas(List<VacunaControlEntidad> vacunas) {
 		this.vacunas = vacunas;
 	}
+
+	public String getNombreVacuna() {
+		return nombreVacuna;
+	}
+
+	public void setNombreVacuna(String nombreVacuna) {
+		this.nombreVacuna = nombreVacuna;
+	}
+	
+	
 
 }

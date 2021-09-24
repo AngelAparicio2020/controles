@@ -71,4 +71,8 @@ public class SeguimientoSaludService {
 		return seguimientoRepositorio.listadoSeguimientosSaludxDocumento(documento);
 	}
 
+	public List<SeguimientoSaludEntidad> listarSeguimientosxDocumentoCompletos(int documento) {
+		return seguimientoRepositorio.listarSeguimientosxDocumentoCompletos(documento);
+	}
+
 }

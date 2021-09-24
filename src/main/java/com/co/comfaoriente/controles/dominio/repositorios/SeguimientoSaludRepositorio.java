@@ -31,5 +31,7 @@ public interface SeguimientoSaludRepositorio {
 	public boolean esVigente(int id);
 	
 	public List<Integer> listadoSeguimientosSaludxDocumento(int idUsuario);
+	
+	public List<SeguimientoSaludEntidad> listarSeguimientosxDocumentoCompletos(int documento);
 
 }

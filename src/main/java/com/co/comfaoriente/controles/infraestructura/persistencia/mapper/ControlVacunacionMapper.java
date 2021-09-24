@@ -22,6 +22,7 @@ public class ControlVacunacionMapper {
 		aplicacion.setFechaAplicacion(dto.getFechaAplicacion());
 		aplicacion.setIdUsuario(dto.getIdUsuario());
 		aplicacion.setVigente(dto.isVigente());
+		aplicacion.setNombreVacuna(dto.getNombreVacuna());
 		return aplicacion;
 	}
 
@@ -33,6 +34,7 @@ public class ControlVacunacionMapper {
 		dto.setFechaAplicacion(controlVacunacionEntidad.getFechaAplicacion());
 		dto.setIdUsuario(controlVacunacionEntidad.getIdUsuario());
 		dto.setVigente(controlVacunacionEntidad.isVigente());
+		dto.setNombreVacuna(controlVacunacionEntidad.getNombreVacuna());
 		dto.setVacunasRegistradas(controlVacunacionEntidad.getVacunas());
 		return dto;
 	}
@@ -46,6 +48,7 @@ public class ControlVacunacionMapper {
 		dominio.setFechaAplicacion(entity.getFechaAplicacion());
 		dominio.setIdUsuario(entity.getIdUsuario());
 		dominio.setVigente(entity.isVigente());
+		dominio.setNombreVacuna(entity.getNombreVacuna());
 		return dominio;
 	}
 
@@ -58,6 +61,7 @@ public class ControlVacunacionMapper {
 		entity.setIdUsuario(dominio.getIdUsuario());
 		entity.setVigente(dominio.isVigente());
 		entity.setFechaAplicacion(dominio.getFechaAplicacion());
+		entity.setNombreVacuna(dominio.getNombreVacuna());
 		return entity;
 	}
 

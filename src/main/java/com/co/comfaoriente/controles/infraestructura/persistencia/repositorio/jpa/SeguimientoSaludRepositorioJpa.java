@@ -27,5 +27,8 @@ public interface SeguimientoSaludRepositorioJpa extends CrudRepository<Seguimien
 
 	@Query("select control.id from SeguimientoSaludEntidad control where control.idUsuario = :idUsuario")
 	List<Integer> listarSeguimientosxDocumento(@Param("idUsuario") int idUsuario);
+	
+	@Query("select control from SeguimientoSaludEntidad control where control.idUsuario = :idUsuario")
+	List<SeguimientoSaludEntidad> listarSeguimientosxDocumentoCompletos(@Param("idUsuario") int idUsuario);
 
 }

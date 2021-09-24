@@ -31,13 +31,13 @@ public class ControlEntidad implements Serializable {
 	private Date fechaControl;
 
 	@Column(name = "peso", nullable = false)
-	private int peso;
+	private float peso;
 
 	@Column(name = "talla", nullable = false)
-	private int talla;
+	private float talla;
 
 	@Column(name = "imc_calculado", nullable = false)
-	private int imc;
+	private float imc;
 
 	@Column(name = "estado_nutric", nullable = false)
 	private String estadoNutricional;
@@ -92,27 +92,27 @@ public class ControlEntidad implements Serializable {
 		this.fechaControl = fechaControl;
 	}
 
-	public int getPeso() {
+	public float getPeso() {
 		return peso;
 	}
 
-	public void setPeso(int peso) {
+	public void setPeso(float peso) {
 		this.peso = peso;
 	}
 
-	public int getTalla() {
+	public float getTalla() {
 		return talla;
 	}
 
-	public void setTalla(int talla) {
+	public void setTalla(float talla) {
 		this.talla = talla;
 	}
 
-	public int getImc() {
+	public float getImc() {
 		return imc;
 	}
 
-	public void setImc(int imc) {
+	public void setImc(float imc) {
 		this.imc = imc;
 	}
 

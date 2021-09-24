@@ -1,6 +1,8 @@
 package com.co.comfaoriente.controles.infraestructura.persistencia.repositorio.impl;
 
 import java.util.List;
+import java.util.Objects;
+import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -95,6 +97,13 @@ public class SeguimientoSaludRepositorioImpl implements SeguimientoSaludReposito
 	@Override
 	public List<Integer> listadoSeguimientosSaludxDocumento(int idUsuario) {
 		return seguimientoRepositorioJpa.listarSeguimientosxDocumento(idUsuario);
+	}
+
+	@Override
+	public List<SeguimientoSaludEntidad> listarSeguimientosxDocumentoCompletos(int documento) {
+		List<com.co.comfaoriente.controles.infraestructura.persistencia.entidades.SeguimientoSaludEntidad> entity = seguimientoRepositorioJpa
+				.listarSeguimientosxDocumentoCompletos(documento);
+		return entity.stream().filter(Objects::nonNull).map(mapper::toDomain).collect(Collectors.toList());
 	}
 
 }

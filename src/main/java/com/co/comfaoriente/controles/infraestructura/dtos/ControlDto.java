@@ -8,9 +8,9 @@ public class ControlDto {
 	private int idUsuario;
 	private int idUsuarioNutricionista;
 	private Date fechaControl;
-	private int peso;
-	private int talla;
-	private int imc;
+	private float peso;
+	private float talla;
+	private float imc;
 	private String estadoNutricional;
 	private String tension;
 	private int edadGestacional;
@@ -51,27 +51,27 @@ public class ControlDto {
 		this.fechaControl = fechaControl;
 	}
 
-	public int getPeso() {
+	public float getPeso() {
 		return peso;
 	}
 
-	public void setPeso(int peso) {
+	public void setPeso(float peso) {
 		this.peso = peso;
 	}
 
-	public int getTalla() {
+	public float getTalla() {
 		return talla;
 	}
 
-	public void setTalla(int talla) {
+	public void setTalla(float talla) {
 		this.talla = talla;
 	}
 
-	public int getImc() {
+	public float getImc() {
 		return imc;
 	}
 
-	public void setImc(int imc) {
+	public void setImc(float imc) {
 		this.imc = imc;
 	}
 

@@ -29,6 +29,9 @@ public class ControlVacunacionEntidad implements Serializable {
 
 	@Column(name = "dosis", nullable = false)
 	private int dosis;
+	
+	@Column(name = "nombre_vacuna", nullable = true)
+	private String nombreVacuna;
 
 	@Column(name = "edad_gestacional", nullable = false)
 	private int edadGestacional;
@@ -83,5 +86,15 @@ public class ControlVacunacionEntidad implements Serializable {
 	public void setVigente(boolean vigente) {
 		this.vigente = vigente;
 	}
+
+	public String getNombreVacuna() {
+		return nombreVacuna;
+	}
+
+	public void setNombreVacuna(String nombreVacuna) {
+		this.nombreVacuna = nombreVacuna;
+	}
+	
+	
 
 }

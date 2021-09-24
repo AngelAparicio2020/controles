@@ -82,4 +82,10 @@ public class SeguimientoSaludServiceApl {
 				.map(dominio -> dominio == null ? null : ingresoMapper.toAplicacion(dominio))
 				.filter(remicion -> remicion != null).collect(Collectors.toList());
 	}
+
+	public List<SeguimientoSaludEntidad> listarSeguimientosxDocumentoCompletos(int documento) {
+		return seguimientoService.listarSeguimientosxDocumentoCompletos(documento).stream().map(mapper::toAplicacion)
+				.collect(Collectors.toList());
+	}
+
 }

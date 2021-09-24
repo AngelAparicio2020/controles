@@ -57,6 +57,7 @@ public class ControlSeguiSaludControlador {
 	private static final IngresoInfanteMapper infanteMapper = IngresoInfanteMapper.getInstance();
 	private static final RemicionMapper remicionMapper = RemicionMapper.getInstance();
 	private static final CompromisoMapper compromisoMapper = CompromisoMapper.getInstance();
+	private static final SeguimientoSaludMapper seguimientoMapper = SeguimientoSaludMapper.getInstance();
 
 	@PostMapping(value = "/REGISTRAR_SEGUIMIENTO")
 	@ApiOperation("Registrar seguimiento")
@@ -65,10 +66,11 @@ public class ControlSeguiSaludControlador {
 		return this.seguimientoService.registrarSeguimiento(seguimiento);
 	}
 
-	@GetMapping(value = "/LISTAR_SEGUIMIENTOS")
+	@GetMapping(value = "/LISTAR_SEGUIMIENTOS/{documento}")
 	@ApiOperation("Listar seguimientos")
-	public String listarSeguimientos() {
-		return "hola mundo";
+	public List<SeguimientoSaludDto> listarSeguimientos(@PathVariable int documento) {
+		return this.seguimientoService.listarSeguimientosxDocumentoCompletos(documento).stream()
+				.map(seguimientoMapper::toDto).collect(Collectors.toList());
 	}
 
 	@GetMapping(value = "/ELIMINAR_SEGUIMIENTO/{id}")

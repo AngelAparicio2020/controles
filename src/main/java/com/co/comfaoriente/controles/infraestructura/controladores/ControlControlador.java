@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -29,7 +30,7 @@ public class ControlControlador {
 	private ControlServiceApl controlService;
 	private static final ControlMapper mapper = ControlMapper.getInstance();
 
-	@PostMapping(value = "/REGISTRAR_CONTROL/{nutricional}")
+	@PostMapping(value = "/REGISTRAR_CONTROL/{nutricional}", consumes = MediaType.APPLICATION_JSON_VALUE)
 	@ApiOperation("Registrar control")
 	public boolean registrarControl(@RequestBody ControlDto controlDto, @PathVariable boolean nutricional) {
 		ControlEntidad control = mapper.toAplicacion(controlDto);

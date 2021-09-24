@@ -70,16 +70,16 @@ public class ControlServiceApl {
 		Date fechaProximoDate;
 		int proximoMes = 0;
 		if (meses >= 0 && meses <= 12) {
-			proximoMes = 2;
-		}
-		if (meses >= 13 && meses <= 24) {
 			proximoMes = 3;
 		}
+		if (meses >= 13 && meses <= 24) {
+			proximoMes = 4;
+		}
 		if (meses >= 25 && meses <= 84) {
-			proximoMes = 5;
+			proximoMes = 6;
 		}
 		if (meses >= 97 && meses <= 108) {
-			proximoMes = 11;
+			proximoMes = 12;
 		}
 
 		fechaProximoDate = new Date(fechaControl.getYear(), fechaControl.getMonth() + proximoMes,
