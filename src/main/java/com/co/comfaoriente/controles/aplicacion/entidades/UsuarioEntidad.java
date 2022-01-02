@@ -28,6 +28,10 @@ public class UsuarioEntidad implements Serializable {
 	private String correoElectronico;
 
 	private String clave;
+	
+	private Date fechaRegistro;
+
+	private Date fechaIngresoPrograma;
 
 	public int getDocumento() {
 		return documento;
@@ -115,6 +119,22 @@ public class UsuarioEntidad implements Serializable {
 
 	public void setClave(String clave) {
 		this.clave = clave;
+	}
+
+	public Date getFechaRegistro() {
+		return fechaRegistro;
+	}
+
+	public void setFechaRegistro(Date fechaRegistro) {
+		this.fechaRegistro = fechaRegistro;
+	}
+
+	public Date getFechaIngresoPrograma() {
+		return fechaIngresoPrograma;
+	}
+
+	public void setFechaIngresoPrograma(Date fechaIngresoPrograma) {
+		this.fechaIngresoPrograma = fechaIngresoPrograma;
 	}
 
 }

@@ -26,6 +26,8 @@ public class UsuarioMapper {
 		aplicacion.setMunicipio(dominio.getMunicipio());
 		aplicacion.setTipoDocumento(dominio.getTipoDocumento());
 		aplicacion.setSexo(dominio.getSexo());
+		aplicacion.setFechaRegistro(dominio.getFechaRegistro());
+		aplicacion.setFechaIngresoPrograma(dominio.getFechaIngresoPrograma());
 		return aplicacion;
 	}
 
@@ -42,6 +44,8 @@ public class UsuarioMapper {
 		dominio.setMunicipio(aplicacion.getMunicipio());
 		dominio.setTipoDocumento(aplicacion.getTipoDocumento());
 		dominio.setSexo(aplicacion.getSexo());
+		dominio.setFechaRegistro(aplicacion.getFechaRegistro());
+		dominio.setFechaIngresoPrograma(aplicacion.getFechaIngresoPrograma());
 		return dominio;
 	}
 

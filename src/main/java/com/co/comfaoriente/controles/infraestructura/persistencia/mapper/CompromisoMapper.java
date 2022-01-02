@@ -24,6 +24,7 @@ public class CompromisoMapper {
 		aplicacion.setNombreAuxiliarEnfermeria(dto.getNombreAuxiliarEnfermeria());
 		aplicacion.setTipo(dto.getTipo());
 		aplicacion.setNuevoCompromiso(dto.getNuevoCompromiso());
+		aplicacion.setFechaTentativaCump(dto.getFechaTentativaCump());
 		return aplicacion;
 	}
 
@@ -37,6 +38,7 @@ public class CompromisoMapper {
 		dto.setNombreAuxiliarEnfermeria(aplicacion.getNombreAuxiliarEnfermeria());
 		dto.setTipo(aplicacion.getTipo());
 		dto.setNuevoCompromiso(aplicacion.getNuevoCompromiso());
+		dto.setFechaTentativaCump(aplicacion.getFechaTentativaCump());
 		return dto;
 	}
 
@@ -51,6 +53,7 @@ public class CompromisoMapper {
 		dominio.setNombreAuxiliarEnfermeria(entity.getNombreAuxiliarEnfermeria());
 		dominio.setTipo(entity.getTipo());
 		dominio.setNuevoCompromiso(entity.getNuevoCompromiso());
+		dominio.setFechaTentativaCump(entity.getFechaTentativaCump());
 		return dominio;
 	}
 
@@ -65,6 +68,7 @@ public class CompromisoMapper {
 		entity.setNombreAuxiliarEnfermeria(dominio.getNombreAuxiliarEnfermeria());
 		entity.setTipo(dominio.getTipo());
 		entity.setNuevoCompromiso(dominio.getNuevoCompromiso());
+		entity.setFechaTentativaCump(dominio.getFechaTentativaCump());
 		return entity;
 	}
 

@@ -20,6 +20,8 @@ public class CompromisoEntidad {
 
 	private String tipo;
 
+	private Date fechaTentativaCump;
+
 	public int getId() {
 		return id;
 	}
@@ -83,4 +85,13 @@ public class CompromisoEntidad {
 	public void setTipo(String tipo) {
 		this.tipo = tipo;
 	}
+
+	public Date getFechaTentativaCump() {
+		return fechaTentativaCump;
+	}
+
+	public void setFechaTentativaCump(Date fechaTentativaCump) {
+		this.fechaTentativaCump = fechaTentativaCump;
+	}
+
 }

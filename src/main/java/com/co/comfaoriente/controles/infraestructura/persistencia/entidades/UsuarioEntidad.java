@@ -47,6 +47,14 @@ public class UsuarioEntidad implements Serializable {
 
 	@Column(name = "clave", nullable = false)
 	private String clave;
+	
+	@Column(name = "fecha_registro")
+	private Date fechaRegistro;
+	
+	@Column(name = "fecha_ingreso_programa")
+	private Date fechaIngresoPrograma;
+	
+	
 
 	public int getDocumento() {
 		return documento;
@@ -136,12 +144,31 @@ public class UsuarioEntidad implements Serializable {
 		this.edad = edad;
 	}
 
+	public Date getFechaIngresoPrograma() {
+		return fechaIngresoPrograma;
+	}
+
+	public void setFechaIngresoPrograma(Date fechaIngresoPrograma) {
+		this.fechaIngresoPrograma = fechaIngresoPrograma;
+	}
+
+	public Date getFechaRegistro() {
+		return fechaRegistro;
+	}
+
+	public void setFechaRegistro(Date fechaRegistro) {
+		this.fechaRegistro = fechaRegistro;
+	}
+
 	@Override
 	public String toString() {
 		return "UsuarioEntidad [documento=" + documento + ", tipoDocumento=" + tipoDocumento + ", nombre=" + nombre
 				+ ", sexo=" + sexo + ", fechaNacimiento=" + fechaNacimiento + ", celular=" + celular + ", edad=" + edad
 				+ ", municipio=" + municipio + ", direccion=" + direccion + ", correoElectronico=" + correoElectronico
-				+ ", clave=" + clave + "]";
+				+ ", clave=" + clave + ", fechaRegistro=" + fechaRegistro + ", fechaIngresoPrograma="
+				+ fechaIngresoPrograma + "]";
 	}
+
+
 
 }

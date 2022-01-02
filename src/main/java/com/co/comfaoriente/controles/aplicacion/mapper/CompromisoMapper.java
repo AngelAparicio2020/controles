@@ -23,6 +23,7 @@ public class CompromisoMapper {
 		aplicacion.setNombreAuxiliarEnfermeria(dominio.getNombreAuxiliarEnfermeria());
 		aplicacion.setTipo(dominio.getTipo());
 		aplicacion.setNuevoCompromiso(dominio.getNuevoCompromiso());
+		aplicacion.setFechaTentativaCump(dominio.getFechaTentativaCump());
 		return aplicacion;
 	}
 
@@ -36,6 +37,7 @@ public class CompromisoMapper {
 		dominio.setNombreAuxiliarEnfermeria(aplicacion.getNombreAuxiliarEnfermeria());
 		dominio.setTipo(aplicacion.getTipo());
 		dominio.setNuevoCompromiso(aplicacion.getNuevoCompromiso());
+		dominio.setFechaTentativaCump(aplicacion.getFechaTentativaCump());
 		return dominio;
 	}
 

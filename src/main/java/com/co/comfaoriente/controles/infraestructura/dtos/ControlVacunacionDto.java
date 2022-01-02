@@ -15,6 +15,9 @@ public class ControlVacunacionDto {
 	private int edadGestacional;
 	private String nombreVacuna;
 	private boolean vigente;
+	private String lote;
+	private String institucion;
+	private String profesionalSalud;	
 	private List<VacunaControlEntidad> vacunasRegistradas;
 	private List<VacunaEntidad> vacunas;
 
@@ -89,5 +92,31 @@ public class ControlVacunacionDto {
 	public void setNombreVacuna(String nombreVacuna) {
 		this.nombreVacuna = nombreVacuna;
 	}
+
+	public String getLote() {
+		return lote;
+	}
+
+	public void setLote(String lote) {
+		this.lote = lote;
+	}
+
+	public String getInstitucion() {
+		return institucion;
+	}
+
+	public void setInstitucion(String institucion) {
+		this.institucion = institucion;
+	}
+
+	public String getProfesionalSalud() {
+		return profesionalSalud;
+	}
+
+	public void setProfesionalSalud(String profesionalSalud) {
+		this.profesionalSalud = profesionalSalud;
+	}
+	
+	
 
 }

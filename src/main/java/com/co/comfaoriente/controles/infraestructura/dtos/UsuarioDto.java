@@ -30,6 +30,10 @@ public class UsuarioDto implements Serializable {
 	private String clave;
 
 	private boolean meses;
+	
+	private Date fechaRegistro;
+
+	private Date fechaIngresoPrograma;
 
 	public int getDocumento() {
 		return documento;
@@ -126,5 +130,23 @@ public class UsuarioDto implements Serializable {
 	public void setMeses(boolean meses) {
 		this.meses = meses;
 	}
+
+	public Date getFechaRegistro() {
+		return fechaRegistro;
+	}
+
+	public void setFechaRegistro(Date fechaRegistro) {
+		this.fechaRegistro = fechaRegistro;
+	}
+
+	public Date getFechaIngresoPrograma() {
+		return fechaIngresoPrograma;
+	}
+
+	public void setFechaIngresoPrograma(Date fechaIngresoPrograma) {
+		this.fechaIngresoPrograma = fechaIngresoPrograma;
+	}
+	
+	
 
 }

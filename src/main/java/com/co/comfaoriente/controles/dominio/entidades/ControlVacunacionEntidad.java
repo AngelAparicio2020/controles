@@ -15,6 +15,9 @@ public class ControlVacunacionEntidad {
 	private boolean vigente;
 	private String nombreVacuna;
 	private List<VacunaControlEntidad> vacunas;
+	private String lote;
+	private String institucion;
+	private String profesionalSalud;	
 
 	public int getId() {
 		return id;
@@ -78,6 +81,30 @@ public class ControlVacunacionEntidad {
 
 	public void setNombreVacuna(String nombreVacuna) {
 		this.nombreVacuna = nombreVacuna;
+	}
+
+	public String getLote() {
+		return lote;
+	}
+
+	public void setLote(String lote) {
+		this.lote = lote;
+	}
+
+	public String getInstitucion() {
+		return institucion;
+	}
+
+	public void setInstitucion(String institucion) {
+		this.institucion = institucion;
+	}
+
+	public String getProfesionalSalud() {
+		return profesionalSalud;
+	}
+
+	public void setProfesionalSalud(String profesionalSalud) {
+		this.profesionalSalud = profesionalSalud;
 	}
 	
 	

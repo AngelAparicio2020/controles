@@ -23,14 +23,13 @@ public class UsuarioRepositorioImpl implements UsuarioRepositorio {
 	public List<UsuarioEntidad> listarUsuarios() {
 		List<com.co.comfaoriente.controles.infraestructura.persistencia.entidades.UsuarioEntidad> entity = repositorioJpa
 				.listarUsuarios();
-		return entity.stream().map(entityI -> mapper.toDomain(entityI)).collect(Collectors.toList());
+		return entity.stream().map(mapper::toDomain).collect(Collectors.toList());
 	}
 
 	@Override
 	public boolean registrarUsuario(UsuarioEntidad usuario) {
 		com.co.comfaoriente.controles.infraestructura.persistencia.entidades.UsuarioEntidad entity = mapper
 				.toEntity(usuario, true);
-		System.err.println(usuario.getClave());
 		return repositorioJpa.save(entity) != null;
 	}
 
@@ -64,7 +63,6 @@ public class UsuarioRepositorioImpl implements UsuarioRepositorio {
 		List<com.co.comfaoriente.controles.infraestructura.persistencia.entidades.UsuarioEntidad> entity = repositorioJpa
 				.consultarUsuariosxRol(nombre);
 		entity.stream().forEach(System.out::println);
-		System.out.println(nombre);
 		return entity.stream().map(mapper::toDomain).collect(Collectors.toList());
 	}
 

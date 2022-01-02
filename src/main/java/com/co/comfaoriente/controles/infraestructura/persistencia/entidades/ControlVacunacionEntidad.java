@@ -38,6 +38,15 @@ public class ControlVacunacionEntidad implements Serializable {
 
 	@Column(name = "vigente", columnDefinition = "tinyint(1) default 1", nullable = false)
 	private boolean vigente;
+	
+	@Column(name = "lote", nullable = true)
+	private String lote;
+	
+	@Column(name = "institucion", nullable = true)
+	private String institucion;
+	
+	@Column(name = "profesional_salud", nullable = true)
+	private String profesionalSalud;	
 
 	public int getId() {
 		return id;
@@ -94,6 +103,31 @@ public class ControlVacunacionEntidad implements Serializable {
 	public void setNombreVacuna(String nombreVacuna) {
 		this.nombreVacuna = nombreVacuna;
 	}
+
+	public String getLote() {
+		return lote;
+	}
+
+	public void setLote(String lote) {
+		this.lote = lote;
+	}
+
+	public String getInstitucion() {
+		return institucion;
+	}
+
+	public void setInstitucion(String institucion) {
+		this.institucion = institucion;
+	}
+
+	public String getProfesionalSalud() {
+		return profesionalSalud;
+	}
+
+	public void setProfesionalSalud(String profesionalSalud) {
+		this.profesionalSalud = profesionalSalud;
+	}
+	
 	
 	
 

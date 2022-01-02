@@ -41,6 +41,10 @@ public class CompromisoEntidad implements Serializable {
 	
 	@Column(name = "tipo_compromiso", nullable = true)
 	private String tipo;
+	
+	@Column(name = "fecha_tentativa_cump", nullable = true)
+	private Date fechaTentativaCump;
+	
 
 	public int getId() {
 		return id;
@@ -105,10 +109,22 @@ public class CompromisoEntidad implements Serializable {
 	public void setTipo(String tipo) {
 		this.tipo = tipo;
 	}
-	
-	
-	
-	
+
+	public Date getFechaTentativaCump() {
+		return fechaTentativaCump;
+	}
+
+	public void setFechaTentativaCump(Date fechaTentativaCump) {
+		this.fechaTentativaCump = fechaTentativaCump;
+	}
+
+	@Override
+	public String toString() {
+		return "CompromisoEntidad [id=" + id + ", idSeguimientoSalud=" + idSeguimientoSalud + ", fechaCompromiso="
+				+ fechaCompromiso + ", nombre=" + nombre + ", nuevoCompromiso=" + nuevoCompromiso
+				+ ", fechaCumplimiento=" + fechaCumplimiento + ", nombreAuxiliarEnfermeria=" + nombreAuxiliarEnfermeria
+				+ ", tipo=" + tipo + ", fechaTentativaCump=" + fechaTentativaCump + "]";
+	}
 	
 	
 
