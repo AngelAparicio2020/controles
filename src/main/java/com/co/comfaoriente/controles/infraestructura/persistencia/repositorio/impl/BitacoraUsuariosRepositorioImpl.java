@@ -1,15 +1,17 @@
 package com.co.comfaoriente.controles.infraestructura.persistencia.repositorio.impl;
 
 import java.util.List;
+
 import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
 import com.co.comfaoriente.controles.dominio.entidades.BitacoraUsuarioEntidad;
 import com.co.comfaoriente.controles.dominio.repositorios.BitacoraRepositorio;
 import com.co.comfaoriente.controles.infraestructura.persistencia.mapper.BitacoraUsuarioMapper;
 import com.co.comfaoriente.controles.infraestructura.persistencia.repositorio.jpa.BitacoraUsuariosRepositorioJpa;
-
+@Component
 public class BitacoraUsuariosRepositorioImpl implements BitacoraRepositorio {
 
 	@Autowired

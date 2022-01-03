@@ -6,12 +6,14 @@ import java.util.stream.Collectors;
 import java.util.stream.StreamSupport;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
 import com.co.comfaoriente.controles.dominio.entidades.ControlAdicionalEntidad;
 import com.co.comfaoriente.controles.dominio.repositorios.ControlAdicionalRepositorio;
 import com.co.comfaoriente.controles.infraestructura.persistencia.mapper.ControlAdicionalMapper;
 import com.co.comfaoriente.controles.infraestructura.persistencia.repositorio.jpa.ControlAdicionalRepositorioJpa;
 
+@Component
 public class ControlAdicionalRepositorioImpl implements ControlAdicionalRepositorio {
 
 	@Autowired
@@ -53,6 +55,11 @@ public class ControlAdicionalRepositorioImpl implements ControlAdicionalReposito
 		List<com.co.comfaoriente.controles.infraestructura.persistencia.entidades.ControlAdicionalEntidad> entity = StreamSupport
 				.stream(repositorioJpa.findAll().spliterator(), false).collect(Collectors.toList());
 		return entity.stream().map(mapper::toDomain).collect(Collectors.toList());
+	}
+
+	@Override
+	public boolean existeControl(int id) {
+		return repositorioJpa.existsById(id);
 	}
 
 }

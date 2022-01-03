@@ -35,8 +35,11 @@ public class UsuarioServiceApl {
 	}
 
 	public List<UsuarioEntidad> listarUsuarios() {
-		return usuarioService.listarUsuarios().stream().map(dominio -> mapper.toAplicacion(dominio))
-				.collect(Collectors.toList());
+		return usuarioService.listarUsuarios().stream().map(mapper::toAplicacion).collect(Collectors.toList());
+	}
+
+	public List<UsuarioEntidad> listarUsuariosInactivos() {
+		return usuarioService.listarUsuariosInactivos().stream().map(mapper::toAplicacion).collect(Collectors.toList());
 	}
 
 	public List<UsuarioEntidad> consultarUsuariosxRol(String nombre) {

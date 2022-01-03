@@ -11,9 +11,13 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.co.comfaoriente.controles.aplicacion.entidades.BitacoraUsuarioEntidad;
 import com.co.comfaoriente.controles.aplicacion.entidades.UsuarioEntidad;
+import com.co.comfaoriente.controles.aplicacion.servicios.BitacoraServiceApl;
 import com.co.comfaoriente.controles.aplicacion.servicios.UsuarioServiceApl;
+import com.co.comfaoriente.controles.infraestructura.dtos.BitacoraUsuarioDto;
 import com.co.comfaoriente.controles.infraestructura.dtos.UsuarioDto;
+import com.co.comfaoriente.controles.infraestructura.persistencia.mapper.BitacoraUsuarioMapper;
 import com.co.comfaoriente.controles.infraestructura.persistencia.mapper.UsuarioMapper;
 
 import io.swagger.annotations.Api;
@@ -27,13 +31,17 @@ public class UsuarioControlador {
 	@Autowired
 	private UsuarioServiceApl usuarioService;
 
+	@Autowired
+	private BitacoraServiceApl bitacoraService;
+
 	private static final UsuarioMapper mapper = UsuarioMapper.getInstance();
+	private static final BitacoraUsuarioMapper bitacoramapper = BitacoraUsuarioMapper.getInstance();
 
 	@GetMapping(value = "/LISTAR_USUARIOS")
 	@ApiOperation("lista de usuarios")
 	public List<UsuarioDto> listarUsuarios() {
 		List<UsuarioEntidad> usuarios = usuarioService.listarUsuarios();
-		return usuarios.stream().map(aplicacion -> mapper.toDto(aplicacion)).collect(Collectors.toList());
+		return usuarios.stream().map(mapper::toDto).collect(Collectors.toList());
 	}
 
 	@GetMapping(value = "/ELIMINAR_USUARIO/{documento}")
@@ -68,6 +76,27 @@ public class UsuarioControlador {
 	public List<UsuarioDto> listarUsuariosxRol(@PathVariable String nombre) {
 		List<UsuarioEntidad> usuarios = usuarioService.consultarUsuariosxRol(nombre);
 		return usuarios.stream().map(mapper::toDto).collect(Collectors.toList());
+	}
+
+	@GetMapping(value = "/LISTAR_USUARIOS_INACTIVOS")
+	@ApiOperation("lista de usuarios inactivos")
+	public List<UsuarioDto> listarUsuariosInactivos() {
+		List<UsuarioEntidad> usuarios = usuarioService.listarUsuariosInactivos();
+		return usuarios.stream().map(mapper::toDto).collect(Collectors.toList());
+	}
+
+	@PostMapping(value = "/MODIFICAR_ESTADO_USUARIO")
+	@ApiOperation("activar usuarios O desactivar")
+	public boolean activarUsuario(@RequestBody BitacoraUsuarioDto bitacoraDto) {
+		BitacoraUsuarioEntidad bitacora = bitacoramapper.toAplicacion(bitacoraDto);
+		return bitacoraService.cambiarEstadoUsuario(bitacora);
+	}
+
+	@GetMapping(value = "/LISTAR_BITACORA_USUARIO/{documento}")
+	@ApiOperation("lista de usuarios inactivos")
+	public List<BitacoraUsuarioDto> listarBitacoraUsuario(@PathVariable int documento) {
+		List<BitacoraUsuarioEntidad> bitacoras = bitacoraService.listarBitacoraUsuario(documento);
+		return bitacoras.stream().map(bitacoramapper::toDto).collect(Collectors.toList());
 	}
 
 }

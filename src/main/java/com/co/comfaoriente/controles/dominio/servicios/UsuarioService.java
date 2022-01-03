@@ -1,6 +1,8 @@
 package com.co.comfaoriente.controles.dominio.servicios;
 
+import java.util.Date;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import com.co.comfaoriente.controles.dominio.entidades.UsuarioEntidad;
 import com.co.comfaoriente.controles.dominio.excepciones.EntityNotFoundException;
@@ -20,6 +22,7 @@ public class UsuarioService {
 		if (usuarioRepositorio.existeDocumento(usuario.getDocumento())) {
 			throw new EntityNotFoundException("ESTE USUARIO YA SE ENCONTRABA REGISTRADO");
 		}
+		usuario.setFechaRegistro(new Date());
 		return usuarioRepositorio.registrarUsuario(usuario);
 	}
 
@@ -45,7 +48,13 @@ public class UsuarioService {
 	}
 
 	public List<UsuarioEntidad> listarUsuarios() {
-		return usuarioRepositorio.listarUsuarios();
+		return usuarioRepositorio.listarUsuarios().stream().filter(usuario -> usuario.getFechaIngresoPrograma() != null)
+				.collect(Collectors.toList());
+	}
+
+	public List<UsuarioEntidad> listarUsuariosInactivos() {
+		return usuarioRepositorio.listarUsuarios().stream().filter(usuario -> usuario.getFechaIngresoPrograma() == null)
+				.collect(Collectors.toList());
 	}
 
 	public List<UsuarioEntidad> consultarUsuariosxRol(String nombre) {

@@ -13,7 +13,9 @@ public interface ControlAdicionalRepositorio {
 	public boolean eliminarControl(int control);
 
 	public ControlAdicionalEntidad consultarControl(int control);
-	
+
 	public List<ControlAdicionalEntidad> listarControles();
+
+	public boolean existeControl(int control);
 
 }

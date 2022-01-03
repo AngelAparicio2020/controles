@@ -51,6 +51,7 @@ public class UsuarioBuilder {
 		usuario.setMunicipio(this.municipio);
 		usuario.setTipoDocumento(this.tipoDocumento);
 		usuario.setSexo(this.sexo);
+		usuario.setFechaIngresoPrograma(new Date());
 		return usuario;
 	}
 

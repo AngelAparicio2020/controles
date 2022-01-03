@@ -3,7 +3,9 @@ package com.co.comfaoriente.controles.infraestructura.configuracion;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
+import com.co.comfaoriente.controles.dominio.repositorios.BitacoraRepositorio;
 import com.co.comfaoriente.controles.dominio.repositorios.CompromisoRepositorio;
+import com.co.comfaoriente.controles.dominio.repositorios.ControlAdicionalRepositorio;
 import com.co.comfaoriente.controles.dominio.repositorios.ControlRepositorio;
 import com.co.comfaoriente.controles.dominio.repositorios.ControlVacunacionRepositorio;
 import com.co.comfaoriente.controles.dominio.repositorios.IngresoRepositorio;
@@ -12,7 +14,9 @@ import com.co.comfaoriente.controles.dominio.repositorios.RolRepositorio;
 import com.co.comfaoriente.controles.dominio.repositorios.SeguimientoSaludRepositorio;
 import com.co.comfaoriente.controles.dominio.repositorios.SesionRepositorio;
 import com.co.comfaoriente.controles.dominio.repositorios.UsuarioRepositorio;
+import com.co.comfaoriente.controles.dominio.servicios.BitacoraService;
 import com.co.comfaoriente.controles.dominio.servicios.CompromisoService;
+import com.co.comfaoriente.controles.dominio.servicios.ControlAdicionalService;
 import com.co.comfaoriente.controles.dominio.servicios.ControlService;
 import com.co.comfaoriente.controles.dominio.servicios.ControlVacunacionService;
 import com.co.comfaoriente.controles.dominio.servicios.IngresoInfanteService;
@@ -92,6 +96,18 @@ public class BeanService {
 	public SeguimientoSaludService seguimientoService(SeguimientoSaludRepositorio seguimientoRepositorio,
 			UsuarioRepositorio usuarioRepositorio) {
 		return new SeguimientoSaludService(seguimientoRepositorio, usuarioRepositorio);
+	}
+
+	@Bean
+	public BitacoraService bitacoraService(BitacoraRepositorio bitacoraRepositorio,
+			UsuarioRepositorio usuarioRepositorio) {
+		return new BitacoraService(bitacoraRepositorio, usuarioRepositorio);
+	}
+
+	@Bean
+	public ControlAdicionalService controlAdicionalService(ControlAdicionalRepositorio controlAdicionalRepositorio,
+			UsuarioRepositorio usuarioRepositorio) {
+		return new ControlAdicionalService(controlAdicionalRepositorio, usuarioRepositorio);
 	}
 
 	@Bean
