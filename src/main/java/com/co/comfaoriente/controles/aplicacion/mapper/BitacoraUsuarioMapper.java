@@ -21,6 +21,7 @@ public class BitacoraUsuarioMapper {
 		aplicacion.setId(dominio.getId());
 		aplicacion.setIdUsuario(dominio.getIdUsuario());
 		aplicacion.setNombreUsuario(dominio.getNombreUsuario());
+		aplicacion.setFechaCambio(dominio.getFechaCambio());
 		return aplicacion;
 	}
 
@@ -32,6 +33,7 @@ public class BitacoraUsuarioMapper {
 		dominio.setId(aplicacion.getId());
 		dominio.setIdUsuario(aplicacion.getIdUsuario());
 		dominio.setNombreUsuario(aplicacion.getNombreUsuario());
+		dominio.setFechaCambio(aplicacion.getFechaCambio());
 		return dominio;
 	}
 

@@ -23,6 +23,7 @@ public class BitacoraUsuarioMapper {
 			aplicacion.setId(dto.getId());
 			aplicacion.setIdUsuario(dto.getIdUsuario());
 			aplicacion.setNombreUsuario(dto.getNombreUsuario());
+			aplicacion.setFechaCambio(dto.getFechaCambio());
 		}
 		return aplicacion;
 	}
@@ -36,6 +37,7 @@ public class BitacoraUsuarioMapper {
 			dto.setId(aplicacion.getId());
 			dto.setIdUsuario(aplicacion.getIdUsuario());
 			dto.setNombreUsuario(aplicacion.getNombreUsuario());
+			dto.setFechaCambio(aplicacion.getFechaCambio());
 		}
 		return dto;
 	}
@@ -50,6 +52,7 @@ public class BitacoraUsuarioMapper {
 			dominio.setId(entity.getId());
 			dominio.setIdUsuario(entity.getIdUsuario());
 			dominio.setNombreUsuario(entity.getNombreUsuario());
+			dominio.setFechaCambio(entity.getFechaCambio());
 		}
 		return dominio;
 	}
@@ -64,6 +67,7 @@ public class BitacoraUsuarioMapper {
 			entity.setId(dominio.getId());
 			entity.setIdUsuario(dominio.getIdUsuario());
 			entity.setNombreUsuario(dominio.getNombreUsuario());
+			entity.setFechaCambio(dominio.getFechaCambio());
 		}
 		return entity;
 	}

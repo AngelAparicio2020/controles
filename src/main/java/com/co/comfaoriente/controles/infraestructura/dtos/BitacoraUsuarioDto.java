@@ -1,6 +1,7 @@
 package com.co.comfaoriente.controles.infraestructura.dtos;
 
 import java.io.Serializable;
+import java.util.Date;
 
 public class BitacoraUsuarioDto implements Serializable {
 
@@ -12,6 +13,7 @@ public class BitacoraUsuarioDto implements Serializable {
 	private String nombreUsuario;
 	private String descripcion;
 	private String documentoAprobador;
+	private Date fechaCambio;
 
 	public int getId() {
 		return id;
@@ -60,6 +62,16 @@ public class BitacoraUsuarioDto implements Serializable {
 	public void setDocumentoAprobador(String documentoAprobador) {
 		this.documentoAprobador = documentoAprobador;
 	}
+
+	public Date getFechaCambio() {
+		return fechaCambio;
+	}
+
+	public void setFechaCambio(Date fechaCambio) {
+		this.fechaCambio = fechaCambio;
+	}
+	
+	
 	
 	
 }

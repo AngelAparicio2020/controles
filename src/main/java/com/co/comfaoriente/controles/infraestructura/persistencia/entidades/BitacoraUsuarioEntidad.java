@@ -1,6 +1,7 @@
 package com.co.comfaoriente.controles.infraestructura.persistencia.entidades;
 
 import java.io.Serializable;
+import java.util.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -34,6 +35,9 @@ public class BitacoraUsuarioEntidad implements Serializable {
 
 	@Column(name = "documento_aprobador", nullable = false)
 	private String documentoAprobador;
+	
+	@Column(name = "fecha_cambio", nullable = false)
+	private Date fechaCambio;
 
 	public int getId() {
 		return id;
@@ -83,12 +87,21 @@ public class BitacoraUsuarioEntidad implements Serializable {
 		this.documentoAprobador = documentoAprobador;
 	}
 
+	public Date getFechaCambio() {
+		return fechaCambio;
+	}
+
+	public void setFechaCambio(Date fechaCambio) {
+		this.fechaCambio = fechaCambio;
+	}
+
 	@Override
 	public String toString() {
 		return "BitacoraUsuarioEntidad [id=" + id + ", idUsuario=" + idUsuario + ", accion=" + accion
 				+ ", nombreUsuario=" + nombreUsuario + ", descripcion=" + descripcion + ", documentoAprobador="
-				+ documentoAprobador + "]";
+				+ documentoAprobador + ", fechaCambio=" + fechaCambio + "]";
 	}
-	
+
+
 	
 }
